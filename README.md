@@ -42,11 +42,11 @@ flutter run
 For more details on setting up the Flutter environment, refer to the official Flutter documentation.
  ```
 ## Team Members
--국현우 (Team Lead, Full Stack Developer)/n
--홍택수 (Full Stack Developer, DBA)
--서희준 (Frontend Developer)
--박병주 (Frontend Developer)
--정승민 (Backend Developer)
++국현우 (Team Lead, Full Stack Developer)
++홍택수 (Full Stack Developer, DBA)
++서희준 (Frontend Developer)
++박병주 (Frontend Developer)
++정승민 (Backend Developer)
 
 
 ##License
