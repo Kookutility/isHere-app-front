@@ -1,24 +1,23 @@
-# Petish
+# 🌐Petish
 
-Petish는 반려동물 산책메이트 & 커뮤니티입니다.
+📁 Petish 앱(Flutter) 프론트 구현
 
-## Project Setup
+## 🚀Project Setup
 
 - **Language**: Dart
 - **FE Framework**: Flutter
-- **BE Framework**: Spring Boot
 - **Database**: MySQL
 - **Cloud Service/Platform**: Firebase
-- **IDE**: IntelliJ IDEA, Android Studio
+- **IDE**:Android Studio
 
-## Requirements
+## 📋Requirements
 
 - Flutter SDK Version: >=3.1.5 <4.0.0 (As specified in `pubspec.yaml`)
 - Dart SDK Version: >=3.1.5 <4.0.0 (The Flutter SDK comes with its corresponding Dart SDK)
 - Java JDK Version:
 - JavaScript :
 
-## Getting Started
+## 🔧Getting Started
 
 이 프로젝트를 실행하려면 위에 언급한 SDK로 개발 환경을 구성해야 합니다.
 
