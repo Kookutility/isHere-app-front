@@ -40,7 +40,7 @@ bash
 Copy code
 flutter run
 For more details on setting up the Flutter environment, refer to the official Flutter documentation.
-
+ ```
 ## Team Members
 -국현우 (Team Lead, Full Stack Developer)/n
 -홍택수 (Full Stack Developer, DBA)
@@ -49,10 +49,7 @@ For more details on setting up the Flutter environment, refer to the official Fl
 -정승민 (Backend Developer)
 
 
-License
+##License
 이 프로젝트는 MIT 라이센스로 라이센스가 부여됩니다. 자세한 내용은 라이센스 파일을 참조하십시오.
-
-go
-Copy code
 
 이 파일은 프로젝트의 기본적인 설명, 설치 요구 사항, 시작 방법, 팀 구성원 및 라이센스 정보를 포함합니다. Dart 및 Flutter SDK의 버전은 `pubspec.yaml` 파일에서 확인하고 정확한 버전 정보를 README에 반영했습니다.
