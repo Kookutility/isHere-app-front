@@ -24,26 +24,29 @@ Petish는 반려동물 산책메이트 & 커뮤니티입니다.
 
 1. Clone the repository:
 
-   ```bash
+```bash
    git clone https://github.com/Kookutility/petish-app-develop.git
 Install dependencies:
 
 bash
 Copy code
 flutter pub get
-Run the application:
+```
 
+##Run the application:
+
+ ```
 bash
 Copy code
 flutter run
 For more details on setting up the Flutter environment, refer to the official Flutter documentation.
 
-Team Members
-국현우 (Team Lead, Full Stack Developer)
-홍택수 (Full Stack Developer, DBA)
-서희준 (Frontend Developer)
-박병주 (Frontend Developer)
-정승민 (Backend Developer)
+## Team Members
+-국현우 (Team Lead, Full Stack Developer)/n
+-홍택수 (Full Stack Developer, DBA)
+-서희준 (Frontend Developer)
+-박병주 (Frontend Developer)
+-정승민 (Backend Developer)
 
 
 License
