@@ -1,6 +1,7 @@
-# 🌐Petish
+# 🌐isHere
 
-📁 Petish 앱(Flutter) 프론트 구현
+📁 isHere 앱(Flutter) 프론트 구현
+
 
 ## 🚀Project Setup
 
@@ -24,7 +25,7 @@
 1. Clone the repository:
 
 ```bash
-   git clone https://github.com/Kookutility/petish-app-develop.git
+   git clone https://github.com/Kookutility/isHere-app-develop.git
 Install dependencies:
 
 bash
