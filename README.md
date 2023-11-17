@@ -24,8 +24,7 @@
 
 1. Clone the repository:
 
-
-   ```bash
+```bash
    git clone https://github.com/Kookutility/isHere-app-develop.git
 Install dependencies:
 
