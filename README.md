@@ -1,6 +1,6 @@
-# Petish
+# isHere
 
-Petish는 반려동물 산책메이트 & 커뮤니티입니다.
+isHere는 분실물 등록 및 사례금 전송 어플입니다!
 
 ## Project Setup
 
@@ -25,7 +25,7 @@ Petish는 반려동물 산책메이트 & 커뮤니티입니다.
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/Kookutility/petish-app-develop.git
+   git clone https://github.com/Kookutility/isHere-app-develop.git
 Install dependencies:
 
 bash
