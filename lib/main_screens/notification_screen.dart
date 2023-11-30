@@ -7,7 +7,7 @@ class NotificationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MainLayout(
-      children: [Text('hihih')],
+      children: [Text('NotificationScreen')],
     );
   }
 }

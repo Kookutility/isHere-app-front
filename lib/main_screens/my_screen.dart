@@ -7,7 +7,7 @@ class MyScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MainLayout(
-      children: [Text('hihih')],
+      children: [Text('MyPage')],
     );
   }
 }

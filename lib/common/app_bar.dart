@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class IsHereAppBar extends StatelessWidget implements PreferredSizeWidget {
   final VoidCallback? onNotificationPressed;
@@ -24,7 +25,7 @@ class IsHereAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       backgroundColor: Colors.white, // 배경색을 흰색으로 설정
       automaticallyImplyLeading: false, // 뒤로 가기 버튼 제거
-      elevation: 0, // 그림자 제거
+      elevation: 0.5, // 그림자 제거
       actions: <Widget>[
         Padding(
           padding: const EdgeInsets.only(right: 20.0), // 오른쪽 간격을 20.0으로 설정
