@@ -16,7 +16,7 @@ class SearchScreen extends StatelessWidget {
             style: TextStyle(
               fontFamily: 'Pretendard-ExtraBold', // 원하는 폰트 설정
               fontWeight: FontWeight.w800,
-              fontSize: 24,// 원하는 무게 설정
+              fontSize: 24,//
               color: Color.fromRGBO(78, 64, 234, 0.81), // 색상 설정
             ),
           ),

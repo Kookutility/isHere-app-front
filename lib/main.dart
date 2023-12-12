@@ -5,8 +5,12 @@ import 'package:petdemo/main_screens/common/bottom_nav_design.dart';
 import 'package:petdemo/main_screens/my_screen.dart';
 import 'package:petdemo/main_screens/search_screen.dart';
 import 'package:petdemo/main_screens/notification_screen.dart';
+import 'package:flutter_naver_map/flutter_naver_map.dart';
+import 'package:petdemo/main_screens/map_screen.dart'; // 여기서 map.dart를 import해야 합니다.
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await NaverMapSdk.instance.initialize(clientId: 'raopvm5gte'); // NaverMapSdk 초기화
   runApp(const IsHere());
 }
 
@@ -65,6 +69,17 @@ class _BottomBarState extends State<BottomBar> {
         onTabChange: (index) => navigateBottomBar(index),
       ),
       body: pages[selectedIndex],
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => MapScreen(), // map_screen.dart으로 이동
+            ),
+          );
+        },
+        child: Icon(Icons.map),
+      ),
     );
   }
 }
