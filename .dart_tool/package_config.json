@@ -2,28 +2,10 @@
   "configVersion": 2,
   "packages": [
     {
-      "name": "_fe_analyzer_shared",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/_fe_analyzer_shared-61.0.0",
-      "packageUri": "lib/",
-      "languageVersion": "2.17"
-    },
-    {
       "name": "_flutterfire_internals",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/_flutterfire_internals-1.3.16",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/_flutterfire_internals-1.3.2",
       "packageUri": "lib/",
       "languageVersion": "2.18"
-    },
-    {
-      "name": "analyzer",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/analyzer-5.13.0",
-      "packageUri": "lib/",
-      "languageVersion": "2.19"
-    },
-    {
-      "name": "args",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/args-2.4.2",
-      "packageUri": "lib/",
-      "languageVersion": "2.19"
     },
     {
       "name": "async",
@@ -39,9 +21,9 @@
     },
     {
       "name": "badges",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/badges-3.1.2",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/badges-2.0.2",
       "packageUri": "lib/",
-      "languageVersion": "3.0"
+      "languageVersion": "2.12"
     },
     {
       "name": "boolean_selector",
@@ -51,21 +33,21 @@
     },
     {
       "name": "cached_network_image",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/cached_network_image-3.3.0",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/cached_network_image-3.2.1",
       "packageUri": "lib/",
-      "languageVersion": "3.0"
+      "languageVersion": "2.17"
     },
     {
       "name": "cached_network_image_platform_interface",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/cached_network_image_platform_interface-3.0.0",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/cached_network_image_platform_interface-1.0.0",
       "packageUri": "lib/",
-      "languageVersion": "3.0"
+      "languageVersion": "2.12"
     },
     {
       "name": "cached_network_image_web",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/cached_network_image_web-1.1.0",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/cached_network_image_web-1.0.1",
       "packageUri": "lib/",
-      "languageVersion": "3.0"
+      "languageVersion": "2.12"
     },
     {
       "name": "characters",
@@ -81,31 +63,25 @@
     },
     {
       "name": "cloud_firestore",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/cloud_firestore-4.13.6",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/cloud_firestore-4.8.0",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "cloud_firestore_platform_interface",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/cloud_firestore_platform_interface-6.0.10",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/cloud_firestore_platform_interface-5.15.0",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "cloud_firestore_web",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/cloud_firestore_web-3.8.10",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/cloud_firestore_web-3.6.0",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "collection",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/collection-1.17.2",
-      "packageUri": "lib/",
-      "languageVersion": "2.18"
-    },
-    {
-      "name": "convert",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/convert-3.1.1",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/collection-1.18.0",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
@@ -141,7 +117,7 @@
     },
     {
       "name": "easy_debounce",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/easy_debounce-2.0.3",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/easy_debounce-2.0.1",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -159,15 +135,15 @@
     },
     {
       "name": "file",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/file-7.0.0",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/file-6.1.4",
       "packageUri": "lib/",
-      "languageVersion": "3.0"
+      "languageVersion": "2.12"
     },
     {
       "name": "file_picker",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/file_picker-6.1.1",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/file_picker-5.2.6",
       "packageUri": "lib/",
-      "languageVersion": "2.19"
+      "languageVersion": "2.17"
     },
     {
       "name": "file_selector_linux",
@@ -195,73 +171,73 @@
     },
     {
       "name": "firebase_auth",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/firebase_auth-4.15.3",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/firebase_auth-4.6.2",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "firebase_auth_platform_interface",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/firebase_auth_platform_interface-7.0.9",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/firebase_auth_platform_interface-6.15.2",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "firebase_auth_web",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/firebase_auth_web-5.8.12",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/firebase_auth_web-5.5.2",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "firebase_core",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/firebase_core-2.24.2",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/firebase_core-2.13.1",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "firebase_core_platform_interface",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/firebase_core_platform_interface-5.0.0",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/firebase_core_platform_interface-4.8.0",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "firebase_core_web",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/firebase_core_web-2.10.0",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/firebase_core_web-2.5.0",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "firebase_performance",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/firebase_performance-0.9.3+8",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/firebase_performance-0.9.2+2",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "firebase_performance_platform_interface",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/firebase_performance_platform_interface-0.1.4+16",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/firebase_performance_platform_interface-0.1.4+2",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "firebase_performance_web",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/firebase_performance_web-0.1.4+16",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/firebase_performance_web-0.1.4+2",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "firebase_storage",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/firebase_storage-11.5.6",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/firebase_storage-11.2.2",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "firebase_storage_platform_interface",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/firebase_storage_platform_interface-5.1.3",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/firebase_storage_platform_interface-4.4.2",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "firebase_storage_web",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/firebase_storage_web-3.6.17",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/firebase_storage_web-3.6.2",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
@@ -269,23 +245,29 @@
       "name": "flutter",
       "rootUri": "file:///C:/flutter/packages/flutter",
       "packageUri": "lib/",
-      "languageVersion": "3.0"
+      "languageVersion": "3.2"
     },
     {
       "name": "flutter_animate",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_animate-4.3.0",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_animate-4.1.1+1",
       "packageUri": "lib/",
       "languageVersion": "2.17"
+    },
+    {
+      "name": "flutter_blurhash",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_blurhash-0.7.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.15"
     },
     {
       "name": "flutter_cache_manager",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_cache_manager-3.3.1",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_cache_manager-3.3.0",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "2.12"
     },
     {
       "name": "flutter_lints",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_lints-3.0.1",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_lints-3.0.0",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
@@ -293,7 +275,7 @@
       "name": "flutter_localizations",
       "rootUri": "file:///C:/flutter/packages/flutter_localizations",
       "packageUri": "lib/",
-      "languageVersion": "3.0"
+      "languageVersion": "3.2"
     },
     {
       "name": "flutter_naver_map",
@@ -303,13 +285,13 @@
     },
     {
       "name": "flutter_plugin_android_lifecycle",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.17",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.9",
       "packageUri": "lib/",
-      "languageVersion": "2.19"
+      "languageVersion": "2.12"
     },
     {
       "name": "flutter_secure_storage",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_secure_storage-9.0.0",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_secure_storage-8.1.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -339,7 +321,7 @@
     },
     {
       "name": "flutter_secure_storage_windows",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_secure_storage_windows-3.0.0",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_secure_storage_windows-2.1.1",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -347,19 +329,19 @@
       "name": "flutter_test",
       "rootUri": "file:///C:/flutter/packages/flutter_test",
       "packageUri": "lib/",
-      "languageVersion": "3.0"
+      "languageVersion": "3.2"
     },
     {
       "name": "flutter_web_plugins",
       "rootUri": "file:///C:/flutter/packages/flutter_web_plugins",
       "packageUri": "lib/",
-      "languageVersion": "3.0"
+      "languageVersion": "3.2"
     },
     {
       "name": "font_awesome_flutter",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/font_awesome_flutter-10.6.0",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/font_awesome_flutter-10.1.0",
       "packageUri": "lib/",
-      "languageVersion": "3.0"
+      "languageVersion": "2.12"
     },
     {
       "name": "from_css_color",
@@ -368,22 +350,16 @@
       "languageVersion": "2.12"
     },
     {
-      "name": "glob",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/glob-2.1.2",
-      "packageUri": "lib/",
-      "languageVersion": "2.19"
-    },
-    {
       "name": "go_router",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/go_router-12.1.3",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/go_router-7.1.1",
       "packageUri": "lib/",
-      "languageVersion": "3.0"
+      "languageVersion": "2.18"
     },
     {
       "name": "google_fonts",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/google_fonts-6.1.0",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/google_fonts-4.0.3",
       "packageUri": "lib/",
-      "languageVersion": "2.14"
+      "languageVersion": "2.12"
     },
     {
       "name": "google_identity_services_web",
@@ -399,33 +375,33 @@
     },
     {
       "name": "google_sign_in",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/google_sign_in-6.1.6",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/google_sign_in-6.0.2",
       "packageUri": "lib/",
-      "languageVersion": "2.19"
+      "languageVersion": "2.14"
     },
     {
       "name": "google_sign_in_android",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/google_sign_in_android-6.1.20",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/google_sign_in_android-6.1.8",
       "packageUri": "lib/",
-      "languageVersion": "2.19"
+      "languageVersion": "2.17"
     },
     {
       "name": "google_sign_in_ios",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/google_sign_in_ios-5.6.5",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/google_sign_in_ios-5.6.1",
       "packageUri": "lib/",
-      "languageVersion": "2.19"
+      "languageVersion": "2.18"
     },
     {
       "name": "google_sign_in_platform_interface",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/google_sign_in_platform_interface-2.4.3",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/google_sign_in_platform_interface-2.4.0",
       "packageUri": "lib/",
-      "languageVersion": "3.0"
+      "languageVersion": "2.18"
     },
     {
       "name": "google_sign_in_web",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/google_sign_in_web-0.12.2+1",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/google_sign_in_web-0.11.0+2",
       "packageUri": "lib/",
-      "languageVersion": "3.1"
+      "languageVersion": "2.17"
     },
     {
       "name": "html",
@@ -435,9 +411,9 @@
     },
     {
       "name": "http",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/http-1.1.0",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/http-0.13.6",
       "packageUri": "lib/",
-      "languageVersion": "3.0"
+      "languageVersion": "2.19"
     },
     {
       "name": "http_parser",
@@ -447,15 +423,15 @@
     },
     {
       "name": "image_picker",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker-1.0.5",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker-1.0.4",
       "packageUri": "lib/",
-      "languageVersion": "3.0"
+      "languageVersion": "2.19"
     },
     {
       "name": "image_picker_android",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker_android-0.8.9+1",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker_android-0.8.8",
       "packageUri": "lib/",
-      "languageVersion": "3.0"
+      "languageVersion": "2.19"
     },
     {
       "name": "image_picker_for_web",
@@ -465,9 +441,9 @@
     },
     {
       "name": "image_picker_ios",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker_ios-0.8.9",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker_ios-0.8.8+2",
       "packageUri": "lib/",
-      "languageVersion": "3.0"
+      "languageVersion": "2.19"
     },
     {
       "name": "image_picker_linux",
@@ -501,9 +477,9 @@
     },
     {
       "name": "iregexp",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/iregexp-0.1.2",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/iregexp-0.1.1",
       "packageUri": "lib/",
-      "languageVersion": "3.0"
+      "languageVersion": "2.19"
     },
     {
       "name": "js",
@@ -513,7 +489,7 @@
     },
     {
       "name": "json_path",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/json_path-0.6.6",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/json_path-0.6.2",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
@@ -549,7 +525,7 @@
     },
     {
       "name": "meta",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/meta-1.9.1",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/meta-1.10.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -573,21 +549,15 @@
     },
     {
       "name": "octo_image",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/octo_image-2.0.0",
-      "packageUri": "lib/",
-      "languageVersion": "2.12"
-    },
-    {
-      "name": "package_config",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/package_config-2.1.0",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/octo_image-1.0.2",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "page_transition",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/page_transition-2.1.0",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/page_transition-2.0.4",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "2.12"
     },
     {
       "name": "path",
@@ -597,49 +567,49 @@
     },
     {
       "name": "path_provider",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/path_provider-2.1.1",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/path_provider-2.0.15",
       "packageUri": "lib/",
-      "languageVersion": "2.19"
+      "languageVersion": "2.17"
     },
     {
       "name": "path_provider_android",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/path_provider_android-2.2.1",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/path_provider_android-2.0.25",
       "packageUri": "lib/",
-      "languageVersion": "2.19"
+      "languageVersion": "2.17"
     },
     {
       "name": "path_provider_foundation",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/path_provider_foundation-2.3.1",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/path_provider_foundation-2.2.2",
       "packageUri": "lib/",
-      "languageVersion": "2.19"
+      "languageVersion": "2.18"
     },
     {
       "name": "path_provider_linux",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/path_provider_linux-2.2.1",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/path_provider_linux-2.1.11",
       "packageUri": "lib/",
-      "languageVersion": "2.19"
+      "languageVersion": "2.18"
     },
     {
       "name": "path_provider_platform_interface",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/path_provider_platform_interface-2.1.1",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/path_provider_platform_interface-2.0.6",
       "packageUri": "lib/",
-      "languageVersion": "2.19"
+      "languageVersion": "2.12"
     },
     {
       "name": "path_provider_windows",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/path_provider_windows-2.2.1",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/path_provider_windows-2.1.7",
       "packageUri": "lib/",
-      "languageVersion": "2.19"
+      "languageVersion": "2.18"
+    },
+    {
+      "name": "pedantic",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/pedantic-1.11.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
     },
     {
       "name": "petitparser",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/petitparser-6.0.1",
-      "packageUri": "lib/",
-      "languageVersion": "3.0"
-    },
-    {
-      "name": "pigeon",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/pigeon-11.0.1",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/petitparser-5.4.0",
       "packageUri": "lib/",
       "languageVersion": "2.19"
     },
@@ -651,27 +621,27 @@
     },
     {
       "name": "plugin_platform_interface",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/plugin_platform_interface-2.1.7",
-      "packageUri": "lib/",
-      "languageVersion": "3.0"
-    },
-    {
-      "name": "provider",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/provider-6.1.1",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/plugin_platform_interface-2.1.3",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
-      "name": "pub_semver",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/pub_semver-2.1.4",
+      "name": "provider",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/provider-6.0.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "quiver",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/quiver-3.2.1",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
     {
       "name": "rfc_6901",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/rfc_6901-0.2.0",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/rfc_6901-0.1.1",
       "packageUri": "lib/",
-      "languageVersion": "3.0"
+      "languageVersion": "2.15"
     },
     {
       "name": "rxdart",
@@ -681,21 +651,15 @@
     },
     {
       "name": "shared_preferences",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/shared_preferences-2.2.2",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/shared_preferences-2.0.15",
       "packageUri": "lib/",
-      "languageVersion": "2.19"
+      "languageVersion": "2.14"
     },
     {
       "name": "shared_preferences_android",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/shared_preferences_android-2.2.1",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/shared_preferences_android-2.1.0",
       "packageUri": "lib/",
-      "languageVersion": "2.19"
-    },
-    {
-      "name": "shared_preferences_foundation",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/shared_preferences_foundation-2.3.4",
-      "packageUri": "lib/",
-      "languageVersion": "2.19"
+      "languageVersion": "2.17"
     },
     {
       "name": "shared_preferences_ios",
@@ -705,33 +669,39 @@
     },
     {
       "name": "shared_preferences_linux",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/shared_preferences_linux-2.3.2",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/shared_preferences_linux-2.2.0",
       "packageUri": "lib/",
-      "languageVersion": "2.19"
+      "languageVersion": "2.17"
+    },
+    {
+      "name": "shared_preferences_macos",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/shared_preferences_macos-2.0.5",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
     },
     {
       "name": "shared_preferences_platform_interface",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/shared_preferences_platform_interface-2.3.1",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/shared_preferences_platform_interface-2.2.0",
       "packageUri": "lib/",
-      "languageVersion": "2.19"
+      "languageVersion": "2.17"
     },
     {
       "name": "shared_preferences_web",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/shared_preferences_web-2.2.1",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/shared_preferences_web-2.1.0",
       "packageUri": "lib/",
-      "languageVersion": "2.19"
+      "languageVersion": "2.17"
     },
     {
       "name": "shared_preferences_windows",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/shared_preferences_windows-2.3.2",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/shared_preferences_windows-2.2.0",
       "packageUri": "lib/",
-      "languageVersion": "2.19"
+      "languageVersion": "2.17"
     },
     {
       "name": "sign_in_with_apple",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/sign_in_with_apple-5.0.0",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/sign_in_with_apple-4.3.0",
       "packageUri": "lib/",
-      "languageVersion": "2.18"
+      "languageVersion": "2.12"
     },
     {
       "name": "sign_in_with_apple_platform_interface",
@@ -749,7 +719,7 @@
       "name": "sky_engine",
       "rootUri": "file:///C:/flutter/bin/cache/pkg/sky_engine",
       "packageUri": "lib/",
-      "languageVersion": "3.0"
+      "languageVersion": "3.2"
     },
     {
       "name": "source_span",
@@ -758,16 +728,10 @@
       "languageVersion": "2.18"
     },
     {
-      "name": "sprintf",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/sprintf-7.0.0",
-      "packageUri": "lib/",
-      "languageVersion": "2.12"
-    },
-    {
       "name": "sqflite",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/sqflite-2.3.0",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/sqflite-2.2.6",
       "packageUri": "lib/",
-      "languageVersion": "3.0"
+      "languageVersion": "2.18"
     },
     {
       "name": "sqflite_common",
@@ -777,15 +741,15 @@
     },
     {
       "name": "stack_trace",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/stack_trace-1.11.0",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/stack_trace-1.11.1",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "stream_channel",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/stream_channel-2.1.1",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/stream_channel-2.1.2",
       "packageUri": "lib/",
-      "languageVersion": "2.14"
+      "languageVersion": "2.19"
     },
     {
       "name": "stream_transform",
@@ -813,9 +777,9 @@
     },
     {
       "name": "test_api",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/test_api-0.6.0",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/test_api-0.6.1",
       "packageUri": "lib/",
-      "languageVersion": "2.18"
+      "languageVersion": "3.0"
     },
     {
       "name": "text_search",
@@ -825,7 +789,7 @@
     },
     {
       "name": "timeago",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/timeago-3.6.0",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/timeago-3.2.2",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -843,57 +807,57 @@
     },
     {
       "name": "url_launcher",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher-6.2.2",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher-6.1.10",
       "packageUri": "lib/",
-      "languageVersion": "3.1"
+      "languageVersion": "2.14"
     },
     {
       "name": "url_launcher_android",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_android-6.2.0",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_android-6.0.27",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
+    },
+    {
+      "name": "url_launcher_ios",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_ios-6.1.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
+    },
+    {
+      "name": "url_launcher_linux",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_linux-3.0.6",
       "packageUri": "lib/",
       "languageVersion": "2.19"
     },
     {
-      "name": "url_launcher_ios",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_ios-6.2.1",
-      "packageUri": "lib/",
-      "languageVersion": "3.0"
-    },
-    {
-      "name": "url_launcher_linux",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_linux-3.1.1",
-      "packageUri": "lib/",
-      "languageVersion": "3.0"
-    },
-    {
       "name": "url_launcher_macos",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_macos-3.1.0",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_macos-3.0.7",
       "packageUri": "lib/",
       "languageVersion": "2.19"
     },
     {
       "name": "url_launcher_platform_interface",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_platform_interface-2.2.0",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_platform_interface-2.1.2",
       "packageUri": "lib/",
-      "languageVersion": "2.19"
+      "languageVersion": "2.12"
     },
     {
       "name": "url_launcher_web",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_web-2.2.0",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_web-2.1.0",
       "packageUri": "lib/",
       "languageVersion": "3.1"
     },
     {
       "name": "url_launcher_windows",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_windows-3.1.1",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_windows-3.0.8",
       "packageUri": "lib/",
-      "languageVersion": "3.0"
+      "languageVersion": "2.19"
     },
     {
       "name": "uuid",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/uuid-4.2.2",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/uuid-3.0.7",
       "packageUri": "lib/",
-      "languageVersion": "2.14"
+      "languageVersion": "2.12"
     },
     {
       "name": "vector_math",
@@ -903,61 +867,49 @@
     },
     {
       "name": "video_player",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/video_player-2.8.1",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/video_player-2.6.0",
       "packageUri": "lib/",
-      "languageVersion": "3.1"
+      "languageVersion": "2.17"
     },
     {
       "name": "video_player_android",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/video_player_android-2.4.10",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/video_player_android-2.4.3",
       "packageUri": "lib/",
-      "languageVersion": "2.19"
+      "languageVersion": "2.17"
     },
     {
       "name": "video_player_avfoundation",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/video_player_avfoundation-2.5.2",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/video_player_avfoundation-2.4.2",
       "packageUri": "lib/",
-      "languageVersion": "3.1"
+      "languageVersion": "2.18"
     },
     {
       "name": "video_player_platform_interface",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/video_player_platform_interface-6.2.1",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/video_player_platform_interface-6.1.0",
       "packageUri": "lib/",
-      "languageVersion": "2.19"
+      "languageVersion": "2.17"
     },
     {
       "name": "video_player_web",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/video_player_web-2.1.2",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/video_player_web-2.0.15",
       "packageUri": "lib/",
-      "languageVersion": "3.1"
-    },
-    {
-      "name": "watcher",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/watcher-1.1.0",
-      "packageUri": "lib/",
-      "languageVersion": "3.0"
+      "languageVersion": "2.17"
     },
     {
       "name": "web",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/web-0.1.4-beta",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/web-0.3.0",
       "packageUri": "lib/",
-      "languageVersion": "3.1"
+      "languageVersion": "3.2"
     },
     {
       "name": "win32",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/win32-5.1.1",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/win32-3.1.4",
       "packageUri": "lib/",
-      "languageVersion": "3.1"
+      "languageVersion": "2.17"
     },
     {
       "name": "xdg_directories",
       "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/xdg_directories-1.0.3",
-      "packageUri": "lib/",
-      "languageVersion": "2.19"
-    },
-    {
-      "name": "yaml",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/yaml-3.1.2",
       "packageUri": "lib/",
       "languageVersion": "2.19"
     },
@@ -968,7 +920,7 @@
       "languageVersion": "3.1"
     }
   ],
-  "generated": "2023-12-16T14:48:33.917361Z",
+  "generated": "2023-12-17T05:32:27.044332Z",
   "generator": "pub",
-  "generatorVersion": "3.1.5"
+  "generatorVersion": "3.2.3"
 }
