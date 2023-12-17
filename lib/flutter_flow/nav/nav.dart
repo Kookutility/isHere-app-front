@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:petdemo/main_screens/ishere_main.dart';
 import 'package:provider/provider.dart';
 import '/backend/backend.dart';
 
@@ -75,58 +76,58 @@ class AppStateNotifier extends ChangeNotifier {
 }
 
 GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
-      initialLocation: '/',
-      debugLogDiagnostics: true,
-      refreshListenable: appStateNotifier,
-      errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? HomePageWidget() : AuthenticationWidget(),
+  initialLocation: '/',
+  debugLogDiagnostics: true,
+  refreshListenable: appStateNotifier,
+  errorBuilder: (context, state) {
+    if (appStateNotifier.loggedIn) {
+      // 로그인 상태인 경우 IshereMain을 반환
+      return IsHereMain();
+    } else {
+      // 로그인 상태가 아닌 경우 AuthenticationWidget을 반환
+      return AuthenticationWidget();
+    }
+  },
+  routes: [
+    FFRoute(
+      name: '_initialize',
+      path: '/',
+      builder: (context, _) {
+        if (appStateNotifier.loggedIn) {
+          // 로그인 상태인 경우 IshereMain을 반환
+          return IsHereMain();
+        } else {
+          // 로그인 상태가 아닌 경우 AuthenticationWidget을 반환
+          return AuthenticationWidget();
+        }
+      },
       routes: [
         FFRoute(
-          name: '_initialize',
-          path: '/',
-          builder: (context, _) => appStateNotifier.loggedIn
-              ? HomePageWidget()
-              : AuthenticationWidget(),
-          routes: [
-            FFRoute(
-              name: 'ActiveUsers',
-              path: 'activeUsers',
-              builder: (context, params) => ActiveUsersWidget(
-                search: params.getParam('search', ParamType.String),
-              ),
-            ),
-            FFRoute(
-              name: 'HomePage',
-              path: 'homePage',
-              builder: (context, params) => HomePageWidget(),
-            ),
-            FFRoute(
-              name: 'Chats',
-              path: 'chats',
-              builder: (context, params) => ChatsWidget(
-                userName: params.getParam('userName', ParamType.String),
-                email: params.getParam('email', ParamType.String),
-                chatUser: params.getParam(
-                    'chatUser', ParamType.DocumentReference, false, ['chats']),
-                userRef: params.getParam(
-                    'userRef', ParamType.DocumentReference, false, ['users']),
-                userProfile: params.getParam('userProfile', ParamType.String),
-              ),
-            ),
-            FFRoute(
-              name: 'Profile',
-              path: 'profile',
-              builder: (context, params) => ProfileWidget(),
-            ),
-            FFRoute(
-              name: 'Authentication',
-              path: 'authentication',
-              builder: (context, params) => AuthenticationWidget(),
-            )
-          ].map((r) => r.toRoute(appStateNotifier)).toList(),
+          name: 'ActiveUsers',
+          path: 'activeUsers',
+          builder: (context, params) => ActiveUsersWidget(
+            search: params.getParam('search', ParamType.String),
+          ),
         ),
+        FFRoute(
+          name: 'HomePage',
+          path: 'homePage',
+          builder: (context, params) {
+            if (appStateNotifier.loggedIn) {
+              // 로그인 상태인 경우 IshereMain을 반환
+              return IsHereMain();
+            } else {
+              // 로그인 상태가 아닌 경우 HomePageWidget을 반환
+              return HomePageWidget();
+            }
+          },
+        ),
+        // 나머지 라우트들도 마찬가지로 수정
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
-    );
+    ),
+  ].map((r) => r.toRoute(appStateNotifier)).toList(),
+);
+
 
 extension NavParamExtensions on Map<String, String?> {
   Map<String, String> get withoutNulls => Map.fromEntries(

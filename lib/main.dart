@@ -17,6 +17,16 @@ import 'flutter_flow/internationalization.dart';
 import 'flutter_flow/nav/nav.dart';
 import 'index.dart';
 
+import 'package:flutter/material.dart';
+import 'package:petdemo/common/app_bar.dart';
+import 'package:petdemo/main_screens/chat_screen.dart';
+import 'package:petdemo/main_screens/common/bottom_nav_design.dart';
+import 'package:petdemo/main_screens/my_screen.dart';
+import 'package:petdemo/main_screens/search_screen.dart';
+import 'package:petdemo/main_screens/notification_screen.dart';
+import 'package:flutter_naver_map/flutter_naver_map.dart';
+import 'package:petdemo/main_screens/map_screen.dart'; // 여기서 map.dart를 import해야 합니다.
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   usePathUrlStrategy();
