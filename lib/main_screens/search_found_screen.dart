@@ -1,15 +1,15 @@
+import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:petdemo/common/app_bar.dart';
 import 'package:petdemo/main_screens/chat_screen.dart';
 import 'package:petdemo/main_screens/common/bottom_nav_design.dart';
+import 'package:petdemo/main_screens/found_screen.dart';
 import 'package:petdemo/main_screens/my_screen.dart';
 import 'package:petdemo/main_screens/search_screen.dart';
 import 'package:petdemo/main_screens/notification_screen.dart';
-import 'package:flutter_naver_map/flutter_naver_map.dart';
-import 'package:petdemo/main_screens/map_screen.dart';
 
-class InitScreen extends StatelessWidget {
-  const InitScreen({Key? key}) : super(key: key);
+class SearchFoundScreen extends StatelessWidget {
+  const SearchFoundScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +37,7 @@ class BottomBar extends StatefulWidget {
     }
 
     List<Widget> pages = const [
-      SearchScreen(),
+      FoundScreen(),
       ChatScreen(),
       MyScreen(),
     ];
