@@ -3,25 +3,47 @@ import 'package:flutter/material.dart';
 import 'package:petdemo/common/app_bar.dart';
 import 'package:petdemo/main_screens/chat_screen.dart';
 import 'package:petdemo/main_screens/common/bottom_nav_design.dart';
-import 'package:petdemo/main_screens/found_screen.dart';
+import 'package:petdemo/common/basic_layout.dart';
 import 'package:petdemo/main_screens/my_screen.dart';
-import 'package:petdemo/main_screens/search_screen.dart';
-import 'package:petdemo/main_screens/notification_screen.dart';
 
+
+//찾고있어요 버튼을 클릭했을때, 찾고있어요 게시판의 상단바와 하단바 유지
+class FoundScreen extends StatelessWidget {
+  const FoundScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MainLayout(
+      floatingActionButton: FloatingActionButton(
+                onPressed: () {
+                          Navigator.of(context).pushNamed('/write');
+                        },
+                child: Text(
+                  '+',
+                  style: TextStyle(
+                    fontSize: 44,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+      children: [Text('찾았어요 게시판')],
+    );
+  }
+}
 class SearchFoundScreen extends StatelessWidget {
   const SearchFoundScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'isHere',
-      debugShowCheckedModeBanner: false,
-      home: const BottomBar(), // Scaffold의 home을 BottomBar로 변경
-    );
+    Widget build(BuildContext context) {
+      return BottomBar(selectedIndex: 0);
+    }
   }
-}
-class BottomBar extends StatefulWidget {
-    const BottomBar({Key? key}) : super(key: key);
+
+  class BottomBar extends StatefulWidget {
+    final int selectedIndex;
+
+    const BottomBar({Key? key, required this.selectedIndex}) : super(key: key);
 
     @override
     State<BottomBar> createState() => _BottomBarState();
@@ -47,12 +69,7 @@ class BottomBar extends StatefulWidget {
       return Scaffold(
         appBar: IsHereAppBar(
           onNotificationPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => NotificationScreen(), // main_screens/notification_screen.dart로 이동
-              ),
-            );
+            Navigator.of(context).pushNamed('/notification');
           },
           onSearchPressed: () {
             // 검색 아이콘이 눌렸을 때의 동작
@@ -61,8 +78,7 @@ class BottomBar extends StatefulWidget {
         bottomNavigationBar: BottomNavDesign(
           onTabChange: (index) => navigateBottomBar(index),
         ),
-        body: pages[selectedIndex],
-
+        body: pages[widget.selectedIndex],
       );
     }
   }

@@ -4,21 +4,17 @@ import 'package:petdemo/main_screens/chat_screen.dart';
 import 'package:petdemo/main_screens/common/bottom_nav_design.dart';
 import 'package:petdemo/main_screens/my_screen.dart';
 import 'package:petdemo/main_screens/search_screen.dart';
-import 'package:petdemo/main_screens/notification_screen.dart';
-import 'package:flutter_naver_map/flutter_naver_map.dart';
-import 'package:petdemo/main_screens/map_screen.dart';
+
+
+//초기실행화면, 탐색(search)화면의 상단바와 하단바 유지 main은 searchscreen
 
 class InitScreen extends StatelessWidget {
   const InitScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'isHere',
-      debugShowCheckedModeBanner: false,
-      home: const BottomBar(), // Scaffold의 home을 BottomBar로 변경
-    );
-  }
+   Widget build(BuildContext context) {
+     return BottomBar();
+   }
 }
 class BottomBar extends StatefulWidget {
     const BottomBar({Key? key}) : super(key: key);
@@ -47,13 +43,8 @@ class BottomBar extends StatefulWidget {
       return Scaffold(
         appBar: IsHereAppBar(
           onNotificationPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => NotificationScreen(), // main_screens/notification_screen.dart로 이동
-              ),
-            );
-          },
+            Navigator.of(context).pushNamed('/notification');
+            },
           onSearchPressed: () {
             // 검색 아이콘이 눌렸을 때의 동작
           },

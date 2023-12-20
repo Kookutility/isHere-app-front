@@ -1,28 +1,18 @@
 import 'package:flutter/widgets.dart';
 import 'package:petdemo/common/basic_layout.dart';
 import 'package:flutter/material.dart';
-import 'package:petdemo/main_screens/search_looking_screen.dart';
-import 'package:petdemo/main_screens/search_found_screen.dart';
-import 'package:petdemo/main_screens/map_screen.dart';
-import 'package:petdemo/main_screens/write_screen.dart';
+
 
 class SearchScreen extends StatelessWidget {
   const SearchScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'isHere',
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
+    Widget build(BuildContext context) {
+      return Scaffold(
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => WriteScreen(),
-              ),
-            );
-          },
+                    Navigator.of(context).pushNamed('/write');
+                  },
           child: Text(
             '+',
             style: TextStyle(
@@ -61,9 +51,7 @@ class SearchScreen extends StatelessWidget {
                               width: 140,
                               child: ElevatedButton(
                                 onPressed: () {
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => SearchLookingScreen(),
-                                  ));
+                                    Navigator.of(context).pushNamed('/searchLooking');
                                 },
                                 style: ElevatedButton.styleFrom(
                                   shape: RoundedRectangleBorder(
@@ -81,9 +69,7 @@ class SearchScreen extends StatelessWidget {
                               width: 140,
                               child: ElevatedButton(
                                 onPressed: () {
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => SearchFoundScreen(),
-                                  ));
+                                  Navigator.of(context).pushNamed('/searchFound');
                                 },
                                 style: ElevatedButton.styleFrom(
                                   shape: RoundedRectangleBorder(
@@ -104,9 +90,7 @@ class SearchScreen extends StatelessWidget {
                           height: 60,
                           child: ElevatedButton(
                             onPressed: () {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => MapScreen(),
-                              ));
+                              Navigator.of(context).pushNamed('/map');
                             },
                             style: ElevatedButton.styleFrom(
                               shape: RoundedRectangleBorder(
@@ -127,7 +111,6 @@ class SearchScreen extends StatelessWidget {
             ),
           ],
         ),
-      ),
-    );
+      );
+    }
   }
-}
