@@ -5,10 +5,10 @@ class MainLayout extends StatelessWidget {
   final FloatingActionButton? floatingActionButton;
 
   const MainLayout({
-    super.key,
+    Key? key,
     required this.children,
     this.floatingActionButton,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,12 +19,9 @@ class MainLayout extends StatelessWidget {
         backgroundColor: Colors.white,
         body: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 20,
-            ),
-            child: SizedBox(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height,
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: SingleChildScrollView(
+              physics: ClampingScrollPhysics(), // 파란색 바운스 효과 제거
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: children,
