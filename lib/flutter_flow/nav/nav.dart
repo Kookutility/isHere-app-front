@@ -110,6 +110,19 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
+          name: 'Chats',
+          path: 'chats',
+          builder: (context, params) => ChatsWidget(
+            userName: params.getParam('userName', ParamType.String),
+            email: params.getParam('email', ParamType.String),
+            chatUser: params.getParam(
+                'chatUser', ParamType.DocumentReference, false, ['chats']),
+            userRef: params.getParam(
+                'userRef', ParamType.DocumentReference, false, ['users']),
+            userProfile: params.getParam('userProfile', ParamType.String),
+          ),
+        ),
+        FFRoute(
           name: 'HomePage',
           path: 'homePage',
           builder: (context, params) {

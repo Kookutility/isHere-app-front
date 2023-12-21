@@ -10,6 +10,8 @@ import 'package:petdemo/main_screens/notification_screen.dart';
 import 'package:petdemo/main_screens/map_screen.dart';
 import 'package:petdemo/main_screens/write_screen.dart';
 import 'package:petdemo/const/address.dart';
+
+import '../chats/chats_widget.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await NaverMapSdk.instance.initialize(clientId: 'raopvm5gte'); // NaverMapSdk 초기화
@@ -35,7 +37,6 @@ class IsHereMain extends StatelessWidget {
         searchFoundScreen: (context) => const SearchFoundScreen(),
         mapScreen: (context) => const MapScreen(),
         writeScreen: (context) => const WriteScreen(),
-
       },
     );
   }
