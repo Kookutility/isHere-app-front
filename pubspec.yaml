@@ -39,7 +39,7 @@ dependencies:
   google_nav_bar: ^5.0.6
   dio: ^5.3.0
   flutter_secure_storage: ^8.0.0
-
+  percent_indicator: ^4.2.3
 dev_dependencies:
   flutter_test:
     sdk: flutter
