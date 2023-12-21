@@ -34,7 +34,6 @@ class ChatsWidget extends StatefulWidget {
   _ChatsWidgetState createState() => _ChatsWidgetState();
 }
 
-
 class _ChatsWidgetState extends State<ChatsWidget> {
   late ChatsModel _model;
 

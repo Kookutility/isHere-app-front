@@ -4,67 +4,57 @@ import 'package:petdemo/main_screens/chat_screen.dart';
 import 'package:petdemo/main_screens/common/bottom_nav_design.dart';
 import 'package:petdemo/main_screens/my_screen.dart';
 import 'package:petdemo/main_screens/search_screen.dart';
-import 'package:petdemo/main_screens/notification_screen.dart';
-import 'package:flutter_naver_map/flutter_naver_map.dart';
-import 'package:petdemo/main_screens/map_screen.dart';
 
-import '../chats/chats_widget.dart';
+import '../home_page/home_page_widget.dart';
+import '../profile/profile_widget.dart';
 
+//초기실행화면, 탐색(search)화면의 상단바와 하단바 유지 main은 searchscreen
 class InitScreen extends StatelessWidget {
   const InitScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'isHere',
-      debugShowCheckedModeBanner: false,
-      home: const BottomBar(), // Scaffold의 home을 BottomBar로 변경
-    );
+    return BottomBar();
   }
 }
 class BottomBar extends StatefulWidget {
-    const BottomBar({Key? key}) : super(key: key);
+  const BottomBar({Key? key}) : super(key: key);
 
-    @override
-    State<BottomBar> createState() => _BottomBarState();
+  @override
+  State<BottomBar> createState() => _BottomBarState();
+}
+
+class _BottomBarState extends State<BottomBar> {
+  int selectedIndex = 0;
+
+  void navigateBottomBar(int index) {
+    setState(() {
+      selectedIndex = index;
+    });
   }
 
-  class _BottomBarState extends State<BottomBar> {
-    int selectedIndex = 0;
+  List<Widget> pages = const [
+    SearchScreen(),
+    HomePageWidget(), //flutter flow 채팅 메인 화면
+    ProfileWidget(), //flutter flow 마이 프로필
+  ];
 
-    void navigateBottomBar(int index) {
-      setState(() {
-        selectedIndex = index;
-      });
-    }
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: IsHereAppBar(
+        onNotificationPressed: () {
+          Navigator.of(context).pushNamed('/notification');
+        },
+        onSearchPressed: () {
+          // 검색 아이콘이 눌렸을 때의 동작
+        },
+      ),
+      bottomNavigationBar: BottomNavDesign(
+        onTabChange: (index) => navigateBottomBar(index),
+      ),
+      body: pages[selectedIndex],
 
-    List<Widget> pages = const [
-      SearchScreen(),
-      ChatsWidget(),
-      MyScreen(),
-    ];
-
-    @override
-    Widget build(BuildContext context) {
-      return Scaffold(
-        appBar: IsHereAppBar(
-          onNotificationPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => NotificationScreen(), // main_screens/notification_screen.dart로 이동
-              ),
-            );
-          },
-          onSearchPressed: () {
-            // 검색 아이콘이 눌렸을 때의 동작
-          },
-        ),
-        bottomNavigationBar: BottomNavDesign(
-          onTabChange: (index) => navigateBottomBar(index),
-        ),
-        body: pages[selectedIndex],
-
-      );
-    }
+    );
   }
+}

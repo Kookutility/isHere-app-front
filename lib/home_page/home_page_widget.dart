@@ -97,11 +97,11 @@ class _HomePageWidgetState extends State<HomePageWidget>
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              Padding(
+              /*Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(20.0, 24.0, 20.0, 0.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
-                  children: [
+                  /*children: [
                     Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -143,9 +143,9 @@ class _HomePageWidgetState extends State<HomePageWidget>
                         ),
                       ],
                     ),
-                  ],
+                  ],*/
                 ),
-              ),
+              ),*/
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(20.0, 24.0, 20.0, 0.0),
                 child: Column(
