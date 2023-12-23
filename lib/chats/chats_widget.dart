@@ -34,6 +34,12 @@ class ChatsWidget extends StatefulWidget {
   _ChatsWidgetState createState() => _ChatsWidgetState();
 }
 
+List<String> imageList = [ //사진 리스트
+  'assets/icons/photo_purple.png',
+  'assets/icons/send_money_gradation.png',
+  'assets/icons/report_gradation.png',
+];
+
 class _ChatsWidgetState extends State<ChatsWidget> {
   late ChatsModel _model;
 
@@ -912,7 +918,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                         focusColor: Colors.transparent,
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
-                                        onTap: () async { // plus 플러스 버튼 클릭 이벤트
+                                        /* onTap: () async { // plus 플러스 버튼 온탭
                                           final selectedMedia =
                                               await selectMedia(
                                             maxWidth: 300.00,
@@ -1040,7 +1046,61 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                               ),
                                             );
                                           }
-                                        },
+                                        }, */
+                                          onTap: () async {
+                                            showModalBottomSheet(
+                                              context: context,
+                                              builder: (context) {
+                                                return Container(
+                                                  decoration: BoxDecoration(
+                                                    borderRadius: BorderRadius.only(
+                                                      topLeft: Radius.zero,
+                                                      topRight: Radius.zero,
+                                                    ),
+                                                    gradient: LinearGradient(
+                                                      begin: Alignment(0, -1),
+                                                      end: Alignment(0, 1),
+                                                      colors: <Color>[Color(0x0c4d40ea), Color(0x0c6be0d2)],
+                                                      stops: <double>[0, 1],
+                                                    ),
+                                                  ),
+                                                  width: double.infinity,
+                                                  height: 190,
+                                                  child: Row(
+                                                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                                    children: List.generate(
+                                                      3,
+                                                          (index) => Container(
+                                                        width: 70.0,
+                                                        height: 70.0,
+                                                        decoration: BoxDecoration(
+                                                          border: Border.all(color: Color(0x0c000000)),
+                                                          borderRadius: BorderRadius.circular(50),
+                                                          gradient: LinearGradient(
+                                                            begin: Alignment(0, -1),
+                                                            end: Alignment(0, 1),
+                                                            colors: <Color>[Color(0x0c000000), Color(0x00ffffff)],
+                                                            stops: <double>[0, 1],
+                                                          ),
+                                                        ),
+                                                        child: Stack(
+                                                          children: [
+                                                            Positioned.fill(
+                                                              child: Image.asset(
+                                                                imageList[index], // 해당 인덱스의 이미지 사용
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                );
+                                              },
+                                            );
+                                          },
+
+
                                         child: Image.asset(
                                           'assets/icons/plus_white.png',
                                           height: 16.0,
