@@ -371,7 +371,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                                           24.0),
                                                               topLeft: Radius
                                                                   .circular(
-                                                                      3.0),
+                                                                      24.0),
                                                               topRight: Radius
                                                                   .circular(
                                                                       24.0),
@@ -439,7 +439,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                                     24.0),
                                                             topRight:
                                                                 Radius.circular(
-                                                                    3.0),
+                                                                    24.0),
                                                           ),
                                                         ),
                                                         child: Stack(
@@ -512,32 +512,30 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                               BoxConstraints(
                                                             maxWidth: 260.0,
                                                           ),
-                                                          decoration:
+                                                          decoration: //상대방 채팅 참
                                                               BoxDecoration(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .secondaryBackground,
-                                                            borderRadius:
+                                                                color: FlutterFlowTheme.of(context).secondaryBackground,
+                                                                borderRadius:
                                                                 BorderRadius
                                                                     .only(
                                                               bottomLeft: Radius
                                                                   .circular(
-                                                                      24.0),
+                                                                      4.0),
                                                               bottomRight:
                                                                   Radius
                                                                       .circular(
-                                                                          24.0),
+                                                                          18.0),
                                                               topLeft: Radius
                                                                   .circular(
-                                                                      3.0),
+                                                                      18.0),
                                                               topRight: Radius
                                                                   .circular(
-                                                                      24.0),
+                                                                      18.0),
                                                             ),
-                                                            border: Border.all(
-                                                              color: Color(
-                                                                  0xFF828282),
-                                                            ),
+                                                                border: Border.all(
+                                                                  color: Color(
+                                                                      0xFF828282),
+                                                                ),
                                                           ),
                                                           child: Padding(
                                                             padding:
@@ -587,7 +585,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                                             .bodyMedium
                                                                             .override(
                                                                               fontFamily: 'Urbanist',
-                                                                              color: Color(0xFF828282),
+                                                                              color: Color(0xff000000),
                                                                             ),
                                                                       ),
                                                                     ),
@@ -613,7 +611,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                                             fontFamily:
                                                                                 'Urbanist',
                                                                             color:
-                                                                                Color(0xFFE0E0E0),
+                                                                                Color(0xff000000),
                                                                             fontSize:
                                                                                 12.0,
                                                                           ),
@@ -658,28 +656,24 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                           ),
                                                           decoration:
                                                               BoxDecoration(
-                                                            color: Color(
-                                                                0xFFEBF0FE),
+                                                            color: Color( // 내가 보내는 채팅
+                                                                0xff4d40ea),
                                                             borderRadius:
                                                                 BorderRadius
                                                                     .only(
                                                               bottomLeft: Radius
                                                                   .circular(
-                                                                      24.0),
+                                                                      18.0),
                                                               bottomRight:
                                                                   Radius
                                                                       .circular(
-                                                                          24.0),
+                                                                          4.0),
                                                               topLeft: Radius
                                                                   .circular(
-                                                                      24.0),
+                                                                      18.0),
                                                               topRight: Radius
                                                                   .circular(
-                                                                      3.0),
-                                                            ),
-                                                            border: Border.all(
-                                                              color: Color(
-                                                                  0xFF5780F7),
+                                                                      18.0),
                                                             ),
                                                           ),
                                                           child: Padding(
@@ -722,7 +716,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                                             .bodyMedium
                                                                             .override(
                                                                               fontFamily: 'Urbanist',
-                                                                              color: Color(0xFF5780F7),
+                                                                              color: Color(0xffffffff),
                                                                             ),
                                                                       ),
                                                                     ),
@@ -752,7 +746,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                                               .bodyMedium
                                                                               .override(
                                                                                 fontFamily: 'Urbanist',
-                                                                                color: Color(0x9A5780F7),
+                                                                                color: Color(0xffffffff),
                                                                                 fontSize: 12.0,
                                                                               ),
                                                                         ),
@@ -773,14 +767,14 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                                               true)
                                                                             Icon(
                                                                               FFIcons.kcheckAll,
-                                                                              color: Color(0xFF5780F7),
+                                                                              color: Color(0xffffffff),
                                                                               size: 16.0,
                                                                             ),
                                                                           if (!chatsChatsRecord!
                                                                               .messageSeen)
                                                                             Icon(
                                                                               FFIcons.kcheckAll,
-                                                                              color: Color(0xFFBDBDBD),
+                                                                              color: Color(0xffffffff),
                                                                               size: 16.0,
                                                                             ),
                                                                         ],
@@ -818,9 +812,10 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                         Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
+                          children: [ //텍스트 박스
                             Container(
-                              width: 280.0,
+                              width: 290.0, //텍스트 박스 크기
+                              height: 50.0,
                               decoration: BoxDecoration(
                                 color: FlutterFlowTheme.of(context)
                                     .secondaryBackground,
@@ -842,7 +837,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                         autofocus: true,
                                         obscureText: false,
                                         decoration: InputDecoration(
-                                          hintText: 'Type something...',
+                                          hintText: 'Aa',
                                           hintStyle:
                                               FlutterFlowTheme.of(context)
                                                   .bodyMedium
@@ -917,7 +912,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                         focusColor: Colors.transparent,
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
-                                        onTap: () async {
+                                        onTap: () async { // plus 플러스 버튼 클릭 이벤트
                                           final selectedMedia =
                                               await selectMedia(
                                             maxWidth: 300.00,
@@ -1047,19 +1042,10 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                           }
                                         },
                                         child: Image.asset(
-                                          'assets/images/camera.png',
+                                          'assets/icons/plus_white.png',
                                           height: 16.0,
                                           fit: BoxFit.contain,
                                         ),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          16.0, 0.0, 0.0, 0.0),
-                                      child: Image.asset(
-                                        'assets/images/attachment.png',
-                                        height: 16.0,
-                                        fit: BoxFit.contain,
                                       ),
                                     ),
                                   ],
@@ -1095,7 +1081,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                       content: Text(
-                                        'Please type something...',
+                                        'Aa',
                                         style: TextStyle(
                                           color: FlutterFlowTheme.of(context)
                                               .primaryText,
@@ -1109,7 +1095,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                               },
                               child: Container(
                                 width: 60.0,
-                                height: 60.0,
+                                height: 50.0,
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
@@ -1123,7 +1109,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Image.asset(
-                                      'assets/images/send.png',
+                                      'assets/icons/send_gradation.png',
                                       height: 24.0,
                                       fit: BoxFit.contain,
                                     ),
