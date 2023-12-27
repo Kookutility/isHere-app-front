@@ -127,10 +127,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           path: 'homePage',
           builder: (context, params) {
             if (appStateNotifier.loggedIn) {
-              // 로그인 상태인 경우 IshereMain을 반환
+              // 로그인 상태인 경우 IshereMain을 반환 (ishere_main.dart 파일은 ishere 메인 코드)
               return IsHereMain();
             } else {
-              // 로그인 상태가 아닌 경우 HomePageWidget을 반환
+              // 로그인 상태가 아닌 경우 HomePageWidget을 반환 (홈페이지 위젯(HomepageWidget)은 채팅창 목록을 보는 화면)
               return HomePageWidget();
             }
           },

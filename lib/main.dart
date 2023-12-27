@@ -27,10 +27,27 @@ import 'package:petdemo/main_screens/notification_screen.dart';
 import 'package:flutter_naver_map/flutter_naver_map.dart';
 import 'package:petdemo/main_screens/map_screen.dart'; // 여기서 map.dart를 import해야 합니다.
 
+//**안내**
+//-dart 파일은 플러터 플로우(main)의 메인 코드-입니다. -ishere_main.dart 파일은 우리의 ishere 메인 코드-입니다.
+//로그인 후 인증되면 메인 화면으로 이동하는 부분은 플러터 플로우에서 로그인하고,
+//-nav.dart- 파일에서 인증되면 ishere_main으로 이동하도록 구현되어 있습니다. 이는 go_router를 사용하여 처리됩니다.
+
+//플러터 플로우
+//프로필 위젯(ProfileWidget)은 마이페이지
+//홈페이지 위젯(HomepageWidget)은 채팅창 목록을 보는 화면이며, 채팅 위젯(ChatWidget)은 하나의 채팅창을 나타내는 화면입니다.
+//플러터 플로우 채팅때문에 이런식으로 작동하며 추후 코드 정리 및 수정 예정입니다.  - 작성자  홍택수-
+
+
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized(); // Flutter 애플리케이션을 실행하기 전에 Flutter 바인딩을 초기화합니다.
   usePathUrlStrategy();
 
+
+  // 플랫폼이 안드로이드인 경우 Firebase를 초기화합니다.
+  // Firebase.initializeApp() 함수를 통해 Firebase 서비스를 사용할 수 있습니다.
+  // FirebaseOptions 객체를 통해 Firebase 프로젝트의 구성 정보를 전달합니다.
+  // Firebase 프로젝트의 API 키, 인증 도메인, 프로젝트 ID 등을 설정합니다.
+  // FirebaseOptions의 옵션을 설정한 후 Firebase.initializeApp() 함수를 호출하여 Firebase를 초기화합니다.
   Platform.isAndroid?
   await Firebase.initializeApp(
     options: FirebaseOptions(
@@ -42,7 +59,7 @@ void main() async {
       appId: "1:463768315666:web:2deed5ef18f8f8567a75cb",
     ),
   )
-      :await initFirebase();
+      :await initFirebase();  // Android가 아닌 경우 initFirebase() 함수를 호출하여 Firebase를 초기화합니다.
 
   await FlutterFlowTheme.initialize();
 
@@ -68,20 +85,20 @@ class _MyAppState extends State<MyApp> {
   Locale? _locale;
   ThemeMode _themeMode = FlutterFlowTheme.themeMode;
 
-  late Stream<BaseAuthUser> userStream;
+  late Stream<BaseAuthUser> userStream; // 테마 모드를 저장하는 변수
 
-  late AppStateNotifier _appStateNotifier;
-  late GoRouter _router;
+  late AppStateNotifier _appStateNotifier; // 사용자 정보를 전달하는 스트림
+  late GoRouter _router; // 앱의 라우터를 구성하는 GoRouter 객체
 
-  final authUserSub = authenticatedUserStream.listen((_) {});
+  final authUserSub = authenticatedUserStream.listen((_) {}); // 인증된 사용자 스트림을 구독
 
   @override
   void initState() {
     super.initState();
 
-    _appStateNotifier = AppStateNotifier.instance;
-    _router = createRouter(_appStateNotifier);
-    userStream = truChatMainFirebaseUserStream()
+    _appStateNotifier = AppStateNotifier.instance; // AppStateNotifier 객체를 초기화
+    _router = createRouter(_appStateNotifier); // GoRouter 객체를 생성
+    userStream = truChatMainFirebaseUserStream() // 사용자 정보를 전달하는 스트림을 설정
       ..listen((user) => _appStateNotifier.update(user));
     jwtTokenStream.listen((_) {});
     Future.delayed(
@@ -92,7 +109,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   void dispose() {
-    authUserSub.cancel();
+    authUserSub.cancel(); // 인증된 사용자 스트림을 취소
 
     super.dispose();
   }
@@ -103,13 +120,13 @@ class _MyAppState extends State<MyApp> {
 
   void setThemeMode(ThemeMode mode) => setState(() {
     _themeMode = mode;
-    FlutterFlowTheme.saveThemeMode(mode);
+    FlutterFlowTheme.saveThemeMode(mode); // 테마 모드를 변경하고 저장
   });
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      title: 'TruChat Main',
+      title: 'TruChat Main', // 앱의 타이틀 플러터 플로우
       localizationsDelegates: [
         FFLocalizationsDelegate(),
         GlobalMaterialLocalizations.delegate,
@@ -126,8 +143,8 @@ class _MyAppState extends State<MyApp> {
         brightness: Brightness.dark,
         scrollbarTheme: ScrollbarThemeData(),
       ),
-      themeMode: _themeMode,
-      routerConfig: _router,
+      themeMode: _themeMode, // 현재 테마 모드
+      routerConfig: _router, // 라우터 구성
     );
   }
 }
