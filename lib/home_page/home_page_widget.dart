@@ -16,6 +16,15 @@ import 'package:provider/provider.dart';
 import 'home_page_model.dart';
 export 'home_page_model.dart';
 
+//길어서 주요 주석 내용 여기에 놓겠습니다. ctrl+f 로 밑의 내용 검색해서 검색 가능합니다.
+
+//채팅창
+//마지막 채팅 시간
+//마지막 채팅 글
+//username 과 마지막 채팅 위치
+//프로필 사진
+//채팅창 박스
+
 class HomePageWidget extends StatefulWidget {
   const HomePageWidget({Key? key}) : super(key: key);
 
@@ -147,79 +156,6 @@ class _HomePageWidgetState extends State<HomePageWidget>
                 ),
               ),*/
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(20.0, 24.0, 20.0, 0.0),
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    TextFormField(
-                      controller: _model.textController,
-                      focusNode: _model.textFieldFocusNode,
-                      onChanged: (_) => EasyDebounce.debounce(
-                        '_model.textController',
-                        Duration(milliseconds: 2000),
-                        () async {
-                          context.pushNamed(
-                            'ActiveUsers',
-                            queryParameters: {
-                              'search': serializeParam(
-                                _model.textController.text,
-                                ParamType.String,
-                              ),
-                            }.withoutNulls,
-                          );
-                        },
-                      ),
-                      autofocus: true,
-                      obscureText: false,
-                      decoration: InputDecoration(
-                        hintText: 'Search for user',
-                        hintStyle:
-                            FlutterFlowTheme.of(context).bodyMedium.override(
-                                  fontFamily: 'Urbanist',
-                                  color: Color(0xFFBDBDBD),
-                                ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Color(0xFF828282),
-                            width: 1.0,
-                          ),
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Color(0x00000000),
-                            width: 1.0,
-                          ),
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                        errorBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Color(0x00000000),
-                            width: 1.0,
-                          ),
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                        focusedErrorBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Color(0x00000000),
-                            width: 1.0,
-                          ),
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                        filled: true,
-                        fillColor: Colors.white,
-                        prefixIcon: Icon(
-                          Icons.search_sharp,
-                        ),
-                      ),
-                      style: FlutterFlowTheme.of(context).bodyMedium,
-                      validator:
-                          _model.textControllerValidator.asValidator(context),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(20.0, 16.0, 20.0, 0.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
@@ -227,34 +163,6 @@ class _HomePageWidgetState extends State<HomePageWidget>
                     Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Active users',
-                          style:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Urbanist',
-                                    color: Color(0xFF333333),
-                                  ),
-                        ),
-                        InkWell(
-                          splashColor: Colors.transparent,
-                          focusColor: Colors.transparent,
-                          hoverColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          onTap: () async {
-                            context.pushNamed('ActiveUsers');
-                          },
-                          child: Text(
-                            'see all',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Urbanist',
-                                  color: Color(0xFF828282),
-                                ),
-                          ),
-                        ),
-                      ],
                     ),
                     Padding(
                       padding:
@@ -496,16 +404,15 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                               messageSeen: true,
                                             ));
                                           },
-                                          child: Container(
-                                            width: 100.0,
+                                          child: Container( //채팅창 박스
+                                            width: double.infinity, // 가로로 끝이 없이 이어짐
                                             decoration: BoxDecoration(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
-                                              borderRadius:
-                                                  BorderRadius.circular(12.0),
-                                              border: Border.all(
-                                                color: Color(0xFFE0E0E0),
+                                              color: FlutterFlowTheme.of(context).secondaryBackground,
+                                              borderRadius: BorderRadius.circular(0),
+                                              border: Border(
+                                                bottom: BorderSide(
+                                                  color:  Color(0x0f000000),
+                                                ),
                                               ),
                                             ),
                                             child: Padding(
@@ -577,7 +484,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                   child: Image
                                                                       .network(
                                                                     circleImageUsersRecord
-                                                                        .photoUrl,
+                                                                        .photoUrl, //프로필 사진
                                                                     fit: BoxFit
                                                                         .cover,
                                                                   ),
@@ -600,14 +507,14 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                               child:
                                                                   Image.network(
                                                                 containerUsersRecord
-                                                                    .photoUrl,
+                                                                    .photoUrl, //프로필 사진
                                                                 fit: BoxFit
                                                                     .cover,
                                                               ),
                                                             ),
                                                           Padding(
                                                             padding:
-                                                                EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional //username 과 마지막 채팅 위치 조정
                                                                     .fromSTEB(
                                                                         12.0,
                                                                         0.0,
@@ -679,7 +586,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                           6.0,
                                                                           0.0,
                                                                           0.0),
-                                                                  child: Text(
+                                                                  child: Text( //마지막 채팅 글
                                                                     listViewChatsRecord
                                                                         .lastMessage,
                                                                     style: FlutterFlowTheme.of(
@@ -704,7 +611,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                       ),
                                                     ],
                                                   ),
-                                                  Column(
+                                                  Column( //채팅창
                                                     mainAxisSize:
                                                         MainAxisSize.max,
                                                     mainAxisAlignment:
@@ -713,7 +620,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                     crossAxisAlignment:
                                                         CrossAxisAlignment.end,
                                                     children: [
-                                                      Text(
+                                                      Text( //마지막 채팅 시간
                                                         dateTimeFormat(
                                                             'relative',
                                                             listViewChatsRecord

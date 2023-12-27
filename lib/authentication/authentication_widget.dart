@@ -139,10 +139,10 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget>
                                     focusNode: _model.emailAddressFocusNode,
                                     obscureText: false,
                                     decoration: InputDecoration(
-                                      labelText: 'Email Address',
+                                      labelText: 'Phone Number',
                                       labelStyle: FlutterFlowTheme.of(context)
                                           .bodySmall,
-                                      hintText: 'Enter your email...',
+                                      hintText: 'Enter your Phone Number...',
                                       hintStyle: FlutterFlowTheme.of(context)
                                           .bodySmall,
                                       enabledBorder: OutlineInputBorder(
@@ -203,10 +203,10 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget>
                                     focusNode: _model.passwordFocusNode,
                                     obscureText: !_model.passwordVisibility,
                                     decoration: InputDecoration(
-                                      labelText: 'Password',
+                                      labelText: 'Nick Name',
                                       labelStyle: FlutterFlowTheme.of(context)
                                           .bodySmall,
-                                      hintText: 'Enter your password...',
+                                      hintText: 'Enter your Nick Name...',
                                       hintStyle: FlutterFlowTheme.of(context)
                                           .bodySmall,
                                       enabledBorder: OutlineInputBorder(
