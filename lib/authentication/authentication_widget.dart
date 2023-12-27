@@ -10,6 +10,10 @@ import 'package:provider/provider.dart';
 import 'authentication_model.dart';
 export 'authentication_model.dart';
 
+//길어서 주요 주석 내용 여기에 놓겠습니다. ctrl+f 로 밑의 내용 검색해서 검색 가능합니다.
+
+
+
 class AuthenticationWidget extends StatefulWidget {
   const AuthenticationWidget({Key? key}) : super(key: key);
 

@@ -66,25 +66,6 @@ class _ProfileWidgetState extends State<ProfileWidget>
         appBar: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
           automaticallyImplyLeading: false,
-          actions: [
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 12.0, 0.0),
-              child: FlutterFlowIconButton(
-                borderColor: Colors.transparent,
-                borderRadius: 30.0,
-                borderWidth: 1.0,
-                buttonSize: 60.0,
-                icon: Icon(
-                  Icons.close_rounded,
-                  color: FlutterFlowTheme.of(context).secondaryText,
-                  size: 30.0,
-                ),
-                onPressed: () async {
-                  context.pop();
-                },
-              ),
-            ),
-          ],
           centerTitle: false,
           elevation: 0.0,
         ),
@@ -121,16 +102,6 @@ class _ProfileWidgetState extends State<ProfileWidget>
                     currentUserDisplayName,
                     style: FlutterFlowTheme.of(context).headlineSmall,
                   ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
-                child: Text(
-                  currentUserEmail,
-                  style: FlutterFlowTheme.of(context).titleSmall.override(
-                        fontFamily: 'Poppins',
-                        color: FlutterFlowTheme.of(context).secondary,
-                      ),
                 ),
               ),
               Divider(

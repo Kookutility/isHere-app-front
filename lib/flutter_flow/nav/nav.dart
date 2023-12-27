@@ -114,7 +114,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           path: 'chats',
           builder: (context, params) => ChatsWidget(
             userName: params.getParam('userName', ParamType.String),
-            email: params.getParam('email', ParamType.String),
             chatUser: params.getParam(
                 'chatUser', ParamType.DocumentReference, false, ['chats']),
             userRef: params.getParam(

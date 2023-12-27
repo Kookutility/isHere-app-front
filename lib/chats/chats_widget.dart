@@ -28,14 +28,12 @@ class ChatsWidget extends StatefulWidget {
   const ChatsWidget({
     Key? key,
     this.userName,
-    this.email,
     this.chatUser,
     this.userRef,
     this.userProfile,
   }) : super(key: key);
 
   final String? userName;
-  final String? email;
   final DocumentReference? chatUser;
   final DocumentReference? userRef;
   final String? userProfile;
@@ -207,22 +205,6 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                               Color(0xFF333333),
                                                         ),
                                                   ),
-                                                ),
-                                                Text(
-                                                  valueOrDefault<String>(
-                                                    widget.email,
-                                                    'NA',
-                                                  ).maybeHandleOverflow(
-                                                      maxChars: 5),
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily: 'Urbanist',
-                                                        color:
-                                                            Color(0xFF828282),
-                                                        fontSize: 12.0,
-                                                      ),
                                                 ),
                                               ],
                                             ),
