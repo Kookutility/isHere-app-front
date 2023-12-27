@@ -14,6 +14,16 @@ import 'package:provider/provider.dart';
 import 'chats_model.dart';
 export 'chats_model.dart';
 
+//길어서 주요 주석 내용 여기에 놓겠습니다. ctrl+f 로 밑의 내용 검색해서 검색 가능합니다.
+
+// 사진 리스트
+// 해당 인덱스의 이미지 사용
+// 상대방 채팅 박스
+// 본인 채팅 박스
+// Plus버튼 onTab UI
+// 텍스트 상자
+// plus 플러스 버튼 온탭 <- 예전 Plus 현재 주석
+
 class ChatsWidget extends StatefulWidget {
   const ChatsWidget({
     Key? key,
@@ -34,7 +44,7 @@ class ChatsWidget extends StatefulWidget {
   _ChatsWidgetState createState() => _ChatsWidgetState();
 }
 
-List<String> imageList = [ //사진 리스트
+List<String> imageList = [ // 사진 리스트
   'assets/icons/photo_purple.png',
   'assets/icons/send_money_gradation.png',
   'assets/icons/report_gradation.png',
@@ -635,7 +645,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                               if (listViewChatMessagesRecord
                                                       .user ==
                                                   widget.userRef)
-                                                Padding(
+                                                Padding( // 본인 채팅 박스
                                                   padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 24.0, 0.0, 0.0),
@@ -809,7 +819,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                       ],
                     ),
                   ),
-                  Padding(
+                  Padding( // 상대방 채팅 박스
                     padding:
                         EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 24.0),
                     child: Column(
@@ -830,7 +840,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                   color: Color(0xFFE0E0E0),
                                 ),
                               ),
-                              child: Padding(
+                              child: Padding( // 텍스트 상자
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     12.0, 6.0, 12.0, 6.0),
                                 child: Row(
@@ -1047,6 +1057,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                             );
                                           }
                                         }, */
+                                        // Plus버튼 onTab UI
                                           onTap: () async {
                                             showModalBottomSheet(
                                               context: context,
