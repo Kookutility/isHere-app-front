@@ -1058,58 +1058,84 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                           }
                                         }, */
                                         // Plus버튼 onTab UI
-                                          onTap: () async {
-                                            showModalBottomSheet(
-                                              context: context,
-                                              builder: (context) {
-                                                return Container(
-                                                  decoration: BoxDecoration(
-                                                    borderRadius: BorderRadius.only(
-                                                      topLeft: Radius.zero,
-                                                      topRight: Radius.zero,
-                                                    ),
-                                                    gradient: LinearGradient(
-                                                      begin: Alignment(0, -1),
-                                                      end: Alignment(0, 1),
-                                                      colors: <Color>[Color(0x0c4d40ea), Color(0x0c6be0d2)],
-                                                      stops: <double>[0, 1],
-                                                    ),
+                                        onTap: () async {
+                                          showModalBottomSheet(
+                                            context: context,
+                                            builder: (context) {
+                                              return Container(
+                                                decoration: BoxDecoration(
+                                                  borderRadius: BorderRadius.only(
+                                                    topLeft: Radius.zero,
+                                                    topRight: Radius.zero,
                                                   ),
-                                                  width: double.infinity,
-                                                  height: 190,
-                                                  child: Row(
-                                                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                                    children: List.generate(
-                                                      3,
-                                                          (index) => Container(
+                                                  gradient: LinearGradient(
+                                                    begin: Alignment(0, -1),
+                                                    end: Alignment(0, 1),
+                                                    colors: <Color>[Color(0x0c4d40ea), Color(0x0c6be0d2)],
+                                                    stops: <double>[0, 1],
+                                                  ),
+                                                ),
+                                                width: double.infinity,
+                                                height: 190,
+                                                child: Row(
+                                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                                  children: List.generate(
+                                                    3,
+                                                        (index) => Transform.translate(
+                                                      offset: Offset(0, -20.0), // 상단으로 올리고 싶은 만큼의 값 설정
+                                                      child: Container(
                                                         width: 70.0,
-                                                        height: 70.0,
-                                                        decoration: BoxDecoration(
-                                                          border: Border.all(color: Color(0x0c000000)),
-                                                          borderRadius: BorderRadius.circular(50),
-                                                          gradient: LinearGradient(
-                                                            begin: Alignment(0, -1),
-                                                            end: Alignment(0, 1),
-                                                            colors: <Color>[Color(0x0c000000), Color(0x00ffffff)],
-                                                            stops: <double>[0, 1],
-                                                          ),
-                                                        ),
-                                                        child: Stack(
+                                                        height: 120.0,
+                                                        child: Column(
+                                                          mainAxisAlignment: MainAxisAlignment.center,
                                                           children: [
-                                                            Positioned.fill(
-                                                              child: Image.asset(
-                                                                imageList[index], // 해당 인덱스의 이미지 사용
+                                                            Container(
+                                                              width: 70.0,
+                                                              height: 70.0,
+                                                              decoration: BoxDecoration(
+                                                                border: Border.all(color: Color(0x0c000000)),
+                                                                borderRadius: BorderRadius.circular(50),
+                                                                gradient: LinearGradient(
+                                                                  begin: Alignment(0, -1),
+                                                                  end: Alignment(0, 1),
+                                                                  colors: <Color>[Color(0x0c000000), Color(0x00ffffff)],
+                                                                  stops: <double>[0, 1],
+                                                                ),
                                                               ),
+                                                              child: Stack(
+                                                                children: [
+                                                                  Positioned.fill(
+                                                                    child: Image.asset(
+                                                                      imageList[index],
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                            SizedBox(height: 8.0),
+                                                            Text(
+                                                              index == 0
+                                                                  ? '사진\n전송하기'
+                                                                  : index == 1
+                                                                  ? '사례금\n전달하기'
+                                                                  : '부정사례\n신고하기',
+                                                              style: TextStyle(
+                                                                color:  Color(0xc9000000),
+                                                                fontSize: 13.0,
+                                                              ),
+                                                              textAlign: TextAlign.center,
                                                             ),
                                                           ],
                                                         ),
                                                       ),
                                                     ),
                                                   ),
-                                                );
-                                              },
-                                            );
-                                          },
+                                                ),
+                                              );
+                                            },
+                                          );
+                                        },
+
 
 
                                         child: Image.asset(
