@@ -1059,8 +1059,9 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                         }, */
                                         // Plus버튼 onTab UI
                                         onTap: () async {
-                                          showModalBottomSheet(
+                                          showModalBottomSheet( // 모달 바텀 시트 보여주기
                                             context: context,
+                                            isDismissible: false,
                                             builder: (context) {
                                               return Container(
                                                 decoration: BoxDecoration(
@@ -1071,8 +1072,8 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                   gradient: LinearGradient(
                                                     begin: Alignment(0, -1),
                                                     end: Alignment(0, 1),
-                                                    colors: <Color>[Color(0x0c4d40ea), Color(0x0c6be0d2)],
-                                                    stops: <double>[0, 1],
+                                                    colors: <Color>[Color(0x0c4d40ea), Color(0x0c6be0d2)], // 그라디언트 색상
+                                                    stops: <double>[0, 1], // 그라디언트 색상의 위치
                                                   ),
                                                 ),
                                                 width: double.infinity,
@@ -1083,49 +1084,164 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                     3,
                                                         (index) => Transform.translate(
                                                       offset: Offset(0, -20.0), // 상단으로 올리고 싶은 만큼의 값 설정
-                                                      child: Container(
-                                                        width: 70.0,
-                                                        height: 120.0,
-                                                        child: Column(
-                                                          mainAxisAlignment: MainAxisAlignment.center,
-                                                          children: [
-                                                            Container(
-                                                              width: 70.0,
-                                                              height: 70.0,
-                                                              decoration: BoxDecoration(
-                                                                border: Border.all(color: Color(0x0c000000)),
-                                                                borderRadius: BorderRadius.circular(50),
-                                                                gradient: LinearGradient(
-                                                                  begin: Alignment(0, -1),
-                                                                  end: Alignment(0, 1),
-                                                                  colors: <Color>[Color(0x0c000000), Color(0x00ffffff)],
-                                                                  stops: <double>[0, 1],
+                                                      child: GestureDetector(
+                                                        onTap: () async {
+                                                          if (index == 0) {
+                                                            // 미디어 선택
+                                                            final selectedMedia = await selectMedia(
+                                                              maxWidth: 300.00,
+                                                              maxHeight: 300.00,
+                                                              imageQuality: 50,
+                                                              mediaSource: MediaSource.photoGallery,
+                                                              multiImage: false,
+                                                            );
+                                                            if (selectedMedia != null &&
+                                                                selectedMedia.every((m) =>
+                                                                    validateFileFormat(m.storagePath, context))) {
+                                                              setState(() => _model.isDataUploading = true);
+                                                              var selectedUploadedFiles = <FFUploadedFile>[];
+
+                                                              var downloadUrls = <String>[];
+                                                              try {
+                                                                showUploadMessage(
+                                                                  context,
+                                                                  'Uploading file...',
+                                                                  showLoading: true,
+                                                                );
+                                                                selectedUploadedFiles = selectedMedia
+                                                                    .map(
+                                                                      (m) => FFUploadedFile(
+                                                                    name: m.storagePath.split('/').last,
+                                                                    bytes: m.bytes,
+                                                                    height: m.dimensions?.height,
+                                                                    width: m.dimensions?.width,
+                                                                    blurHash: m.blurHash,
+                                                                  ),
+                                                                )
+                                                                    .toList();
+
+                                                                downloadUrls = (await Future.wait(
+                                                                  selectedMedia.map(
+                                                                        (m) async =>
+                                                                    await uploadData(m.storagePath, m.bytes),
+                                                                  ),
+                                                                ))
+                                                                    .where((u) => u != null)
+                                                                    .map((u) => u!)
+                                                                    .toList();
+                                                              } finally {
+                                                                ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                                                                _model.isDataUploading = false;
+                                                              }
+                                                              if (selectedUploadedFiles.length ==
+                                                                  selectedMedia.length &&
+                                                                  downloadUrls.length == selectedMedia.length) {
+                                                                setState(() {
+                                                                  _model.uploadedLocalFile =
+                                                                      selectedUploadedFiles.first;
+                                                                  _model.uploadedFileUrl = downloadUrls.first;
+                                                                });
+                                                                showUploadMessage(context, 'Success!');
+                                                                Navigator.pop(context);
+                                                              } else {
+                                                                setState(() {});
+                                                                showUploadMessage(context, 'Failed to upload data');
+                                                                return;
+                                                              }
+                                                            }
+
+                                                            if ((_model.textController.text != null &&
+                                                                _model.textController.text != '') ||
+                                                                (_model.uploadedFileUrl != null &&
+                                                                    _model.uploadedFileUrl != '')) {
+                                                              // 채팅 메시지 생성
+                                                              await ChatMessagesRecord.collection.doc().set(
+                                                                createChatMessagesRecordData(
+                                                                  user: currentUserReference,
+                                                                  chatUser: widget.chatUser,
+                                                                  timestamp: getCurrentTimestamp,
+                                                                  image: _model.uploadedFileUrl,
                                                                 ),
-                                                              ),
-                                                              child: Stack(
-                                                                children: [
-                                                                  Positioned.fill(
-                                                                    child: Image.asset(
-                                                                      imageList[index],
+                                                              );
+                                                              // 마지막 메시지 업데이트
+                                                              await chatsChatsRecord!.reference.update(
+                                                                createChatsRecordData(
+                                                                  lastMessageTime: getCurrentTimestamp,
+                                                                  lastMessage: _model.textController.text,
+                                                                ),
+                                                              );
+                                                              setState(() {
+                                                                _model.textController?.clear();
+                                                              });
+                                                            } else {
+                                                              ScaffoldMessenger.of(context).showSnackBar(
+                                                                SnackBar(
+                                                                  content: Text(
+                                                                    'Please type something...',
+                                                                    style: TextStyle(
+                                                                      color:
+                                                                      FlutterFlowTheme.of(context).primaryText,
                                                                     ),
                                                                   ),
-                                                                ],
+                                                                  duration: Duration(milliseconds: 4000),
+                                                                  backgroundColor: Color(0x00000000),
+                                                                ),
+                                                              );
+                                                            }
+                                                          }
+                                                        },
+                                                        child: Container(
+                                                          width: 70.0,
+                                                          height: 120.0,
+                                                          child: Column(
+                                                            mainAxisAlignment: MainAxisAlignment.center,
+                                                            children: [
+                                                              Container(
+                                                                width: 70.0,
+                                                                height: 70.0,
+                                                                decoration: BoxDecoration(
+                                                                  border: Border.all(color: Color(0x0c000000)),
+                                                                  borderRadius: BorderRadius.circular(50),
+                                                                  gradient: LinearGradient(
+                                                                    begin: Alignment(0, -1),
+                                                                    end: Alignment(0, 1),
+                                                                    colors: <Color>[
+                                                                      Color(0x0c000000),
+                                                                      Color(0x00ffffff)
+                                                                    ],
+                                                                    stops: <double>[0, 1],
+                                                                  ),
+                                                                ),
+                                                                child: Stack(
+                                                                  children: [
+                                                                    Positioned(
+                                                                      child: Align(
+                                                                        alignment: Alignment.center,
+                                                                        child: Image.asset(
+                                                                          imageList[index],
+                                                                          width: 45.0,
+                                                                          height: 45.0,
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                ),
                                                               ),
-                                                            ),
-                                                            SizedBox(height: 8.0),
-                                                            Text(
-                                                              index == 0
-                                                                  ? '사진\n전송하기'
-                                                                  : index == 1
-                                                                  ? '사례금\n전달하기'
-                                                                  : '부정사례\n신고하기',
-                                                              style: TextStyle(
-                                                                color:  Color(0xc9000000),
-                                                                fontSize: 13.0,
+                                                              SizedBox(height: 8.0),
+                                                              Text(
+                                                                index == 0
+                                                                    ? '사진\n전송하기'
+                                                                    : index == 1
+                                                                    ? '사례금\n전달하기'
+                                                                    : '부정사례\n신고하기',
+                                                                style: TextStyle(
+                                                                  color: Color(0xc9000000),
+                                                                  fontSize: 13.0,
+                                                                ),
+                                                                textAlign: TextAlign.center,
                                                               ),
-                                                              textAlign: TextAlign.center,
-                                                            ),
-                                                          ],
+                                                            ],
+                                                          ),
                                                         ),
                                                       ),
                                                     ),
@@ -1135,8 +1251,6 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                             },
                                           );
                                         },
-
-
 
                                         child: Image.asset(
                                           'assets/icons/plus_white.png',
