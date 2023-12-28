@@ -161,7 +161,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                 borderRadius: BorderRadius.circular(20), // 사진 곡률
                                               ),
                                               child: Image.asset(
-                                                'assets/images/macbook.png', // 게시글 사진
+                                                'assets/images/macbook2.png', // 게시글 사진 이거 이미지
                                                 fit: BoxFit.cover,
                                               ),
                                             ),
