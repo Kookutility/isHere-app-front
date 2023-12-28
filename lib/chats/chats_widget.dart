@@ -24,6 +24,9 @@ export 'chats_model.dart';
 // 텍스트 상자
 // plus 플러스 버튼 온탭 <- 예전 Plus 현재 주석
 
+// 채팅 상단바
+// 상단바 프로필(게시글 사진 들어갈 곳)
+
 class ChatsWidget extends StatefulWidget {
   const ChatsWidget({
     Key? key,
@@ -146,86 +149,65 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                       Row(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
-                                          InkWell(
-                                            splashColor: Colors.transparent,
-                                            focusColor: Colors.transparent,
-                                            hoverColor: Colors.transparent,
-                                            highlightColor: Colors.transparent,
-                                            onTap: () async {
-                                              context.pop();
-                                            },
-                                            child: Icon(
-                                              Icons.arrow_back,
-                                              color: Color(0xFFBDBDBD),
-                                              size: 24.0,
-                                            ),
-                                          ),
-                                          Padding(
+                                          Padding( // 상단바 프로필(게시글 사진 들어갈 곳)
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
-                                                    12.0, 0.0, 0.0, 0.0),
+                                                    25.0, 0.0, 0.0, 0.0),
                                             child: Container(
-                                              width: 42.0,
-                                              height: 42.0,
+                                              width: 60.0,
+                                              height: 60.0,
                                               clipBehavior: Clip.antiAlias,
                                               decoration: BoxDecoration(
-                                                shape: BoxShape.circle,
+                                                borderRadius: BorderRadius.circular(20), // 사진 곡률
                                               ),
-                                              child: Image.network(
-                                                widget.userProfile!,
+                                              child: Image.asset(
+                                                'assets/images/macbook.png', // 게시글 사진
                                                 fit: BoxFit.cover,
                                               ),
                                             ),
                                           ),
-                                          Padding(
+                                          Padding( //채팅 상단바
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
-                                                    12.0, 0.0, 0.0, 0.0),
+                                                    20.0, 0.0, 0.0, 0.0),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
-                                                Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 0.0, 0.0, 6.0),
-                                                  child: Text(
-                                                    valueOrDefault<String>(
-                                                      widget.userName,
-                                                      'NA',
-                                                    ),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Urbanist',
-                                                          color:
-                                                              Color(0xFF333333),
-                                                        ),
+                                                Text(
+                                                  '그린 플로럴',
+                                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                    fontFamily: 'Urbanist',
+                                                    color: Color(0xc9000000),
+                                                    fontSize: 14.0,
+                                                  ),
+                                                ),
+                                                Text(
+                                                  '[귀중품] 구의역쪽에서 구찌 반지갑\n분실했습니다.', // 일정 크기 넘어가면 over됨
+                                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                    fontFamily: 'Urbanist',
+                                                    color: Color(0xa5000000),
+                                                    fontSize: 14.0,
                                                   ),
                                                 ),
                                               ],
                                             ),
                                           ),
+                                          Padding( // 상단바 프로필(게시글 사진 들어갈 곳)
+                                            padding:
+                                            EdgeInsetsDirectional.fromSTEB(
+                                                25.0, 0.0, 0.0, 0.0),
+                                            child: Image.asset(
+                                              'assets/icons/right_gray.png',
+                                              color: Color(0xFFBDBDBD),
+                                              width: 24.0,
+                                              height: 24.0,
+                                            ),
+                                          ),
                                         ],
                                       ),
                                     ],
-                                  ),
-                                  FlutterFlowIconButton(
-                                    borderColor: Colors.transparent,
-                                    borderRadius: 30.0,
-                                    borderWidth: 1.0,
-                                    buttonSize: 48.0,
-                                    icon: Icon(
-                                      Icons.more_vert_sharp,
-                                      color: Color(0xFFBDBDBD),
-                                      size: 30.0,
-                                    ),
-                                    onPressed: () {
-                                      print('IconButton pressed ...');
-                                    },
                                   ),
                                 ],
                               ),
@@ -611,7 +593,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                                             color:
                                                                                 Color(0xff000000),
                                                                             fontSize:
-                                                                                12.0,
+                                                                                11.0,
                                                                           ),
                                                                     ),
                                                                   ],
@@ -745,7 +727,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                                               .override(
                                                                                 fontFamily: 'Urbanist',
                                                                                 color: Color(0xffffffff),
-                                                                                fontSize: 12.0,
+                                                                                fontSize: 11.0,
                                                                               ),
                                                                         ),
                                                                       ],
@@ -1065,7 +1047,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                   children: List.generate(
                                                     3,
                                                         (index) => Transform.translate(
-                                                      offset: Offset(0, -20.0), // 상단으로 올리고 싶은 만큼의 값 설정
+                                                      offset: Offset(0, -5.0), // 상단으로 올리고 싶은 만큼의 값 설정
                                                       child: GestureDetector(
                                                         onTap: () async {
                                                           if (index == 0) {
@@ -1217,7 +1199,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                                     ? '사례금\n전달하기'
                                                                     : '부정사례\n신고하기',
                                                                 style: TextStyle(
-                                                                  color: Color(0xc9000000),
+                                                                  color: Color(0xc5000000),
                                                                   fontSize: 13.0,
                                                                 ),
                                                                 textAlign: TextAlign.center,

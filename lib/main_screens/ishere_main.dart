@@ -11,10 +11,9 @@ import 'package:petdemo/main_screens/map_screen.dart';
 import 'package:petdemo/main_screens/write_screen.dart';
 import 'package:petdemo/const/address.dart';
 
-import '../chats/chats_widget.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await NaverMapSdk.instance.initialize(clientId: 'raopvm5gte'); // NaverMapSdk 초기화
+  // NaverMapSdk 초기화는 main.dart로 옮김.
   runApp(const IsHereMain());
 }
 

@@ -43,6 +43,7 @@ void main() async {
   usePathUrlStrategy();
 
 
+  await NaverMapSdk.instance.initialize(clientId: 'raopvm5gte'); // NaverMapSdk 초기화
   // 플랫폼이 안드로이드인 경우 Firebase를 초기화합니다.
   // Firebase.initializeApp() 함수를 통해 Firebase 서비스를 사용할 수 있습니다.
   // FirebaseOptions 객체를 통해 Firebase 프로젝트의 구성 정보를 전달합니다.

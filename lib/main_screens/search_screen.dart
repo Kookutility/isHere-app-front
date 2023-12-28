@@ -2,7 +2,6 @@ import 'package:flutter/widgets.dart';
 import 'package:petdemo/common/basic_layout.dart';
 import 'package:flutter/material.dart';
 
-
 class SearchScreen extends StatelessWidget {
   const SearchScreen({Key? key}) : super(key: key);
 
