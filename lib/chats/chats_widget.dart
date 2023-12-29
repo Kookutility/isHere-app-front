@@ -16,15 +16,20 @@ export 'chats_model.dart';
 
 //길어서 주요 주석 내용 여기에 놓겠습니다. ctrl+f 로 밑의 내용 검색해서 검색 가능합니다.
 
+//UI적인 코드는 124번 줄 부터 시작
+
 // 사진 리스트
 // 해당 인덱스의 이미지 사용
+// 채팅 메시지를 표시하는 부분 (채팅 박스를 감싸는 UI)
 // 상대방 채팅 박스
 // 본인 채팅 박스
+// 채팅 메시지를 표시 컨테이너
 // Plus버튼 onTab UI
 // 텍스트 상자
 // plus 플러스 버튼 온탭 <- 예전 Plus 현재 주석
 
 // 채팅 상단바
+// 하단부
 // 상단바 프로필(게시글 사진 들어갈 곳)
 
 class ChatsWidget extends StatefulWidget {
@@ -90,16 +95,19 @@ class _ChatsWidgetState extends State<ChatsWidget> {
         singleRecord: true,
       ),
       builder: (context, snapshot) {
-        // Customize what your widget looks like when it's loading.
+        // 스냅샷에 데이터가 없는 경우 (로드 중인 경우)
         if (!snapshot.hasData) {
+          // 로딩 중을 나타내는 Scaffold 위젯 반환
           return Scaffold(
-            backgroundColor: Colors.white,
+            backgroundColor: Colors.white, // 배경색을 흰색으로 설정
             body: Center(
               child: SizedBox(
                 width: 50.0,
                 height: 50.0,
                 child: CircularProgressIndicator(
+                  // Circular 프로그레스 인디케이터를 사용하여 로딩 중임을 시각적으로 나타냄
                   valueColor: AlwaysStoppedAnimation<Color>(
+                    // 인디케이터의 색상을 테마에서 정의한 주 색상으로 설정
                     FlutterFlowTheme.of(context).primary,
                   ),
                 ),
@@ -107,13 +115,17 @@ class _ChatsWidgetState extends State<ChatsWidget> {
             ),
           );
         }
+
+        // 채팅 목록 데이터를 가져온다.
         List<ChatsRecord> chatsChatsRecordList = snapshot.data!;
-        // Return an empty Container when the item does not exist.
+        // 아이템이 없는 경우 빈 Container를 반환한다.
         if (snapshot.data!.isEmpty) {
           return Container();
         }
+        // 첫 번째 채팅 레코드를 가져온다.
         final chatsChatsRecord =
             chatsChatsRecordList.isNotEmpty ? chatsChatsRecordList.first : null;
+        // 화면을 터치하면 포커스가 요청될 때만 포커스를 설정하거나 해제한다.
         return GestureDetector(
           onTap: () => _model.unfocusNode.canRequestFocus
               ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -128,6 +140,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Expanded(
+                    // 여기에 채팅 목록을 표시하는 위젯 또는 기능을 추가할 수 있음
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
@@ -161,7 +174,8 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                 borderRadius: BorderRadius.circular(20), // 사진 곡률
                                               ),
                                               child: Image.asset(
-                                                'assets/images/macbook2.png', // 게시글 사진 이거 이미지
+                                                'assets/images/macbook2.png', // 게시글 사진 
+                                                // 이미지 용량에 따라서 로드 안될때가 있는 거 같음 현재 테스트시 150kb 이하는 가능
                                                 fit: BoxFit.cover,
                                               ),
                                             ),
@@ -214,12 +228,14 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                             ],
                           ),
                         ),
-                        Divider(
+
+                        Divider( //채팅 메시지 목록과 다른 UI 요소 간의 구분을 위한 수평 구분선을 생성
                           height: 48.0,
                           thickness: 1.0,
                           color: Color(0xFFE0E0E0),
                         ),
-                        Expanded(
+
+                        Expanded( //채팅 메시지를 표시하는 부분을 화면 표시
                           child: Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 20.0, 0.0, 20.0, 16.0),
@@ -254,10 +270,12 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                           ),
                                         );
                                       }
-                                      List<ChatMessagesRecord>
+
+                                      List<ChatMessagesRecord> // 스트림에서 비동기로 가져온 채팅 메시지 목록을 변수에 할당
                                           listViewChatMessagesRecordList =
                                           snapshot.data!;
-                                      return ListView.builder(
+
+                                      return ListView.builder( // 동적으로 아이템을 생성하여 스크롤 가능한 목록을 생성
                                         padding: EdgeInsets.zero,
                                         primary: false,
                                         shrinkWrap: true,
@@ -272,15 +290,13 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                           return Column(
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
-                                              if ((listViewChatMessagesRecord
-                                                          .user !=
-                                                      currentUserReference) &&
-                                                  (listViewChatMessagesRecord
-                                                              .image !=
-                                                          null &&
-                                                      listViewChatMessagesRecord
-                                                              .image !=
-                                                          ''))
+                                              //현재 사용자가 보낸 메시지가 아니면서 이미지가 있는 경우에 대한 체크
+
+                                              //첫 번째 블록에서는 상대방이 보낸 이미지인 경우에만 사용자 프로필 이미지를 표시
+                                              //이미지 메시지가 있는 경우 (타 사용자 작성)
+                                              if ((listViewChatMessagesRecord.user != currentUserReference) &&
+                                                  (listViewChatMessagesRecord.image != null && listViewChatMessagesRecord.image != ''))
+
                                                 Padding(
                                                   padding: EdgeInsetsDirectional
                                                       .fromSTEB(
@@ -294,6 +310,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                         CrossAxisAlignment
                                                             .start,
                                                     children: [
+                                                      // 1. 사용자 프로필 이미지
                                                       Container(
                                                         width: 36.0,
                                                         height: 36.0,
@@ -309,14 +326,12 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                           fit: BoxFit.cover,
                                                         ),
                                                       ),
+
+                                                      // 2. 이미지 채팅 메시지 컨테이너
                                                       Padding(
                                                         padding:
                                                             EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    16.0,
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0),
+                                                                .fromSTEB(16.0, 0.0, 0.0, 0.0),
                                                         child: Container(
                                                           width: 300.0,
                                                           height: 180.0,
@@ -327,34 +342,18 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                           ),
                                                           decoration:
                                                               BoxDecoration(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .secondaryBackground,
-                                                            image:
-                                                                DecorationImage(
+                                                            color: FlutterFlowTheme.of(context).secondaryBackground,
+                                                            image: DecorationImage(
                                                               fit: BoxFit.cover,
-                                                              image:
-                                                                  Image.network(
-                                                                listViewChatMessagesRecord
-                                                                    .image,
+                                                              image: Image.network(
+                                                                listViewChatMessagesRecord.image,
                                                               ).image,
                                                             ),
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .only(
-                                                              bottomLeft: Radius
-                                                                  .circular(
-                                                                      24.0),
-                                                              bottomRight:
-                                                                  Radius
-                                                                      .circular(
-                                                                          24.0),
-                                                              topLeft: Radius
-                                                                  .circular(
-                                                                      24.0),
-                                                              topRight: Radius
-                                                                  .circular(
-                                                                      24.0),
+                                                            borderRadius: BorderRadius.only(
+                                                              bottomLeft: Radius.circular(24.0),
+                                                              bottomRight: Radius.circular(24.0),
+                                                              topLeft: Radius.circular(24.0),
+                                                              topRight: Radius.circular(24.0),
                                                             ),
                                                           ),
                                                         ),
@@ -362,78 +361,48 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                     ],
                                                   ),
                                                 ),
-                                              if ((listViewChatMessagesRecord
-                                                          .user ==
-                                                      currentUserReference) &&
-                                                  (listViewChatMessagesRecord
-                                                              .image !=
-                                                          null &&
-                                                      listViewChatMessagesRecord
-                                                              .image !=
-                                                          ''))
+
+                                              //채팅 메시지가 현재 사용자에 의해 작성되었고, 해당 메시지에 이미지가 첨부되어 있을 경우
+                                              //이미지 메시지가 있는 경우 (타 사용자 작성)
+                                              if ((listViewChatMessagesRecord.user == currentUserReference) &&
+                                                  (listViewChatMessagesRecord.image != null && listViewChatMessagesRecord.image != ''))
+
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 24.0, 0.0, 0.0),
+                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
                                                   child: Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment.end,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
+                                                    mainAxisSize: MainAxisSize.max,
+                                                    mainAxisAlignment: MainAxisAlignment.end,
+                                                    crossAxisAlignment: CrossAxisAlignment.start,
                                                     children: [
+                                                      // 이미지 채팅 메시지 컨테이너
                                                       Container(
                                                         width: 300.0,
                                                         height: 180.0,
-                                                        constraints:
-                                                            BoxConstraints(
+                                                        constraints: BoxConstraints(
                                                           maxWidth: 260.0,
                                                           maxHeight: 180.0,
                                                         ),
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryBackground,
-                                                          image:
-                                                              DecorationImage(
+                                                        decoration: BoxDecoration(
+                                                          color: FlutterFlowTheme.of(context).secondaryBackground,
+                                                          image: DecorationImage(
                                                             fit: BoxFit.cover,
-                                                            image:
-                                                                Image.network(
-                                                              listViewChatMessagesRecord
-                                                                  .image,
+                                                            image: Image.network(listViewChatMessagesRecord.image,
                                                             ).image,
                                                           ),
-                                                          borderRadius:
-                                                              BorderRadius.only(
-                                                            bottomLeft:
-                                                                Radius.circular(
-                                                                    24.0),
-                                                            bottomRight:
-                                                                Radius.circular(
-                                                                    24.0),
-                                                            topLeft:
-                                                                Radius.circular(
-                                                                    24.0),
-                                                            topRight:
-                                                                Radius.circular(
-                                                                    24.0),
+                                                          borderRadius: BorderRadius.only(
+                                                            bottomLeft: Radius.circular(24.0),
+                                                            bottomRight: Radius.circular(24.0),
+                                                            topLeft: Radius.circular(24.0),
+                                                            topRight: Radius.circular(24.0),
                                                           ),
                                                         ),
                                                         child: Stack(
                                                           children: [
+                                                            // 체크 아이콘
                                                             Align(
-                                                              alignment:
-                                                                  AlignmentDirectional(
-                                                                      0.90,
-                                                                      0.85),
-                                                              child: Icon(
-                                                                FFIcons
-                                                                    .kcheckAll,
-                                                                color: Colors
-                                                                    .white,
+                                                              alignment: AlignmentDirectional(0.90, 0.85),
+                                                              child: Icon(FFIcons.kcheckAll,
+                                                                color: Colors.white,
                                                                 size: 16.0,
                                                               ),
                                                             ),
@@ -443,126 +412,76 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                     ],
                                                   ),
                                                 ),
-                                              if ((listViewChatMessagesRecord
-                                                          .user !=
-                                                      currentUserReference) &&
-                                                  (listViewChatMessagesRecord
-                                                              .text !=
-                                                          null &&
-                                                      listViewChatMessagesRecord
-                                                              .text !=
-                                                          ''))
+
+
+                                              //두 번째 블록에서는 이미지 채팅 메시지를 보낸 사용자인 경우에만 사용자 프로필 이미지를 표시
+                                              //텍스트 메시지가 있는 경우 (타 사용자 작성)
+                                              if ((listViewChatMessagesRecord.user != currentUserReference) &&
+                                                  (listViewChatMessagesRecord.text != null && listViewChatMessagesRecord.text != ''))
+
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 24.0, 0.0, 0.0),
+                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
                                                   child: Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
+                                                    mainAxisSize: MainAxisSize.max,
+                                                    crossAxisAlignment: CrossAxisAlignment.start,
                                                     children: [
                                                       Container(
                                                         width: 36.0,
                                                         height: 36.0,
-                                                        clipBehavior:
-                                                            Clip.antiAlias,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          shape:
-                                                              BoxShape.circle,
+                                                        clipBehavior: Clip.antiAlias,
+                                                        decoration: BoxDecoration(
+                                                          shape: BoxShape.circle,
                                                         ),
                                                         child: Image.network(
                                                           widget.userProfile!,
                                                           fit: BoxFit.cover,
                                                         ),
                                                       ),
-                                                      Padding(
+
+                                                      Padding( //상대방 채팅 창
                                                         padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    16.0,
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0),
+                                                            EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
                                                         child: Container(
                                                           width: 300.0,
-                                                          constraints:
-                                                              BoxConstraints(
+                                                          constraints: BoxConstraints(
                                                             maxWidth: 260.0,
                                                           ),
-                                                          decoration: //상대방 채팅 참
+                                                          decoration:
                                                               BoxDecoration(
                                                                 color: FlutterFlowTheme.of(context).secondaryBackground,
                                                                 borderRadius:
-                                                                BorderRadius
-                                                                    .only(
-                                                              bottomLeft: Radius
-                                                                  .circular(
-                                                                      4.0),
-                                                              bottomRight:
-                                                                  Radius
-                                                                      .circular(
-                                                                          18.0),
-                                                              topLeft: Radius
-                                                                  .circular(
-                                                                      18.0),
-                                                              topRight: Radius
-                                                                  .circular(
-                                                                      18.0),
+                                                                BorderRadius.only(
+                                                              bottomLeft: Radius.circular(4.0),
+                                                              bottomRight: Radius.circular(18.0),
+                                                              topLeft: Radius.circular(18.0),
+                                                              topRight: Radius.circular(18.0),
                                                             ),
                                                                 border: Border.all(
-                                                                  color: Color(
-                                                                      0xFF828282),
+                                                                  color: Color(0xFF828282),
                                                                 ),
                                                           ),
                                                           child: Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        16.0,
-                                                                        12.0,
-                                                                        16.0,
-                                                                        12.0),
+                                                            padding: EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 12.0),
                                                             child: Row(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .spaceBetween,
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .end,
+                                                              mainAxisSize: MainAxisSize.max,
+                                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                              crossAxisAlignment: CrossAxisAlignment.end,
                                                               children: [
                                                                 Column(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .max,
-                                                                  mainAxisAlignment:
-                                                                      MainAxisAlignment
-                                                                          .center,
+                                                                  mainAxisSize: MainAxisSize.max,
+                                                                  mainAxisAlignment: MainAxisAlignment.center,
                                                                   children: [
                                                                     Container(
-                                                                      width:
-                                                                          160.0,
-                                                                      constraints:
-                                                                          BoxConstraints(
-                                                                        maxWidth:
-                                                                            260.0,
+                                                                      width: 160.0,
+                                                                      constraints: BoxConstraints(maxWidth: 260.0,
                                                                       ),
-                                                                      decoration:
-                                                                          BoxDecoration(
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .secondaryBackground,
+                                                                      decoration: BoxDecoration(
+                                                                        color: FlutterFlowTheme.of(context).secondaryBackground,
                                                                       ),
                                                                       child:
-                                                                          Text(
-                                                                        listViewChatMessagesRecord
-                                                                            .text,
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
+                                                                      Text(
+                                                                        listViewChatMessagesRecord.text,
+                                                                        style: FlutterFlowTheme.of(context).bodyMedium
                                                                             .override(
                                                                               fontFamily: 'Urbanist',
                                                                               color: Color(0xff000000),
@@ -572,28 +491,18 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                                   ],
                                                                 ),
                                                                 Column(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .max,
-                                                                  mainAxisAlignment:
-                                                                      MainAxisAlignment
-                                                                          .center,
+                                                                  mainAxisSize: MainAxisSize.max,
+                                                                  mainAxisAlignment: MainAxisAlignment.center,
                                                                   children: [
                                                                     Text(
                                                                       dateTimeFormat(
                                                                           'jm',
-                                                                          listViewChatMessagesRecord
-                                                                              .timestamp!),
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
+                                                                          listViewChatMessagesRecord.timestamp!),
+                                                                      style: FlutterFlowTheme.of(context).bodyMedium
                                                                           .override(
-                                                                            fontFamily:
-                                                                                'Urbanist',
-                                                                            color:
-                                                                                Color(0xff000000),
-                                                                            fontSize:
-                                                                                11.0,
+                                                                            fontFamily: 'Urbanist',
+                                                                            color: Color(0xff000000),
+                                                                            fontSize: 11.0,
                                                                           ),
                                                                     ),
                                                                   ],
@@ -606,94 +515,52 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                     ],
                                                   ),
                                                 ),
-                                              if (listViewChatMessagesRecord
-                                                      .user ==
-                                                  widget.userRef)
+
+                                              //텍스트 메시지가 있는 경우 (자신이 작성)
+                                              if (listViewChatMessagesRecord.user == widget.userRef)
                                                 Padding( // 본인 채팅 박스
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 24.0, 0.0, 0.0),
+                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
                                                   child: Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment.end,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
+                                                    mainAxisSize: MainAxisSize.max,
+                                                    mainAxisAlignment: MainAxisAlignment.end,
+                                                    crossAxisAlignment: CrossAxisAlignment.start,
                                                     children: [
-                                                      if (listViewChatMessagesRecord
-                                                                  .text !=
-                                                              null &&
-                                                          listViewChatMessagesRecord
-                                                                  .text !=
-                                                              '')
+                                                      if (listViewChatMessagesRecord.text != null &&
+                                                          listViewChatMessagesRecord.text != '')
                                                         Container(
                                                           width: 300.0,
-                                                          constraints:
-                                                              BoxConstraints(
+                                                          constraints: BoxConstraints(
                                                             maxWidth: 260.0,
                                                           ),
                                                           decoration:
+                                                          // 내가 보내는 채팅
                                                               BoxDecoration(
-                                                            color: Color( // 내가 보내는 채팅
-                                                                0xff4d40ea),
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .only(
-                                                              bottomLeft: Radius
-                                                                  .circular(
-                                                                      18.0),
-                                                              bottomRight:
-                                                                  Radius
-                                                                      .circular(
-                                                                          4.0),
-                                                              topLeft: Radius
-                                                                  .circular(
-                                                                      18.0),
-                                                              topRight: Radius
-                                                                  .circular(
-                                                                      18.0),
+                                                            color: Color(0xff4d40ea),
+                                                            borderRadius: BorderRadius.only(
+                                                              bottomLeft: Radius.circular(18.0),
+                                                              bottomRight: Radius.circular(4.0),
+                                                              topLeft: Radius.circular(18.0),
+                                                              topRight: Radius.circular(18.0),
                                                             ),
                                                           ),
                                                           child: Padding(
                                                             padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        16.0,
-                                                                        12.0,
-                                                                        16.0,
-                                                                        12.0),
+                                                                EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 12.0),
                                                             child: Row(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .spaceBetween,
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .end,
+                                                              mainAxisSize: MainAxisSize.max,
+                                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                              crossAxisAlignment: CrossAxisAlignment.end,
                                                               children: [
                                                                 Column(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .max,
-                                                                  mainAxisAlignment:
-                                                                      MainAxisAlignment
-                                                                          .center,
+                                                                  mainAxisSize: MainAxisSize.max,
+                                                                  mainAxisAlignment: MainAxisAlignment.center,
                                                                   children: [
-                                                                    Container(
-                                                                      width:
-                                                                          160.0,
-                                                                      decoration:
-                                                                          BoxDecoration(),
+                                                                    Container( // 채팅 메시지를 표시 컨테이너
+                                                                      width: 160.0,
+                                                                      decoration: BoxDecoration(),
                                                                       child:
-                                                                          Text(
-                                                                        listViewChatMessagesRecord
-                                                                            .text,
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
+                                                                          Text(listViewChatMessagesRecord.text,
+                                                                        style: FlutterFlowTheme.of(context).bodyMedium
                                                                             .override(
                                                                               fontFamily: 'Urbanist',
                                                                               color: Color(0xffffffff),
@@ -702,21 +569,15 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                                     ),
                                                                   ],
                                                                 ),
-                                                                Row(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .max,
-                                                                  mainAxisAlignment:
-                                                                      MainAxisAlignment
-                                                                          .spaceBetween,
+
+
+                                                                Row( // 채팅 메시지의 타임스탬프(timestamp)를 형식화하여 표시
+                                                                  mainAxisSize: MainAxisSize.max,
+                                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                                   children: [
                                                                     Column(
-                                                                      mainAxisSize:
-                                                                          MainAxisSize
-                                                                              .max,
-                                                                      mainAxisAlignment:
-                                                                          MainAxisAlignment
-                                                                              .center,
+                                                                      mainAxisSize: MainAxisSize.max,
+                                                                      mainAxisAlignment: MainAxisAlignment.center,
                                                                       children: [
                                                                         Text(
                                                                           dateTimeFormat(
@@ -732,19 +593,15 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                                         ),
                                                                       ],
                                                                     ),
-                                                                    Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                                                          6.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0),
+
+
+                                                                    Padding( // 채팅 메시지가 읽음 여부 아이콘
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(6.0, 0.0, 0.0, 0.0),
                                                                       child:
                                                                           Column(
-                                                                        mainAxisSize:
-                                                                            MainAxisSize.max,
+                                                                        mainAxisSize: MainAxisSize.max,
                                                                         children: [
-                                                                          if (chatsChatsRecord?.messageSeen ??
-                                                                              true)
+                                                                          if (chatsChatsRecord?.messageSeen ?? true)
                                                                             Icon(
                                                                               FFIcons.kcheckAll,
                                                                               color: Color(0xffffffff),
@@ -779,11 +636,14 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                               ),
                             ),
                           ),
-                        ),
+                        ), //채팅 메시지를 표시하는 부분을 화면에표시
                       ],
                     ),
                   ),
-                  Padding( // 상대방 채팅 박스
+
+
+                  // 하단부
+                  Padding( //텍스트 박스
                     padding:
                         EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 24.0),
                     child: Column(
@@ -792,7 +652,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                         Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [ //텍스트 박스
+                          children: [
                             Container(
                               width: 290.0, //텍스트 박스 크기
                               height: 50.0,
@@ -804,6 +664,8 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                   color: Color(0xFFE0E0E0),
                                 ),
                               ),
+
+
                               child: Padding( // 텍스트 상자
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     12.0, 6.0, 12.0, 6.0),
@@ -884,6 +746,8 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                         thickness: 1.0,
                                       ),
                                     ),
+
+
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           6.0, 0.0, 0.0, 0.0),

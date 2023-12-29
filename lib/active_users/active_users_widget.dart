@@ -14,6 +14,8 @@ import 'package:text_search/text_search.dart';
 import 'active_users_model.dart';
 export 'active_users_model.dart';
 
+//필요없는 페이지인거 같음. 추후 수정 예정
+
 class ActiveUsersWidget extends StatefulWidget {
   const ActiveUsersWidget({
     Key? key,
@@ -72,7 +74,7 @@ class _ActiveUsersWidgetState extends State<ActiveUsersWidget> {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              Padding(
+              /*Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(20.0, 24.0, 20.0, 0.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
@@ -136,8 +138,8 @@ class _ActiveUsersWidgetState extends State<ActiveUsersWidget> {
                     ),
                   ],
                 ),
-              ),
-              Padding(
+              ),*/
+              /*Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(20.0, 24.0, 20.0, 0.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
@@ -179,7 +181,7 @@ class _ActiveUsersWidgetState extends State<ActiveUsersWidget> {
                       autofocus: true,
                       obscureText: false,
                       decoration: InputDecoration(
-                        hintText: 'Search for user',
+                          hintText: 'Search for user',
                         hintStyle:
                             FlutterFlowTheme.of(context).bodyMedium.override(
                                   fontFamily: 'Urbanist',
@@ -268,8 +270,8 @@ class _ActiveUsersWidgetState extends State<ActiveUsersWidget> {
                     ),
                   ],
                 ),
-              ),
-              Padding(
+              ),*/
+              /*Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(20.0, 6.0, 20.0, 0.0),
                 child: SingleChildScrollView(
                   child: Column(
@@ -616,7 +618,7 @@ class _ActiveUsersWidgetState extends State<ActiveUsersWidget> {
                     ],
                   ),
                 ),
-              ),
+              ),*/
             ],
           ),
         ),

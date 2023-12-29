@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:petdemo/main_screens/ishere_main.dart';
 import 'package:provider/provider.dart';
+import '../../home_page/home_page_widget.dart';
 import '/backend/backend.dart';
 
 import '/auth/base_auth_user_provider.dart';
@@ -129,8 +130,8 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               // 로그인 상태인 경우 IshereMain을 반환 (ishere_main.dart 파일은 ishere 메인 코드)
               return IsHereMain();
             } else {
-              // 로그인 상태가 아닌 경우 HomePageWidget을 반환 (홈페이지 위젯(HomepageWidget)은 채팅창 목록을 보는 화면)
-              return HomePageWidget();
+              // 로그인 상태가 아닌 경우 HomePageWidget(현ChatPageWidget)을 반환 (홈페이지 위젯(HomepageWidget)은 채팅창 목록을 보는 화면)
+              return ChatPageWidget();
             }
           },
         ),

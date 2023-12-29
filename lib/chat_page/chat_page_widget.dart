@@ -13,8 +13,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'home_page_model.dart';
-export 'home_page_model.dart';
+import 'chat_page_model.dart';
+export 'chat_page_model.dart';
 
 //길어서 주요 주석 내용 여기에 놓겠습니다. ctrl+f 로 밑의 내용 검색해서 검색 가능합니다.
 
@@ -24,42 +24,46 @@ export 'home_page_model.dart';
 //username 과 마지막 채팅 위치
 //프로필 사진
 //채팅창 박스
+//채팅 위 activeuser <- 이걸 통해 사용자 끼리 연결
 
-class HomePageWidget extends StatefulWidget {
-  const HomePageWidget({Key? key}) : super(key: key);
+class ChatPageWidget extends StatefulWidget {
+  const ChatPageWidget({Key? key}) : super(key: key);
 
   @override
   _HomePageWidgetState createState() => _HomePageWidgetState();
 }
 
-class _HomePageWidgetState extends State<HomePageWidget>
+class _HomePageWidgetState extends State<ChatPageWidget>
     with TickerProviderStateMixin {
   late HomePageModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
-  final animationsMap = {
+  final animationsMap = { // 애니메이션 정보를 담고 있는 맵을 정의
+    // 첫 번째 애니메이션: 페이지 로드 시 트리거되는 회전 효과
     'containerOnPageLoadAnimation1': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
+      trigger: AnimationTrigger.onPageLoad, // 페이지 로드 시 트리거
       effects: [
-        RotateEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: 0.0,
-          end: 1.0,
+        RotateEffect( // 회전 효과를 정의
+          curve: Curves.easeInOut, // 애니메이션 커브
+          delay: 0.ms, // 지연 시간
+          duration: 600.ms,  // 지속 시간
+          begin: 0.0, // 시작 값
+          end: 1.0, // 종료 값
         ),
       ],
     ),
+
+    // 두 번째 애니메이션: 페이지 로드 시 트리거되는 페이드 인 효과
     'containerOnPageLoadAnimation2': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
+      trigger: AnimationTrigger.onPageLoad,  // 페이지 로드 시 트리거
       effects: [
-        FadeEffect(
-          curve: Curves.easeIn,
-          delay: 0.ms,
-          duration: 1000.ms,
-          begin: 0.0,
-          end: 1.0,
+        FadeEffect(  // 페이드 인 효과를 정의
+          curve: Curves.easeIn,  // 애니메이션 커브
+          delay: 0.ms,  // 지연 시간
+          duration: 1000.ms,  // 지속 시간
+          begin: 0.0,  // 시작 값
+          end: 1.0,  // 종료 값
         ),
       ],
     ),
@@ -155,7 +159,8 @@ class _HomePageWidgetState extends State<HomePageWidget>
                   ],*/
                 ),
               ),*/
-              Padding(
+              //채팅 위 activeuser <- 이걸 통해 사용자 끼리 연결
+              /*Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(20.0, 16.0, 20.0, 0.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
@@ -295,7 +300,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                     ),
                   ],
                 ),
-              ),
+              ),*/
               Expanded(
                 child: Padding(
                   padding:
