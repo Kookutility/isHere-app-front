@@ -3,12 +3,13 @@ import 'package:flutter/material.dart';
 class MainLayout extends StatelessWidget {
   final List<Widget> children;
   final FloatingActionButton? floatingActionButton;
-
+  final PreferredSizeWidget? appBar;
   const MainLayout({
-    super.key,
+    Key? key,
     required this.children,
     this.floatingActionButton,
-  });
+    this.appBar,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,18 +18,13 @@ class MainLayout extends StatelessWidget {
       child: Scaffold(
         floatingActionButton: floatingActionButton,
         backgroundColor: Colors.white,
+        appBar: appBar,
         body: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 20,
-            ),
-            child: SizedBox(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: children,
-              ),
+          child: SingleChildScrollView(
+            physics: ClampingScrollPhysics(), // 파란색 바운스 효과 제거
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: children,
             ),
           ),
         ),

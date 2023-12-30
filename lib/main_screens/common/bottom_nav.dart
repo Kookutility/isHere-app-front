@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:petdemo/main_screens/chat_screen.dart';
 import 'package:petdemo/main_screens/common/bottom_nav_design.dart';
 import 'package:petdemo/main_screens/my_screen.dart';
-import 'package:petdemo/main_screens/search_screen.dart';
+import 'package:petdemo/main_screens/board/board_screen.dart';
 
 class BottomBar extends StatefulWidget {
   const BottomBar({super.key});

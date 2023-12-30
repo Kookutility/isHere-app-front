@@ -31,7 +31,7 @@ class SearchScreen extends StatelessWidget {
                 children: [
                   SizedBox(height: 40),
                   Text(
-                    '무엇을 도와드릴까요?',
+                    '    무엇을 도와드릴까요?',
                     style: TextStyle(
                       fontFamily: 'Pretendard-ExtraBold',
                       fontWeight: FontWeight.w800,

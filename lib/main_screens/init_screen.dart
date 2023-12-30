@@ -3,10 +3,10 @@ import 'package:petdemo/common/app_bar.dart';
 import 'package:petdemo/main_screens/chat_screen.dart';
 import 'package:petdemo/main_screens/common/bottom_nav_design.dart';
 import 'package:petdemo/main_screens/my_screen.dart';
-import 'package:petdemo/main_screens/search_screen.dart';
+import 'package:petdemo/main_screens/board/board_screen.dart';
 
 
-//초기실행화면, 탐색(search)화면의 상단바와 하단바 유지 main은 searchscreen
+//초기실행화면, 탐색(search)화면의 상단바와 하단바 유지 main은 boardscreen
 
 class InitScreen extends StatelessWidget {
   const InitScreen({Key? key}) : super(key: key);
@@ -48,6 +48,8 @@ class BottomBar extends StatefulWidget {
           onSearchPressed: () {
             // 검색 아이콘이 눌렸을 때의 동작
           },
+          currentLocation: "현재 위치",// 현재 위치를 표시할 텍스트
+          showButton: selectedIndex == 0,// init_screen에서만 현재위치버튼이 활성화
         ),
         bottomNavigationBar: BottomNavDesign(
           onTabChange: (index) => navigateBottomBar(index),
