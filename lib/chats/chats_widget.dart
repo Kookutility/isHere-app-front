@@ -296,19 +296,14 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                               //이미지 메시지가 있는 경우 (타 사용자 작성)
                                               if ((listViewChatMessagesRecord.user != currentUserReference) &&
                                                   (listViewChatMessagesRecord.image != null && listViewChatMessagesRecord.image != ''))
-
                                                 Padding(
                                                   padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 24.0, 0.0, 0.0),
                                                   child: Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment.start,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
+                                                    mainAxisSize: MainAxisSize.max,
+                                                    mainAxisAlignment: MainAxisAlignment.start,
+                                                    crossAxisAlignment: CrossAxisAlignment.start,
                                                     children: [
                                                       // 1. 사용자 프로필 이미지
                                                       Container(
@@ -321,8 +316,14 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                           shape:
                                                               BoxShape.circle,
                                                         ),
-                                                        child: Image.network(
+                                                        // 상대방 프로필 사진 (이미지를 보낼때)
+                                                        child: widget.userProfile != null && widget.userProfile!.isNotEmpty
+                                                            ? Image.network(
                                                           widget.userProfile!,
+                                                          fit: BoxFit.cover,
+                                                        )
+                                                            : Image.asset(
+                                                          'assets/images/profile.png',
                                                           fit: BoxFit.cover,
                                                         ),
                                                       ),
@@ -432,8 +433,14 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                         decoration: BoxDecoration(
                                                           shape: BoxShape.circle,
                                                         ),
-                                                        child: Image.network(
+                                                        // 상대방 프로필 사진 (텍스트만 보낼때)
+                                                        child: widget.userProfile != null && widget.userProfile!.isNotEmpty
+                                                            ? Image.network(
                                                           widget.userProfile!,
+                                                          fit: BoxFit.cover,
+                                                        )
+                                                            : Image.asset(
+                                                          'assets/images/profile.png',
                                                           fit: BoxFit.cover,
                                                         ),
                                                       ),

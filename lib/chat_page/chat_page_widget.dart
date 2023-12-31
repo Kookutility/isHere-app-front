@@ -25,17 +25,19 @@ export 'chat_page_model.dart';
 //프로필 사진
 //채팅창 박스
 //채팅 위 activeuser <- 이걸 통해 사용자 끼리 연결
+// 각 사용자를 누를 때 채팅을 시작하는 기능
+// 스크롤 가능한 채팅 목록 생성
 
 class ChatPageWidget extends StatefulWidget {
   const ChatPageWidget({Key? key}) : super(key: key);
 
   @override
-  _HomePageWidgetState createState() => _HomePageWidgetState();
+  _ChatPageWidgetState createState() => _ChatPageWidgetState();
 }
 
-class _HomePageWidgetState extends State<ChatPageWidget>
+class _ChatPageWidgetState extends State<ChatPageWidget>
     with TickerProviderStateMixin {
-  late HomePageModel _model;
+  late ChatPageModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -72,7 +74,7 @@ class _HomePageWidgetState extends State<ChatPageWidget>
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => HomePageModel());
+    _model = createModel(context, () => ChatPageModel());
 
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
@@ -159,8 +161,9 @@ class _HomePageWidgetState extends State<ChatPageWidget>
                   ],*/
                 ),
               ),*/
+
               //채팅 위 activeuser <- 이걸 통해 사용자 끼리 연결
-              /*Padding(
+              Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(20.0, 16.0, 20.0, 0.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
@@ -221,11 +224,7 @@ class _HomePageWidgetState extends State<ChatPageWidget>
                                         ),
                                       );
                                     }
-                                    List<UsersRecord> rowUsersRecordList =
-                                        snapshot.data!
-                                            .where(
-                                                (u) => u.uid != currentUserUid)
-                                            .toList();
+                                    List<UsersRecord> rowUsersRecordList = snapshot.data!.where((u) => u.uid != currentUserUid).toList();
                                     return SingleChildScrollView(
                                       scrollDirection: Axis.horizontal,
                                       child: Row(
@@ -233,8 +232,7 @@ class _HomePageWidgetState extends State<ChatPageWidget>
                                         children: List.generate(
                                             rowUsersRecordList.length,
                                             (rowIndex) {
-                                          final rowUsersRecord =
-                                              rowUsersRecordList[rowIndex];
+                                          final rowUsersRecord = rowUsersRecordList[rowIndex];
                                           return Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
@@ -245,7 +243,7 @@ class _HomePageWidgetState extends State<ChatPageWidget>
                                               hoverColor: Colors.transparent,
                                               highlightColor:
                                                   Colors.transparent,
-                                              onTap: () async {
+                                              onTap: () async { // 각 사용자를 누를 때 채팅을 시작하는 기능
                                                 await ChatsRecord.collection
                                                     .doc()
                                                     .set(createChatsRecordData(
@@ -258,8 +256,7 @@ class _HomePageWidgetState extends State<ChatPageWidget>
                                                       lastMessage: 'NA',
                                                       lastMessageTime:
                                                           getCurrentTimestamp,
-                                                      image: rowUsersRecord
-                                                          .photoUrl,
+                                                      image: rowUsersRecord.photoUrl,
                                                       messageSeen: false,
                                                     ));
                                               },
@@ -267,24 +264,28 @@ class _HomePageWidgetState extends State<ChatPageWidget>
                                                 width: 60.0,
                                                 height: 60.0,
                                                 decoration: BoxDecoration(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryBackground,
-                                                  image: DecorationImage(
-                                                    fit: BoxFit.cover,
-                                                    image: Image.network(
-                                                      valueOrDefault<String>(
-                                                        rowUsersRecord.photoUrl,
-                                                        'https://firebasestorage.googleapis.com/v0/b/ishere-7726d.appspot.com/o/users%2F21jbKACt2kSDI2xxMbQzVL22OdZ2%2Fuploads%2F1700576338092000.jpg?alt=media&token=5590bdd0-21ce-4255-919d-dd3eda99f7ef',
-                                                      ),
-                                                    ).image,
-                                                  ),
+                                                  color: FlutterFlowTheme.of(context).secondaryBackground,
                                                   shape: BoxShape.circle,
                                                   border: Border.all(
                                                     color: Color(0xFF2F80ED),
                                                   ),
                                                 ),
-                                              ),
+                                                child: ClipOval(
+                                                  child: rowUsersRecord.photoUrl != null && rowUsersRecord.photoUrl.isNotEmpty
+                                                      ? Image.network(
+                                                    rowUsersRecord.photoUrl,
+                                                    width: 60.0,
+                                                    height: 60.0,
+                                                    fit: BoxFit.cover,
+                                                  )
+                                                      : Image.asset(
+                                                    'assets/images/profile.png',
+                                                    width: 60.0,
+                                                    height: 60.0,
+                                                    fit: BoxFit.cover,
+                                                  ),
+                                                ),
+                                              )
                                             ),
                                           );
                                         }),
@@ -300,8 +301,10 @@ class _HomePageWidgetState extends State<ChatPageWidget>
                     ),
                   ],
                 ),
-              ),*/
-              Expanded(
+              ),
+
+
+              Expanded( // 채팅 목록을 표시하는 화면의 일부를 구성
                 child: Padding(
                   padding:
                       EdgeInsetsDirectional.fromSTEB(20.0, 12.0, 20.0, 24.0),
@@ -329,18 +332,20 @@ class _HomePageWidgetState extends State<ChatPageWidget>
                                 ),
                               );
                             }
-                            List<ChatsRecord> listViewChatsRecordList =
-                                snapshot.data!;
-                            return ListView.builder(
+                            List<ChatsRecord> listViewChatsRecordList = snapshot.data!;
+
+                            return ListView.builder( // 스크롤 가능한 채팅 목록 생성
                               padding: EdgeInsets.zero,
                               primary: false,
                               shrinkWrap: true,
                               scrollDirection: Axis.vertical,
                               itemCount: listViewChatsRecordList.length,
+                              // 'itemCount는 채팅 목록의 항목 수, listViewChatsRecordList.length로 설정
                               itemBuilder: (context, listViewIndex) {
+                                // 각 채팅 항목에 대한 빌더
                                 final listViewChatsRecord =
                                     listViewChatsRecordList[listViewIndex];
-                                return Visibility(
+                                return Visibility( // 현재 사용자가 채팅의 참여자인 경우에만 채팅을 표시
                                   visible: (currentUserReference ==
                                           listViewChatsRecord.userA) ||
                                       (currentUserReference ==
@@ -348,6 +353,7 @@ class _HomePageWidgetState extends State<ChatPageWidget>
                                   child: Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 12.0, 0.0, 0.0),
+                                    // StreamBuilder를 사용하여 채팅 상대방의 사용자 데이터를 비동기적으로 가져옴
                                     child: StreamBuilder<UsersRecord>(
                                       stream: UsersRecord.getDocument(
                                           listViewChatsRecord.userB!),
@@ -369,21 +375,19 @@ class _HomePageWidgetState extends State<ChatPageWidget>
                                             ),
                                           );
                                         }
-                                        final containerUsersRecord =
-                                            snapshot.data!;
+                                        final containerUsersRecord = snapshot.data!;
                                         return InkWell(
                                           splashColor: Colors.transparent,
                                           focusColor: Colors.transparent,
                                           hoverColor: Colors.transparent,
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
+                                            // onTap 이벤트에서는 'Chats' 페이지로 이동하고,
+                                            // 채팅이 읽혔음을 표시하기 위해 messageSeen을 업데이트합니다.
                                             context.pushNamed(
                                               'Chats',
                                               queryParameters: {
-                                                'email': serializeParam(
-                                                  containerUsersRecord.email,
-                                                  ParamType.String,
-                                                ),
+                                                //'email': containerUsersRecord.email 값을 문자열로 직렬화하여 전달
                                                 'chatUser': serializeParam(
                                                   listViewChatsRecord.reference,
                                                   ParamType.DocumentReference,
@@ -397,8 +401,7 @@ class _HomePageWidgetState extends State<ChatPageWidget>
                                                   ParamType.String,
                                                 ),
                                                 'userName': serializeParam(
-                                                  containerUsersRecord
-                                                      .displayName,
+                                                  containerUsersRecord.displayName,
                                                   ParamType.String,
                                                 ),
                                               }.withoutNulls,
@@ -441,9 +444,7 @@ class _HomePageWidgetState extends State<ChatPageWidget>
                                                         mainAxisSize:
                                                             MainAxisSize.max,
                                                         children: [
-                                                          if (currentUserReference !=
-                                                              listViewChatsRecord
-                                                                  .user)
+                                                          if (currentUserReference != listViewChatsRecord.user) //현재 사용자와 대화 상대가 다른 경우
                                                             StreamBuilder<
                                                                 UsersRecord>(
                                                               stream: UsersRecord
@@ -458,24 +459,17 @@ class _HomePageWidgetState extends State<ChatPageWidget>
                                                                   return Center(
                                                                     child:
                                                                         SizedBox(
-                                                                      width:
-                                                                          50.0,
-                                                                      height:
-                                                                          50.0,
-                                                                      child:
-                                                                          CircularProgressIndicator(
-                                                                        valueColor:
-                                                                            AlwaysStoppedAnimation<Color>(
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .primary,
+                                                                      width: 50.0,
+                                                                      height: 50.0,
+                                                                      child: CircularProgressIndicator(
+                                                                        valueColor: AlwaysStoppedAnimation<Color>(
+                                                                          FlutterFlowTheme.of(context).primary,
                                                                         ),
                                                                       ),
                                                                     ),
                                                                   );
                                                                 }
-                                                                final circleImageUsersRecord =
-                                                                    snapshot
-                                                                        .data!;
+                                                                final circleImageUsersRecord = snapshot.data!;
                                                                 return Container(
                                                                   width: 48.0,
                                                                   height: 48.0,
@@ -483,22 +477,25 @@ class _HomePageWidgetState extends State<ChatPageWidget>
                                                                       Clip.antiAlias,
                                                                   decoration:
                                                                       BoxDecoration(
-                                                                    shape: BoxShape
-                                                                        .circle,
+                                                                    shape: BoxShape.circle,
                                                                   ),
-                                                                  child: Image
-                                                                      .network(
-                                                                    circleImageUsersRecord
-                                                                        .photoUrl, //프로필 사진
-                                                                    fit: BoxFit
-                                                                        .cover,
+                                                                  child: circleImageUsersRecord.photoUrl != null && circleImageUsersRecord.photoUrl.isNotEmpty
+                                                                      ? Image.network(
+                                                                    circleImageUsersRecord.photoUrl,
+                                                                    width: 100.0,
+                                                                    height: 100.0,
+                                                                    fit: BoxFit.cover,
+                                                                  )
+                                                                      : Image.asset(
+                                                                    'assets/images/profile.png',
+                                                                    width: 100.0,
+                                                                    height: 100.0,
+                                                                    fit: BoxFit.cover,
                                                                   ),
                                                                 );
                                                               },
                                                             ),
-                                                          if (currentUserReference ==
-                                                              listViewChatsRecord
-                                                                  .user)
+                                                          if (currentUserReference == listViewChatsRecord.user) //현재 사용자와 대화 상대가 같은 경우
                                                             Container(
                                                               width: 48.0,
                                                               height: 48.0,
@@ -509,53 +506,44 @@ class _HomePageWidgetState extends State<ChatPageWidget>
                                                                 shape: BoxShape
                                                                     .circle,
                                                               ),
-                                                              child:
-                                                                  Image.network(
-                                                                containerUsersRecord
-                                                                    .photoUrl, //프로필 사진
-                                                                fit: BoxFit
-                                                                    .cover,
+                                                              child: containerUsersRecord.photoUrl != null && containerUsersRecord.photoUrl.isNotEmpty
+                                                                  ? Image.network(
+                                                                containerUsersRecord.photoUrl,
+                                                                width: 100.0,
+                                                                height: 100.0,
+                                                                fit: BoxFit.cover,
+                                                              )
+                                                                  : Image.asset(
+                                                                'assets/images/profile.png',
+                                                                width: 100.0,
+                                                                height: 100.0,
+                                                                fit: BoxFit.cover,
                                                               ),
                                                             ),
                                                           Padding(
                                                             padding:
                                                                 EdgeInsetsDirectional //username 과 마지막 채팅 위치 조정
-                                                                    .fromSTEB(
-                                                                        12.0,
-                                                                        0.0,
-                                                                        0.0,
-                                                                        0.0),
+                                                                    .fromSTEB(12.0, 0.0, 0.0, 0.0),
                                                             child: Column(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .start,
+                                                              mainAxisSize: MainAxisSize.max,
+                                                              crossAxisAlignment: CrossAxisAlignment.start,
                                                               children: [
-                                                                if (currentUserReference !=
-                                                                    listViewChatsRecord
-                                                                        .user)
+                                                                if (currentUserReference != listViewChatsRecord.user)
                                                                   StreamBuilder<
                                                                       UsersRecord>(
                                                                     stream: UsersRecord.getDocument(
-                                                                        listViewChatsRecord
-                                                                            .userA!),
+                                                                        listViewChatsRecord.userA!),
                                                                     builder:
-                                                                        (context,
-                                                                            snapshot) {
+                                                                        (context, snapshot) {
                                                                       // Customize what your widget looks like when it's loading.
                                                                       if (!snapshot
                                                                           .hasData) {
                                                                         return Center(
                                                                           child:
                                                                               SizedBox(
-                                                                            width:
-                                                                                50.0,
-                                                                            height:
-                                                                                50.0,
-                                                                            child:
-                                                                                CircularProgressIndicator(
+                                                                            width: 50.0,
+                                                                            height: 50.0,
+                                                                            child: CircularProgressIndicator(
                                                                               valueColor: AlwaysStoppedAnimation<Color>(
                                                                                 FlutterFlowTheme.of(context).primary,
                                                                               ),
@@ -563,49 +551,29 @@ class _HomePageWidgetState extends State<ChatPageWidget>
                                                                           ),
                                                                         );
                                                                       }
-                                                                      final textUsersRecord =
-                                                                          snapshot
-                                                                              .data!;
+                                                                      final textUsersRecord = snapshot.data!;
                                                                       return Text(
-                                                                        textUsersRecord
-                                                                            .displayName,
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium,
+                                                                        textUsersRecord.displayName,
+                                                                        style: FlutterFlowTheme.of(context).bodyMedium,
                                                                       );
                                                                     },
                                                                   ),
-                                                                if (currentUserReference ==
-                                                                    listViewChatsRecord
-                                                                        .user)
+                                                                if (currentUserReference == listViewChatsRecord.user)
                                                                   Text(
-                                                                    containerUsersRecord
-                                                                        .displayName,
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium,
+                                                                    containerUsersRecord.displayName,
+                                                                    style: FlutterFlowTheme.of(context).bodyMedium,
                                                                   ),
                                                                 Padding(
                                                                   padding: EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          6.0,
-                                                                          0.0,
-                                                                          0.0),
+                                                                      .fromSTEB(0.0, 6.0, 0.0, 0.0),
                                                                   child: Text( //마지막 채팅 글
-                                                                    listViewChatsRecord
-                                                                        .lastMessage,
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
+                                                                    listViewChatsRecord.lastMessage,
+                                                                    style: FlutterFlowTheme.of(context).bodyMedium
                                                                         .override(
-                                                                          fontFamily:
-                                                                              'Urbanist',
-                                                                          color:
-                                                                              Color(0xFF828282),
-                                                                          fontSize:
-                                                                              12.0,
-                                                                          fontWeight:
-                                                                              FontWeight.w500,
+                                                                          fontFamily: 'Urbanist',
+                                                                          color: Color(0xFF828282),
+                                                                          fontSize: 12.0,
+                                                                          fontWeight: FontWeight.w500,
                                                                         ),
                                                                   ),
                                                                 ),
@@ -617,69 +585,43 @@ class _HomePageWidgetState extends State<ChatPageWidget>
                                                     ],
                                                   ),
                                                   Column( //채팅창
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment.end,
+                                                    mainAxisSize: MainAxisSize.max,
+                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    crossAxisAlignment: CrossAxisAlignment.end,
                                                     children: [
                                                       Text( //마지막 채팅 시간
                                                         dateTimeFormat(
                                                             'relative',
-                                                            listViewChatsRecord
-                                                                .lastMessageTime!),
-                                                        style: FlutterFlowTheme
-                                                                .of(context)
-                                                            .bodyMedium
+                                                            listViewChatsRecord.lastMessageTime!),
+                                                        style: FlutterFlowTheme.of(context).bodyMedium
                                                             .override(
-                                                              fontFamily:
-                                                                  'Urbanist',
-                                                              color: Color(
-                                                                  0xFF828282),
+                                                              fontFamily: 'Urbanist',
+                                                              color: Color(0xFF828282),
                                                               fontSize: 12.0,
                                                             ),
                                                       ),
                                                       Padding(
                                                         padding:
                                                             EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    0.0,
-                                                                    8.0,
-                                                                    0.0,
-                                                                    0.0),
+                                                                .fromSTEB(0.0, 8.0, 0.0, 0.0),
                                                         child: Column(
-                                                          mainAxisSize:
-                                                              MainAxisSize.min,
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .center,
+                                                          mainAxisSize: MainAxisSize.min,
+                                                          mainAxisAlignment: MainAxisAlignment.center,
                                                           children: [
-                                                            if (listViewChatsRecord
-                                                                .messageSeen)
+                                                            if (listViewChatsRecord.messageSeen)
                                                               Icon(
-                                                                FFIcons
-                                                                    .kcheckAll,
-                                                                color: Color(
-                                                                    0xFF5780F7),
+                                                                FFIcons.kcheckAll,
+                                                                color: Color(0xFF5780F7),
                                                                 size: 20.0,
                                                               ),
-                                                            if (!listViewChatsRecord
-                                                                .messageSeen)
+                                                            if (!listViewChatsRecord.messageSeen)
                                                               Padding(
                                                                 padding:
                                                                     EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0.0,
-                                                                            6.0,
-                                                                            0.0,
-                                                                            0.0),
+                                                                        .fromSTEB(0.0, 6.0, 0.0, 0.0),
                                                                 child: Icon(
-                                                                  FFIcons
-                                                                      .kcheckAll,
-                                                                  color: Color(
-                                                                      0xFFBDBDBD),
+                                                                  FFIcons.kcheckAll,
+                                                                  color: Color(0xFFBDBDBD),
                                                                   size: 20.0,
                                                                 ),
                                                               ),
