@@ -5,7 +5,7 @@ import 'package:petdemo/main_screens/common/bottom_nav_design.dart';
 import 'package:petdemo/main_screens/my_screen.dart';
 import 'package:petdemo/main_screens/search_screen.dart';
 
-import '../home_page/home_page_widget.dart';
+import '../chat_page/chat_page_widget.dart';
 import '../profile/profile_widget.dart';
 
 //초기실행화면, 탐색(search)화면의 상단바와 하단바 유지 main은 searchscreen
