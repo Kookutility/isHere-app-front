@@ -355,6 +355,7 @@ class _ChatPageWidgetState extends State<ChatPageWidget>
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 12.0, 0.0, 0.0),
                                     // StreamBuilder를 사용하여 채팅 상대방의 사용자 데이터를 비동기적으로 가져옴
+                                    // StreamBuilder는 비동기 방식으로 시간에 따라 변하는 값을 지속적으로 동기화한다.
                                     child: StreamBuilder<UsersRecord>( //상대방의 UID를 확인하여 그에 맞는 사용자 정보만 가져오도록 함
                                       stream: UsersRecord.getDocument(
                                         currentUserReference == listViewChatsRecord.userA

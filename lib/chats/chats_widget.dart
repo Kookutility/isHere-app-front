@@ -1,3 +1,4 @@
+import '../chat_page/chat_page_widget.dart';
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
@@ -144,90 +145,162 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              20.0, 24.0, 20.0, 0.0),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
+
+                        Padding( // 상단바 프로필(게시글 사진 들어갈 곳)
+                          padding: EdgeInsetsDirectional.fromSTEB(4.0, 24.0, 20.0, 0.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          Padding( // 상단바 프로필(게시글 사진 들어갈 곳)
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    25.0, 0.0, 0.0, 0.0),
-                                            child: Container(
-                                              width: 60.0,
-                                              height: 60.0,
-                                              clipBehavior: Clip.antiAlias,
-                                              decoration: BoxDecoration(
-                                                borderRadius: BorderRadius.circular(20), // 사진 곡률
-                                              ),
-                                              child: Image.asset(
-                                                'assets/images/macbook2.png', // 게시글 사진 
-                                                // 이미지 용량에 따라서 로드 안될때가 있는 거 같음 현재 테스트시 150kb 이하는 가능
-                                                fit: BoxFit.cover,
-                                              ),
+                              FlutterFlowIconButton(
+                                borderColor: Colors.transparent,
+                                borderRadius: 30.0,
+                                borderWidth: 1.0,
+                                buttonSize: 48.0,
+                                icon: Icon(
+                                  Icons.more_vert_sharp,
+                                  color: Color(0xFFBDBDBD),
+                                  size: 30.0,
+                                ),
+                                onPressed: () {
+                                  showModalBottomSheet(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return Container(
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            ListTile(
+                                              leading: Icon(Icons.report),
+                                              title: Text('신고하기'),
+                                              onTap: () {
+                                                // '신고하기' 항목을 선택했을 때 수행할 동작 추가
+                                                print('신고하기');
+                                                Navigator.pop(context); // 모달 바텀 시트 닫기
+                                              },
                                             ),
-                                          ),
-                                          Padding( //채팅 상단바
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    20.0, 0.0, 0.0, 0.0),
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.max,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  '그린 플로럴',
-                                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                    fontFamily: 'Urbanist',
-                                                    color: Color(0xc9000000),
-                                                    fontSize: 14.0,
-                                                  ),
-                                                ),
-                                                Text(
-                                                  '[귀중품] 구의역쪽에서 구찌 반지갑\n분실했습니다.', // 일정 크기 넘어가면 over됨
-                                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                    fontFamily: 'Urbanist',
-                                                    color: Color(0xa5000000),
-                                                    fontSize: 14.0,
-                                                  ),
-                                                ),
-                                              ],
+                                            ListTile(
+                                              leading: Icon(Icons.block),
+                                              title: Text('차단하기'),
+                                              onTap: () {
+                                                // '차단하기' 항목을 선택했을 때 수행할 동작 추가
+                                                print('차단하기');
+                                                Navigator.pop(context); // 모달 바텀 시트 닫기
+                                              },
                                             ),
-                                          ),
-                                          Padding( // 상단바 프로필(게시글 사진 들어갈 곳)
-                                            padding:
-                                            EdgeInsetsDirectional.fromSTEB(
-                                                25.0, 0.0, 0.0, 0.0),
-                                            child: Image.asset(
-                                              'assets/icons/right_gray.png',
-                                              color: Color(0xFFBDBDBD),
-                                              width: 24.0,
-                                              height: 24.0,
+                                            ListTile(
+                                              leading: Icon(Icons.exit_to_app),
+                                              title: Text('대화방 나가기'),
+                                              onTap: () {
+                                                // '대화방 나가기' 항목을 선택했을 때 경고 다이얼로그 표시
+                                                showDialog(
+                                                  context: context,
+                                                  builder: (BuildContext context) {
+                                                    return AlertDialog(
+                                                      contentPadding: EdgeInsets.all(50.0), // 패딩을 조절하여 중앙 정렬
+                                                      content: Column(
+                                                        mainAxisSize: MainAxisSize.min,
+                                                        children: [
+                                                          Text(
+                                                            '대화 내용이 모두 삭제됩니다.\n계속 하시겠습니까?',
+                                                            textAlign: TextAlign.center,
+                                                            style: TextStyle(
+                                                              fontSize: 18.0, // 텍스트 크기 조정
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      actions: [
+                                                        TextButton(
+                                                          onPressed: () {
+                                                            // "확인"을 선택했을 때 ChatPageWidget으로 이동하는 코드 추가
+                                                            print('확인 선택');
+                                                            Navigator.popUntil(context, (route) => route.isFirst); // 세 번 뒤로 가기
+                                                          },
+                                                          child: Text(
+                                                            '확인',
+                                                            style: TextStyle(
+                                                              fontSize: 18.0, // 버튼 텍스트 크기 조정
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        TextButton(
+                                                          onPressed: () {
+                                                            // "아니오"를 선택했을 때 수행할 동작 추가
+                                                            print('취소 선택');
+                                                            Navigator.pop(context); // 경고 다이얼로그 닫기
+                                                            Navigator.pop(context); // showModalBottomSheet 닫기
+                                                          },
+                                                          child: Text(
+                                                            '취소',
+                                                            style: TextStyle(
+                                                              fontSize: 18.0, // 버튼 텍스트 크기 조정
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    );
+                                                  },
+                                                );
+                                              },
                                             ),
-                                          ),
-                                        ],
+                                          ],
+                                        ),
+                                      );
+                                    },
+                                  );
+                                },
+                              ),
+
+                              SizedBox(width: 5.0), // 간격 조정
+                              Container(
+                                width: 60.0,
+                                height: 60.0,
+                                clipBehavior: Clip.antiAlias,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                // 게시글 사진
+                                // 이미지 용량에 따라서 로드 안될때가 있는 거 같음 현재 테스트시 150kb 이하는 가능
+                                child: Image.asset(
+                                  'assets/images/macbook2.png',
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                              SizedBox(width: 20.0),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      '그린 플로럴',
+                                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                        fontFamily: 'Urbanist',
+                                        color: Color(0xc9000000),
+                                        fontSize: 14.0,
                                       ),
-                                    ],
-                                  ),
-                                ],
+                                    ),
+                                    Text(
+                                      '[귀중품] 구의역쪽에서 구찌 반지갑\n분실했습니다.',
+                                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                        fontFamily: 'Urbanist',
+                                        color: Color(0xa5000000),
+                                        fontSize: 14.0,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(width: 25.0),
+                              Image.asset(
+                                'assets/icons/right_gray.png',
+                                color: Color(0xFFBDBDBD),
+                                width: 24.0,
+                                height: 24.0,
                               ),
                             ],
                           ),
                         ),
+
 
                         Divider( //채팅 메시지 목록과 다른 UI 요소 간의 구분을 위한 수평 구분선을 생성
                           height: 48.0,
