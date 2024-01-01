@@ -224,6 +224,8 @@ class _ChatPageWidgetState extends State<ChatPageWidget>
                                         ),
                                       );
                                     }
+
+                                    // 사용자 목록 중에서 현재 사용자의 UID가 아닌 사용자들로 구성된 새로운 목록을 생성
                                     List<UsersRecord> rowUsersRecordList = snapshot.data!.where((u) => u.uid != currentUserUid).toList();
                                     return SingleChildScrollView(
                                       scrollDirection: Axis.horizontal,
@@ -251,8 +253,7 @@ class _ChatPageWidgetState extends State<ChatPageWidget>
                                                           currentUserReference,
                                                       userA:
                                                           currentUserReference,
-                                                      userB: rowUsersRecord
-                                                          .reference,
+                                                      userB: rowUsersRecord.reference,
                                                       lastMessage: 'NA',
                                                       lastMessageTime:
                                                           getCurrentTimestamp,
@@ -354,9 +355,12 @@ class _ChatPageWidgetState extends State<ChatPageWidget>
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 12.0, 0.0, 0.0),
                                     // StreamBuilder를 사용하여 채팅 상대방의 사용자 데이터를 비동기적으로 가져옴
-                                    child: StreamBuilder<UsersRecord>(
+                                    child: StreamBuilder<UsersRecord>( //상대방의 UID를 확인하여 그에 맞는 사용자 정보만 가져오도록 함
                                       stream: UsersRecord.getDocument(
-                                          listViewChatsRecord.userB!),
+                                        currentUserReference == listViewChatsRecord.userA
+                                            ? listViewChatsRecord.userB!
+                                            : listViewChatsRecord.userA!,
+                                      ),
                                       builder: (context, snapshot) {
                                         // Customize what your widget looks like when it's loading.
                                         if (!snapshot.hasData) {
@@ -376,6 +380,7 @@ class _ChatPageWidgetState extends State<ChatPageWidget>
                                           );
                                         }
                                         final containerUsersRecord = snapshot.data!;
+
                                         return InkWell(
                                           splashColor: Colors.transparent,
                                           focusColor: Colors.transparent,
@@ -396,7 +401,8 @@ class _ChatPageWidgetState extends State<ChatPageWidget>
                                                   currentUserReference,
                                                   ParamType.DocumentReference,
                                                 ),
-                                                'userProfile': serializeParam(
+                                                'userProfile': serializeParam( // 상대방 프로필 사진
+                                                  // 358줄 참고
                                                   containerUsersRecord.photoUrl,
                                                   ParamType.String,
                                                 ),
@@ -482,14 +488,10 @@ class _ChatPageWidgetState extends State<ChatPageWidget>
                                                                   child: circleImageUsersRecord.photoUrl != null && circleImageUsersRecord.photoUrl.isNotEmpty
                                                                       ? Image.network(
                                                                     circleImageUsersRecord.photoUrl,
-                                                                    width: 100.0,
-                                                                    height: 100.0,
                                                                     fit: BoxFit.cover,
                                                                   )
                                                                       : Image.asset(
                                                                     'assets/images/profile.png',
-                                                                    width: 100.0,
-                                                                    height: 100.0,
                                                                     fit: BoxFit.cover,
                                                                   ),
                                                                 );
@@ -509,14 +511,10 @@ class _ChatPageWidgetState extends State<ChatPageWidget>
                                                               child: containerUsersRecord.photoUrl != null && containerUsersRecord.photoUrl.isNotEmpty
                                                                   ? Image.network(
                                                                 containerUsersRecord.photoUrl,
-                                                                width: 100.0,
-                                                                height: 100.0,
                                                                 fit: BoxFit.cover,
                                                               )
                                                                   : Image.asset(
                                                                 'assets/images/profile.png',
-                                                                width: 100.0,
-                                                                height: 100.0,
                                                                 fit: BoxFit.cover,
                                                               ),
                                                             ),
