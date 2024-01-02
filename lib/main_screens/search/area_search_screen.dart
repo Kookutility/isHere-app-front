@@ -12,14 +12,12 @@ class AreaSearchScreen extends StatefulWidget {
 class _AreaSearchScreenState extends State<AreaSearchScreen> {
   TextEditingController _searchController = TextEditingController();
   List<String> _searchResults = [];
-  bool searchExecuted = false;//검색이 실행되지 않았을 때 출력되는 text
+  bool searchExecuted = false;//검색이 실행되지 않았을 때 출력되는 text를 위한 bool
   Future<void> _searchArea(String query) async {
       try {
         String encodedQuery = Uri.encodeComponent(query);//한글데이터를 우선 인코딩
         final response = await http.get(Uri.parse('http://192.168.200.155:8080/area/$encodedQuery'));
-        setState(() {
-                searchExecuted = true;
-              });
+
         if (response.statusCode == 200) {
           final body = response.bodyBytes;// 한글 데이터가 깨지지 않게 utf8로 디코딩
           final decodedBody = utf8.decode(body); // 한글 데이터가 깨지지 않게 utf8로 디코딩
@@ -34,13 +32,13 @@ class _AreaSearchScreenState extends State<AreaSearchScreen> {
           }
           print('Received data: $results');//데이터 테스트
           setState(() {
-            _searchResults = results;
-          });
+                  _searchResults = results;
+                  searchExecuted = true; // 검색이 진행되면 true
+                });
         } else {
           print('Failed to load data. Status code: ${response.statusCode}');
-          setState(() {
-                    searchExecuted = false;
-                  });//제대로된 검색값을 요구하는 text출력
+          setState(() { searchExecuted = false; });
+        //제대로된 검색값을 요구하는 text출력
         }
       } catch (e) {
         print('Error: $e');
@@ -83,9 +81,9 @@ class _AreaSearchScreenState extends State<AreaSearchScreen> {
               children: [
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: searchExecuted
-                      ? [Text("검색결과가 없습니다. \n서울 OO구, 전남 OO군 형식으로 입력해주세요")]
-                      : _searchResults.map((result) => Text(result)).toList(),
+                  children: searchExecuted && _searchResults.isEmpty//검색이 진행되지 않았거나, 검색 데이터가 없을 때
+                    ? [Text("검색결과가 없습니다. \n서울 OO구, 전남 OO군 형식으로 입력해주세요")]
+                    : _searchResults.map((result) => Text(result)).toList(),
                 ),
               ],
             ),
