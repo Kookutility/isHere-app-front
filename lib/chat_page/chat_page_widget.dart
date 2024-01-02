@@ -245,23 +245,35 @@ class _ChatPageWidgetState extends State<ChatPageWidget>
                                               hoverColor: Colors.transparent,
                                               highlightColor:
                                                   Colors.transparent,
-                                              onTap: () async { // 각 사용자를 누를 때 채팅을 시작하는 기능
-                                                await ChatsRecord.collection
-                                                    .doc()
-                                                    .set(createChatsRecordData(
-                                                      user:
-                                                          currentUserReference,
-                                                      userA:
-                                                          currentUserReference,
+                                                // 각 사용자를 누를 때 채팅을 시작하는 기능
+                                                onTap: () async {
+                                                  final existingChat = await ChatsRecord.collection
+                                                      .where('user_a', isEqualTo: currentUserReference)
+                                                      .where('user_b', isEqualTo: rowUsersRecord.reference)
+                                                      .get();
+
+                                                  if (existingChat.docs.isNotEmpty) {
+                                                    // 이미 채팅방이 존재합니다.
+                                                    print('이미 채팅방이 존재합니다.');
+                                                  } else {
+                                                    print('새로운 채팅방을 생성합니다.');
+                                                    print('Existing Chat Documents: ${existingChat.docs}');
+                                                    // 채팅방을 생성하는 로직 추가
+                                                    await ChatsRecord.collection
+                                                        .doc()
+                                                        .set(createChatsRecordData(
+                                                      user: currentUserReference,
+                                                      userA: currentUserReference,
                                                       userB: rowUsersRecord.reference,
-                                                      lastMessage: 'NA',
-                                                      lastMessageTime:
-                                                          getCurrentTimestamp,
+                                                      lastMessage: '채팅방이 생성되었습니다.',
+                                                      lastMessageTime: getCurrentTimestamp,
                                                       image: rowUsersRecord.photoUrl,
                                                       messageSeen: false,
                                                     ));
-                                              },
-                                              child: Container(
+                                                  }
+                                                },
+
+                                                child: Container(
                                                 width: 60.0,
                                                 height: 60.0,
                                                 decoration: BoxDecoration(
@@ -333,6 +345,7 @@ class _ChatPageWidgetState extends State<ChatPageWidget>
                                 ),
                               );
                             }
+
                             List<ChatsRecord> listViewChatsRecordList = snapshot.data!;
 
                             return ListView.builder( // 스크롤 가능한 채팅 목록 생성
@@ -344,13 +357,11 @@ class _ChatPageWidgetState extends State<ChatPageWidget>
                               // 'itemCount는 채팅 목록의 항목 수, listViewChatsRecordList.length로 설정
                               itemBuilder: (context, listViewIndex) {
                                 // 각 채팅 항목에 대한 빌더
-                                final listViewChatsRecord =
-                                    listViewChatsRecordList[listViewIndex];
+                                final listViewChatsRecord = listViewChatsRecordList[listViewIndex];
+
                                 return Visibility( // 현재 사용자가 채팅의 참여자인 경우에만 채팅을 표시
-                                  visible: (currentUserReference ==
-                                          listViewChatsRecord.userA) ||
-                                      (currentUserReference ==
-                                          listViewChatsRecord.userB),
+                                  visible: (currentUserReference == listViewChatsRecord.userA) ||
+                                      (currentUserReference == listViewChatsRecord.userB),
                                   child: Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 12.0, 0.0, 0.0),
@@ -456,8 +467,7 @@ class _ChatPageWidgetState extends State<ChatPageWidget>
                                                                 UsersRecord>(
                                                               stream: UsersRecord
                                                                   .getDocument(
-                                                                      listViewChatsRecord
-                                                                          .userA!),
+                                                                      listViewChatsRecord.userA!),
                                                               builder: (context,
                                                                   snapshot) {
                                                                 // Customize what your widget looks like when it's loading.
@@ -562,18 +572,27 @@ class _ChatPageWidgetState extends State<ChatPageWidget>
                                                                     containerUsersRecord.displayName,
                                                                     style: FlutterFlowTheme.of(context).bodyMedium,
                                                                   ),
+                                                                // 마지막 채팅 글
                                                                 Padding(
-                                                                  padding: EdgeInsetsDirectional
-                                                                      .fromSTEB(0.0, 6.0, 0.0, 0.0),
-                                                                  child: Text( //마지막 채팅 글
+                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 6.0, 0.0, 0.0),
+                                                                  child: listViewChatsRecord.lastMessage == ""
+                                                                      ? Text(
+                                                                    "사진을 보냈습니다.",
+                                                                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                      fontFamily: 'Urbanist',
+                                                                      color: Color(0xFF828282),
+                                                                      fontSize: 12.0,
+                                                                      fontWeight: FontWeight.w500,
+                                                                    ),
+                                                                  )
+                                                                      : Text(
                                                                     listViewChatsRecord.lastMessage,
-                                                                    style: FlutterFlowTheme.of(context).bodyMedium
-                                                                        .override(
-                                                                          fontFamily: 'Urbanist',
-                                                                          color: Color(0xFF828282),
-                                                                          fontSize: 12.0,
-                                                                          fontWeight: FontWeight.w500,
-                                                                        ),
+                                                                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                      fontFamily: 'Urbanist',
+                                                                      color: Color(0xFF828282),
+                                                                      fontSize: 12.0,
+                                                                      fontWeight: FontWeight.w500,
+                                                                    ),
                                                                   ),
                                                                 ),
                                                               ],

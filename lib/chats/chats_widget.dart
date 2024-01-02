@@ -22,7 +22,6 @@ export 'chats_model.dart';
 // 사진 리스트
 // 해당 인덱스의 이미지 사용
 // 채팅 메시지를 표시하는 부분 (채팅 박스를 감싸는 UI)
-// 상대방 채팅 박스
 // 본인 채팅 박스
 // 채팅 메시지를 표시 컨테이너
 // Plus버튼 onTab UI
@@ -37,7 +36,7 @@ class ChatsWidget extends StatefulWidget {
   const ChatsWidget({
     Key? key,
     this.userName,
-    this.chatUser,
+    this.chatUser, // 채팅방 이름
     this.userRef,
     this.userProfile,
   }) : super(key: key);
@@ -214,6 +213,12 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                           onPressed: () {
                                                             // "확인"을 선택했을 때 ChatPageWidget으로 이동하는 코드 추가
                                                             print('확인 선택');
+
+                                                            // chatUser(채팅방 이름)에 해당하는 문서를 삭제
+                                                            if (widget.chatUser != null) {
+                                                               widget.chatUser!.delete();
+                                                            }
+
                                                             Navigator.popUntil(context, (route) => route.isFirst); // 세 번 뒤로 가기
                                                           },
                                                           child: Text(
@@ -320,10 +325,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                     stream: queryChatMessagesRecord(
                                       queryBuilder: (chatMessagesRecord) =>
                                           chatMessagesRecord
-                                              .where(
-                                                'chat_user',
-                                                isEqualTo: widget.chatUser,
-                                              )
+                                              .where('chat_user', isEqualTo: widget.chatUser,)
                                               .orderBy('timestamp'),
                                     ),
                                     builder: (context, snapshot) {
@@ -353,9 +355,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                         primary: false,
                                         shrinkWrap: true,
                                         scrollDirection: Axis.vertical,
-                                        itemCount:
-                                            listViewChatMessagesRecordList
-                                                .length,
+                                        itemCount: listViewChatMessagesRecordList.length,
                                         itemBuilder: (context, listViewIndex) {
                                           final listViewChatMessagesRecord =
                                               listViewChatMessagesRecordList[
@@ -582,7 +582,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                                           .override(
                                                                             fontFamily: 'Urbanist',
                                                                             color: Color(0xff000000),
-                                                                            fontSize: 11.0,
+                                                                            fontSize: 10.0,
                                                                           ),
                                                                     ),
                                                                   ],
@@ -668,7 +668,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                                               .override(
                                                                                 fontFamily: 'Urbanist',
                                                                                 color: Color(0xffffffff),
-                                                                                fontSize: 11.0,
+                                                                                fontSize: 10.0,
                                                                               ),
                                                                         ),
                                                                       ],
