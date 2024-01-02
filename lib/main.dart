@@ -47,7 +47,7 @@ class IsHere extends StatelessWidget {
         searchFoundScreen: (context) => const SearchFoundScreen(),
         mapScreen: (context) => const MapScreen(),
         writeScreen: (context) => const WriteScreen(),
-        areaSearchScreen: (context) => const AreaSeacrhScreen(),
+        areaSearchScreen: (context) => const AreaSearchScreen(),
         //signUp
         signUpStepsScreen: (context) => SignUpStepsScreen(),
         phoneSignScreen: (context) => PhoneSignScreen(),
