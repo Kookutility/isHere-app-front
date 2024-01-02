@@ -27,7 +27,7 @@ export 'chats_model.dart';
 // Plus버튼 onTab UI
 // 텍스트 상자
 // plus 플러스 버튼 온탭 <- 예전 Plus 현재 주석
-// 메세지 전송 (파이어 베이스) + // 해당 채팅방의 마지막 메시지 업데이트
+// 메세지 전송 (파이어 베이스) + // 해당 채팅방의 마지막 메시지 업데이트 (1,2 두개 있음 1은 +버튼 2는 send버튼)
 
 // 채팅 상단바
 // 하단부
@@ -1072,13 +1072,11 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                                   image: _model.uploadedFileUrl,
                                                                 ),
                                                               );
-                                                              // 마지막 메시지 업데이트
-                                                              await chatsChatsRecord!.reference.update(
-                                                                createChatsRecordData(
-                                                                  lastMessageTime: getCurrentTimestamp,
-                                                                  lastMessage: _model.textController.text,
-                                                                ),
-                                                              );
+                                                              // 마지막 메시지 업데이트 1
+                                                              await (widget.chatUser?.update(createChatsRecordData(
+                                                                lastMessageTime: getCurrentTimestamp,
+                                                                lastMessage: _model.textController.text,
+                                                              )) ?? Future.value());
                                                               setState(() {
                                                                 _model.textController?.clear();
                                                               });
@@ -1188,7 +1186,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                     timestamp: getCurrentTimestamp,
                                   ));
 
-                                  // 해당 채팅방의 마지막 메시지 업데이트
+                                  // 해당 채팅방의 마지막 메시지 업데이트 2
                                   await (widget.chatUser?.update(createChatsRecordData(
                                     lastMessageTime: getCurrentTimestamp,
                                     lastMessage: _model.textController.text,
