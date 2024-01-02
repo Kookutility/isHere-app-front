@@ -586,7 +586,9 @@ class _ChatPageWidgetState extends State<ChatPageWidget>
                                                                     ),
                                                                   )
                                                                       : Text(
-                                                                    listViewChatsRecord.lastMessage,
+                                                                    listViewChatsRecord.lastMessage.length > 18
+                                                                        ? '${listViewChatsRecord.lastMessage.substring(0, 15)}...'  // 18글자 이상이면 18글자까지만 출력
+                                                                        : listViewChatsRecord.lastMessage,
                                                                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                       fontFamily: 'Urbanist',
                                                                       color: Color(0xFF828282),
