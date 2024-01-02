@@ -25,7 +25,7 @@ export 'chat_page_model.dart';
 //프로필 사진
 //채팅창 박스
 //채팅 위 activeuser <- 이걸 통해 사용자 끼리 연결
-// 각 사용자를 누를 때 채팅을 시작하는 기능
+// 각 사용자를 누를 때 채팅을 시작하는 기능 (파이어베이스에 데이터 전송)
 // 스크롤 가능한 채팅 목록 생성
 
 class ChatPageWidget extends StatefulWidget {
@@ -245,7 +245,7 @@ class _ChatPageWidgetState extends State<ChatPageWidget>
                                               hoverColor: Colors.transparent,
                                               highlightColor:
                                                   Colors.transparent,
-                                                // 각 사용자를 누를 때 채팅을 시작하는 기능
+                                                // 각 사용자를 누를 때 채팅을 시작하는 기능 (파이어베이스에 데이터 전송)
                                                 onTap: () async {
                                                   final existingChat = await ChatsRecord.collection
                                                       .where('user_a', isEqualTo: currentUserReference)

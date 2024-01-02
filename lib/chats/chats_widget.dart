@@ -27,6 +27,7 @@ export 'chats_model.dart';
 // Plus버튼 onTab UI
 // 텍스트 상자
 // plus 플러스 버튼 온탭 <- 예전 Plus 현재 주석
+// 메세지 전송 (파이어 베이스) + // 해당 채팅방의 마지막 메시지 업데이트
 
 // 채팅 상단바
 // 하단부
@@ -1176,23 +1177,22 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                               focusColor: Colors.transparent,
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
+                              // 메세지 전송 (파이어 베이스)
                               onTap: () async {
-                                if (_model.textController.text != null &&
-                                    _model.textController.text != '') {
-                                  await ChatMessagesRecord.collection
-                                      .doc()
-                                      .set(createChatMessagesRecordData(
-                                        user: currentUserReference,
-                                        chatUser: widget.chatUser,
-                                        text: _model.textController.text,
-                                        timestamp: getCurrentTimestamp,
-                                      ));
+                                if (_model.textController.text != null && _model.textController.text != '') {
+                                  // 사용자 간의 채팅 메시지 생성
+                                  await ChatMessagesRecord.collection.doc().set(createChatMessagesRecordData(
+                                    user: currentUserReference,
+                                    chatUser: widget.chatUser,
+                                    text: _model.textController.text,
+                                    timestamp: getCurrentTimestamp,
+                                  ));
 
-                                  await chatsChatsRecord!.reference
-                                      .update(createChatsRecordData(
+                                  // 해당 채팅방의 마지막 메시지 업데이트
+                                  await (widget.chatUser?.update(createChatsRecordData(
                                     lastMessageTime: getCurrentTimestamp,
                                     lastMessage: _model.textController.text,
-                                  ));
+                                  )) ?? Future.value());
                                   setState(() {
                                     _model.textController?.clear();
                                   });
