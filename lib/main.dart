@@ -9,6 +9,7 @@ import 'package:petdemo/main_screens/search_found_screen.dart';
 import 'package:petdemo/main_screens/search_looking_screen.dart';
 import 'package:petdemo/main_screens/notification_screen.dart';
 import 'package:petdemo/main_screens/map_screen.dart';
+import 'package:petdemo/main_screens/widget_model/post_detail_model.dart';
 import 'package:petdemo/main_screens/write_screen.dart';
 import 'package:petdemo/const/address.dart';
 import 'package:petdemo/sign_step/pages/back_account.dart';
@@ -38,13 +39,13 @@ class IsHere extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: home,
       routes: {
-        home: (context) => SignUpScreen(),
+        home: (context) => InitScreen(),
         initScreen: (context) => const InitScreen(),
         splashScreen: (context) => const SplashScreen(),
         loginScreen: (context) => const LogInScreen(),
         notificationScreen: (context) => const NotificationScreen(),
-        searchLookingScreen: (context) => const SearchLookingScreen(),
-        searchFoundScreen: (context) => const SearchFoundScreen(),
+        searchLookingScreen: (context) => const LookingScreen(),
+        searchFoundScreen: (context) => const FoundScreen(),
         mapScreen: (context) => const MapScreen(),
         writeScreen: (context) => const WriteScreen(),
         //signUp
@@ -56,6 +57,9 @@ class IsHere extends StatelessWidget {
         bankAccScreen: (context) => BankAccountScreen(),
         signUpDoneScreen: (context) => SignUpDoneScreen(),
         tutorialScreen: (context) => TutorialScreen(),
+
+        //notice board
+        postDetailWidget: (context) => PostDetailModel(),
       },
     );
   }
