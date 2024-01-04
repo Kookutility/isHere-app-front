@@ -20,7 +20,7 @@ class MainLayout extends StatelessWidget {
         backgroundColor: Colors.white,
         appBar: appBar,
         body: SafeArea(
-          child: SingleChildScrollView(
+          child: SingleChildScrollView(//스크롤 적용
             physics: ClampingScrollPhysics(), // 파란색 바운스 효과 제거
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
