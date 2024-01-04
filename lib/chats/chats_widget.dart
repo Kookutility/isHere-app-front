@@ -80,6 +80,13 @@ class _ChatsWidgetState extends State<ChatsWidget> {
 
   @override
   Widget build(BuildContext context) {
+
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+
+    print('화면 가로 픽셀 크기: $screenWidth'); //411
+    print('화면 세로 픽셀 크기: $screenHeight'); //867
+
     if (isiOS) {
       SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(
@@ -103,8 +110,8 @@ class _ChatsWidgetState extends State<ChatsWidget> {
             backgroundColor: Colors.white, // 배경색을 흰색으로 설정
             body: Center(
               child: SizedBox(
-                width: 50.0,
-                height: 50.0,
+                width: MediaQuery.of(context).size.width * (50 / 411),
+                height: MediaQuery.of(context).size.height * (50 / 867),
                 child: CircularProgressIndicator(
                   // Circular 프로그레스 인디케이터를 사용하여 로딩 중임을 시각적으로 나타냄
                   valueColor: AlwaysStoppedAnimation<Color>(
@@ -147,7 +154,11 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                       children: [
 
                         Padding( // 상단바 프로필(게시글 사진 들어갈 곳)
-                          padding: EdgeInsetsDirectional.fromSTEB(4.0, 24.0, 20.0, 0.0),
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                MediaQuery.of(context).size.width * (4 / 411),
+                                MediaQuery.of(context).size.width * (24 / 411),
+                                MediaQuery.of(context).size.width * (20 / 411),
+                                0.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -159,7 +170,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                 icon: Icon(
                                   Icons.more_vert_sharp,
                                   color: Color(0xFFBDBDBD),
-                                  size: 30.0,
+                                  size: MediaQuery.of(context).size.width * (30 / 411),
                                 ),
                                 onPressed: () {
                                   showModalBottomSheet(
@@ -196,7 +207,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                   context: context,
                                                   builder: (BuildContext context) {
                                                     return AlertDialog(
-                                                      contentPadding: EdgeInsets.all(50.0), // 패딩을 조절하여 중앙 정렬
+                                                      contentPadding: EdgeInsets.all(MediaQuery.of(context).size.width * (50 / 411)), // 패딩을 조절하여 중앙 정렬
                                                       content: Column(
                                                         mainAxisSize: MainAxisSize.min,
                                                         children: [
@@ -259,8 +270,8 @@ class _ChatsWidgetState extends State<ChatsWidget> {
 
                               SizedBox(width: 5.0), // 간격 조정
                               Container(
-                                width: 60.0,
-                                height: 60.0,
+                                width: MediaQuery.of(context).size.width * (60 / 411),
+                                height: MediaQuery.of(context).size.height * (60 / 867),
                                 clipBehavior: Clip.antiAlias,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(20),
@@ -300,8 +311,8 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                               Image.asset(
                                 'assets/icons/right_gray.png',
                                 color: Color(0xFFBDBDBD),
-                                width: 24.0,
-                                height: 24.0,
+                                width: MediaQuery.of(context).size.width * (24 / 411),
+                                height: MediaQuery.of(context).size.height * (24 / 867),
                               ),
                             ],
                           ),
@@ -309,7 +320,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
 
 
                         Divider( //채팅 메시지 목록과 다른 UI 요소 간의 구분을 위한 수평 구분선을 생성
-                          height: 48.0,
+                          height: MediaQuery.of(context).size.height * (48 / 867),
                           thickness: 1.0,
                           color: Color(0xFFE0E0E0),
                         ),
@@ -317,7 +328,10 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                         Expanded( //채팅 메시지를 표시하는 부분을 화면 표시
                           child: Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
-                                20.0, 0.0, 20.0, 16.0),
+                                MediaQuery.of(context).size.width * (20 / 411),
+                                0.0,
+                                MediaQuery.of(context).size.width * (20 / 411),
+                                MediaQuery.of(context).size.width * (16 / 411)),
                             child: SingleChildScrollView(
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
@@ -334,8 +348,8 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                       if (!snapshot.hasData) {
                                         return Center(
                                           child: SizedBox(
-                                            width: 50.0,
-                                            height: 50.0,
+                                            width: MediaQuery.of(context).size.width * (50 / 411),
+                                            height: MediaQuery.of(context).size.height * (50 / 867),
                                             child: CircularProgressIndicator(
                                               valueColor:
                                                   AlwaysStoppedAnimation<Color>(
@@ -373,7 +387,10 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                 Padding(
                                                   padding: EdgeInsetsDirectional
                                                       .fromSTEB(
-                                                          0.0, 24.0, 0.0, 0.0),
+                                                          0.0,
+                                                      MediaQuery.of(context).size.width * (24 / 411),
+                                                      0.0,
+                                                      0.0),
                                                   child: Row(
                                                     mainAxisSize: MainAxisSize.max,
                                                     mainAxisAlignment: MainAxisAlignment.start,
@@ -381,8 +398,8 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                     children: [
                                                       // 1. 사용자 프로필 이미지
                                                       Container(
-                                                        width: 36.0,
-                                                        height: 36.0,
+                                                        width: MediaQuery.of(context).size.width * (36 / 411),
+                                                        height: MediaQuery.of(context).size.height * (36 / 867),
                                                         clipBehavior:
                                                             Clip.antiAlias,
                                                         decoration:
@@ -406,14 +423,17 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                       Padding(
                                                         padding:
                                                             EdgeInsetsDirectional
-                                                                .fromSTEB(16.0, 0.0, 0.0, 0.0),
+                                                                .fromSTEB(MediaQuery.of(context).size.width * (16 / 411),
+                                                                0.0,
+                                                                0.0,
+                                                                0.0),
                                                         child: Container(
-                                                          width: 300.0,
-                                                          height: 180.0,
+                                                          width: MediaQuery.of(context).size.width * (300 / 411),
+                                                          height: MediaQuery.of(context).size.height * (180 / 867),
                                                           constraints:
                                                               BoxConstraints(
-                                                            maxWidth: 260.0,
-                                                            maxHeight: 180.0,
+                                                            maxWidth: MediaQuery.of(context).size.width * (260 / 411),
+                                                            maxHeight: MediaQuery.of(context).size.height * (180 / 867),
                                                           ),
                                                           decoration:
                                                               BoxDecoration(
@@ -443,7 +463,10 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                   (listViewChatMessagesRecord.image != null && listViewChatMessagesRecord.image != ''))
 
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
+                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0,
+                                                      MediaQuery.of(context).size.width * (24 / 411),
+                                                      0.0,
+                                                      0.0),
                                                   child: Row(
                                                     mainAxisSize: MainAxisSize.max,
                                                     mainAxisAlignment: MainAxisAlignment.end,
@@ -451,11 +474,11 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                     children: [
                                                       // 이미지 채팅 메시지 컨테이너
                                                       Container(
-                                                        width: 300.0,
-                                                        height: 180.0,
+                                                        width: MediaQuery.of(context).size.width * (300 / 411),
+                                                        height: MediaQuery.of(context).size.height * (180 / 867),
                                                         constraints: BoxConstraints(
-                                                          maxWidth: 260.0,
-                                                          maxHeight: 180.0,
+                                                          maxWidth: MediaQuery.of(context).size.width * (260 / 411),
+                                                          maxHeight: MediaQuery.of(context).size.height * (180 / 867),
                                                         ),
                                                         decoration: BoxDecoration(
                                                           color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -495,14 +518,17 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                   (listViewChatMessagesRecord.text != null && listViewChatMessagesRecord.text != ''))
 
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
+                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0,
+                                                      MediaQuery.of(context).size.width * (24 / 411),
+                                                      0.0,
+                                                      0.0),
                                                   child: Row(
                                                     mainAxisSize: MainAxisSize.max,
                                                     crossAxisAlignment: CrossAxisAlignment.start,
                                                     children: [
                                                       Container(
-                                                        width: 36.0,
-                                                        height: 36.0,
+                                                        width: MediaQuery.of(context).size.width * (36 / 411),
+                                                        height: MediaQuery.of(context).size.height * (36 / 867),
                                                         clipBehavior: Clip.antiAlias,
                                                         decoration: BoxDecoration(
                                                           shape: BoxShape.circle,
@@ -521,11 +547,15 @@ class _ChatsWidgetState extends State<ChatsWidget> {
 
                                                       Padding( //상대방 채팅 창
                                                         padding:
-                                                            EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
+                                                            EdgeInsetsDirectional.fromSTEB(
+                                                                MediaQuery.of(context).size.width * (16 / 411),
+                                                                0.0,
+                                                                0.0,
+                                                                0.0),
                                                         child: Container(
-                                                          width: 300.0,
+                                                          width: MediaQuery.of(context).size.width * (300 / 411),
                                                           constraints: BoxConstraints(
-                                                            maxWidth: 260.0,
+                                                            maxWidth: MediaQuery.of(context).size.width * (260 / 411),
                                                           ),
                                                           decoration:
                                                               BoxDecoration(
@@ -542,7 +572,11 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                                 ),
                                                           ),
                                                           child: Padding(
-                                                            padding: EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 12.0),
+                                                            padding: EdgeInsetsDirectional.fromSTEB(
+                                                                MediaQuery.of(context).size.width * (16 / 411),
+                                                                MediaQuery.of(context).size.width * (12 / 411),
+                                                                MediaQuery.of(context).size.width * (16 / 411),
+                                                                MediaQuery.of(context).size.width * (12 / 411)),
                                                             child: Row(
                                                               mainAxisSize: MainAxisSize.max,
                                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -553,8 +587,8 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                                   mainAxisAlignment: MainAxisAlignment.center,
                                                                   children: [
                                                                     Container(
-                                                                      width: 160.0,
-                                                                      constraints: BoxConstraints(maxWidth: 260.0,
+                                                                      width: MediaQuery.of(context).size.width * (160 / 411),
+                                                                      constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width * (260 / 411),
                                                                       ),
                                                                       decoration: BoxDecoration(
                                                                         color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -600,7 +634,11 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                               //텍스트 메시지가 있는 경우 (자신이 작성)
                                               if (listViewChatMessagesRecord.user == widget.userRef)
                                                 Padding( // 본인 채팅 박스
-                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
+                                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                                      0.0,
+                                                      MediaQuery.of(context).size.width * (24 / 411),
+                                                      0.0,
+                                                      0.0),
                                                   child: Row(
                                                     mainAxisSize: MainAxisSize.max,
                                                     mainAxisAlignment: MainAxisAlignment.end,
@@ -609,9 +647,9 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                       if (listViewChatMessagesRecord.text != null &&
                                                           listViewChatMessagesRecord.text != '')
                                                         Container(
-                                                          width: 300.0,
+                                                          width: MediaQuery.of(context).size.width * (300 / 411),
                                                           constraints: BoxConstraints(
-                                                            maxWidth: 260.0,
+                                                            maxWidth: MediaQuery.of(context).size.width * (260 / 411),
                                                           ),
                                                           decoration:
                                                           // 내가 보내는 채팅
@@ -626,7 +664,11 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                           ),
                                                           child: Padding(
                                                             padding:
-                                                                EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 12.0),
+                                                                EdgeInsetsDirectional.fromSTEB(
+                                                                    MediaQuery.of(context).size.width * (16 / 411),
+                                                                    MediaQuery.of(context).size.width * (12 / 411),
+                                                                    MediaQuery.of(context).size.width * (16 / 411),
+                                                                    MediaQuery.of(context).size.width * (12 / 411)),
                                                             child: Row(
                                                               mainAxisSize: MainAxisSize.max,
                                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -637,7 +679,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                                   mainAxisAlignment: MainAxisAlignment.center,
                                                                   children: [
                                                                     Container( // 채팅 메시지를 표시 컨테이너
-                                                                      width: 160.0,
+                                                                      width: MediaQuery.of(context).size.width * (160 / 411),
                                                                       decoration: BoxDecoration(),
                                                                       child:
                                                                           Text(listViewChatMessagesRecord.text,
@@ -677,7 +719,11 @@ class _ChatsWidgetState extends State<ChatsWidget> {
 
 
                                                                     Padding( // 채팅 메시지가 읽음 여부 아이콘
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(6.0, 0.0, 0.0, 0.0),
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                                                          MediaQuery.of(context).size.width * (6 / 411),
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
                                                                       child:
                                                                           Column(
                                                                         mainAxisSize: MainAxisSize.max,
@@ -726,7 +772,11 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                   // 하단부
                   Padding( //텍스트 박스
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 24.0),
+                        EdgeInsetsDirectional.fromSTEB(
+                            MediaQuery.of(context).size.width * (20 / 411),
+                            0.0,
+                            MediaQuery.of(context).size.width * (20 / 411),
+                            MediaQuery.of(context).size.width * (24 / 411)),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
@@ -735,8 +785,8 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Container(
-                              width: 290.0, //텍스트 박스 크기
-                              height: 50.0,
+                              width: MediaQuery.of(context).size.width * (290 / 411), //텍스트 박스 크기
+                              height: MediaQuery.of(context).size.height * (50 / 867),
                               decoration: BoxDecoration(
                                 color: FlutterFlowTheme.of(context)
                                     .secondaryBackground,
@@ -749,7 +799,10 @@ class _ChatsWidgetState extends State<ChatsWidget> {
 
                               child: Padding( // 텍스트 상자
                                 padding: EdgeInsetsDirectional.fromSTEB(
-                                    12.0, 6.0, 12.0, 6.0),
+                                    MediaQuery.of(context).size.width * (12 / 411),
+                                    MediaQuery.of(context).size.width * (6 / 411),
+                                    MediaQuery.of(context).size.width * (12 / 411),
+                                    MediaQuery.of(context).size.width * (6 / 411)),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
@@ -822,7 +875,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                       ),
                                     ),
                                     SizedBox(
-                                      height: 24.0,
+                                      height: MediaQuery.of(context).size.height * (24 / 867),
                                       child: VerticalDivider(
                                         thickness: 1.0,
                                       ),
@@ -831,7 +884,10 @@ class _ChatsWidgetState extends State<ChatsWidget> {
 
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          6.0, 0.0, 0.0, 0.0),
+                                          MediaQuery.of(context).size.width * (6 / 411),
+                                          0.0,
+                                          0.0,
+                                          0.0),
                                       child: InkWell(
                                         splashColor: Colors.transparent,
                                         focusColor: Colors.transparent,
@@ -986,7 +1042,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                   ),
                                                 ),
                                                 width: double.infinity,
-                                                height: 190,
+                                                height: MediaQuery.of(context).size.height * (190 / 867),
                                                 child: Row(
                                                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                                                   children: List.generate(
@@ -998,8 +1054,8 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                           if (index == 0) {
                                                             // 미디어 선택
                                                             final selectedMedia = await selectMedia(
-                                                              maxWidth: 300.00,
-                                                              maxHeight: 300.00,
+                                                              maxWidth: MediaQuery.of(context).size.width * (300 / 411),
+                                                              maxHeight: MediaQuery.of(context).size.height * (300 / 867),
                                                               imageQuality: 50,
                                                               mediaSource: MediaSource.photoGallery,
                                                               multiImage: false,
@@ -1098,14 +1154,14 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                           }
                                                         },
                                                         child: Container(
-                                                          width: 70.0,
-                                                          height: 120.0,
+                                                          width: MediaQuery.of(context).size.width * (70 / 411),
+                                                          height: MediaQuery.of(context).size.height * (120 / 867),
                                                           child: Column(
                                                             mainAxisAlignment: MainAxisAlignment.center,
                                                             children: [
                                                               Container(
-                                                                width: 70.0,
-                                                                height: 70.0,
+                                                                width: MediaQuery.of(context).size.width * (70 / 411),
+                                                                height: MediaQuery.of(context).size.height * (70 / 867),
                                                                 decoration: BoxDecoration(
                                                                   border: Border.all(color: Color(0x0c000000)),
                                                                   borderRadius: BorderRadius.circular(50),
@@ -1126,8 +1182,8 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                                         alignment: Alignment.center,
                                                                         child: Image.asset(
                                                                           imageList[index],
-                                                                          width: 45.0,
-                                                                          height: 45.0,
+                                                                          width: MediaQuery.of(context).size.width * (45 / 411),
+                                                                          height: MediaQuery.of(context).size.height * (45 / 867),
                                                                         ),
                                                                       ),
                                                                     ),
@@ -1161,7 +1217,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
 
                                         child: Image.asset(
                                           'assets/icons/plus_white.png',
-                                          height: 16.0,
+                                          height: MediaQuery.of(context).size.height * (16 / 867),
                                           fit: BoxFit.contain,
                                         ),
                                       ),
@@ -1211,8 +1267,8 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                 }
                               },
                               child: Container(
-                                width: 60.0,
-                                height: 50.0,
+                                width: MediaQuery.of(context).size.width * (60 / 411),
+                                height: MediaQuery.of(context).size.height * (50 / 867),
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
@@ -1227,7 +1283,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                   children: [
                                     Image.asset(
                                       'assets/icons/send_gradation.png',
-                                      height: 24.0,
+                                      height: MediaQuery.of(context).size.height * (24 / 867),
                                       fit: BoxFit.contain,
                                     ),
                                   ],

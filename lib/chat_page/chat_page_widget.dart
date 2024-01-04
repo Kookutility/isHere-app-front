@@ -164,7 +164,11 @@ class _ChatPageWidgetState extends State<ChatPageWidget>
 
               //채팅 위 activeuser <- 이걸 통해 사용자 끼리 연결
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(20.0, 16.0, 20.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(
+                    MediaQuery.of(context).size.width * (20 / 411),
+                    MediaQuery.of(context).size.width * (16 / 411),
+                    MediaQuery.of(context).size.width * (20 / 411),
+                    0.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
@@ -174,7 +178,11 @@ class _ChatPageWidgetState extends State<ChatPageWidget>
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(
+                              0.0,
+                              MediaQuery.of(context).size.width * (16 / 411),
+                              0.0,
+                              0.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -182,8 +190,8 @@ class _ChatPageWidgetState extends State<ChatPageWidget>
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Container(
-                                width: 60.0,
-                                height: 60.0,
+                                width: MediaQuery.of(context).size.width * (60 / 411),
+                                height: MediaQuery.of(context).size.height * (60 / 867),
                                 decoration: BoxDecoration(
                                   color: Color(0xFFE0E0E0),
                                   shape: BoxShape.circle,
@@ -201,7 +209,10 @@ class _ChatPageWidgetState extends State<ChatPageWidget>
                           ),
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
-                                12.0, 0.0, 0.0, 0.0),
+                                MediaQuery.of(context).size.width * (12 / 411),
+                                0.0,
+                                0.0,
+                                0.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               children: [
@@ -212,8 +223,8 @@ class _ChatPageWidgetState extends State<ChatPageWidget>
                                     if (!snapshot.hasData) {
                                       return Center(
                                         child: SizedBox(
-                                          width: 50.0,
-                                          height: 50.0,
+                                          width: MediaQuery.of(context).size.width * (50 / 411),
+                                          height: MediaQuery.of(context).size.height * (50 / 867),
                                           child: CircularProgressIndicator(
                                             valueColor:
                                                 AlwaysStoppedAnimation<Color>(
@@ -238,7 +249,10 @@ class _ChatPageWidgetState extends State<ChatPageWidget>
                                           return Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
-                                                    6.0, 0.0, 0.0, 0.0),
+                                                    MediaQuery.of(context).size.width * (6 / 411),
+                                                    0.0,
+                                                    0.0,
+                                                    0.0),
                                             child: InkWell(
                                               splashColor: Colors.transparent,
                                               focusColor: Colors.transparent,
@@ -274,8 +288,8 @@ class _ChatPageWidgetState extends State<ChatPageWidget>
                                                 },
 
                                                 child: Container(
-                                                width: 60.0,
-                                                height: 60.0,
+                                                  width: MediaQuery.of(context).size.width * (60 / 411),
+                                                  height: MediaQuery.of(context).size.height * (60 / 867),
                                                 decoration: BoxDecoration(
                                                   color: FlutterFlowTheme.of(context).secondaryBackground,
                                                   shape: BoxShape.circle,
@@ -287,14 +301,14 @@ class _ChatPageWidgetState extends State<ChatPageWidget>
                                                   child: rowUsersRecord.photoUrl != null && rowUsersRecord.photoUrl.isNotEmpty
                                                       ? Image.network(
                                                     rowUsersRecord.photoUrl,
-                                                    width: 60.0,
-                                                    height: 60.0,
+                                                    width: MediaQuery.of(context).size.width * (60 / 411),
+                                                    height: MediaQuery.of(context).size.height * (60 / 867),
                                                     fit: BoxFit.cover,
                                                   )
                                                       : Image.asset(
                                                     'assets/images/profile.png',
-                                                    width: 60.0,
-                                                    height: 60.0,
+                                                    width: MediaQuery.of(context).size.width * (60 / 411),
+                                                    height: MediaQuery.of(context).size.height * (60 / 867),
                                                     fit: BoxFit.cover,
                                                   ),
                                                 ),
@@ -320,7 +334,11 @@ class _ChatPageWidgetState extends State<ChatPageWidget>
               Expanded( // 채팅 목록을 표시하는 화면의 일부를 구성
                 child: Padding(
                   padding:
-                      EdgeInsetsDirectional.fromSTEB(20.0, 12.0, 20.0, 24.0),
+                      EdgeInsetsDirectional.fromSTEB(
+                          MediaQuery.of(context).size.width * (20 / 411),
+                          MediaQuery.of(context).size.width * (12 / 411),
+                          MediaQuery.of(context).size.width * (20 / 411),
+                          MediaQuery.of(context).size.width * (24 / 411)),
                   child: SingleChildScrollView(
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
@@ -335,8 +353,8 @@ class _ChatPageWidgetState extends State<ChatPageWidget>
                             if (!snapshot.hasData) {
                               return Center(
                                 child: SizedBox(
-                                  width: 50.0,
-                                  height: 50.0,
+                                  width: MediaQuery.of(context).size.width * (50 / 411),
+                                  height: MediaQuery.of(context).size.height * (50 / 867),
                                   child: CircularProgressIndicator(
                                     valueColor: AlwaysStoppedAnimation<Color>(
                                       FlutterFlowTheme.of(context).primary,
@@ -364,7 +382,10 @@ class _ChatPageWidgetState extends State<ChatPageWidget>
                                       (currentUserReference == listViewChatsRecord.userB),
                                   child: Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 12.0, 0.0, 0.0),
+                                        0.0,
+                                        MediaQuery.of(context).size.width * (12 / 411),
+                                        0.0,
+                                        0.0),
                                     // StreamBuilder를 사용하여 채팅 상대방의 사용자 데이터를 비동기적으로 가져옴
                                     // StreamBuilder는 비동기 방식으로 시간에 따라 변하는 값을 지속적으로 동기화한다.
                                     child: StreamBuilder<UsersRecord>( //상대방의 UID를 확인하여 그에 맞는 사용자 정보만 가져오도록 함
@@ -378,8 +399,8 @@ class _ChatPageWidgetState extends State<ChatPageWidget>
                                         if (!snapshot.hasData) {
                                           return Center(
                                             child: SizedBox(
-                                              width: 50.0,
-                                              height: 50.0,
+                                              width: MediaQuery.of(context).size.width * (50 / 411),
+                                              height: MediaQuery.of(context).size.height * (50 / 867),
                                               child: CircularProgressIndicator(
                                                 valueColor:
                                                     AlwaysStoppedAnimation<
@@ -444,7 +465,10 @@ class _ChatPageWidgetState extends State<ChatPageWidget>
                                             child: Padding(
                                               padding: EdgeInsetsDirectional
                                                   .fromSTEB(
-                                                      16.0, 16.0, 16.0, 16.0),
+                                                  MediaQuery.of(context).size.width * (16 / 411),
+                                                  MediaQuery.of(context).size.width * (16 / 411),
+                                                  MediaQuery.of(context).size.width * (16 / 411),
+                                                  MediaQuery.of(context).size.width * (16 / 411)),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
                                                 mainAxisAlignment:
@@ -476,8 +500,8 @@ class _ChatPageWidgetState extends State<ChatPageWidget>
                                                                   return Center(
                                                                     child:
                                                                         SizedBox(
-                                                                      width: 50.0,
-                                                                      height: 50.0,
+                                                                          width: MediaQuery.of(context).size.width * (50 / 411),
+                                                                          height: MediaQuery.of(context).size.height * (50 / 867),
                                                                       child: CircularProgressIndicator(
                                                                         valueColor: AlwaysStoppedAnimation<Color>(
                                                                           FlutterFlowTheme.of(context).primary,
@@ -488,8 +512,8 @@ class _ChatPageWidgetState extends State<ChatPageWidget>
                                                                 }
                                                                 final circleImageUsersRecord = snapshot.data!;
                                                                 return Container(
-                                                                  width: 48.0,
-                                                                  height: 48.0,
+                                                                  width: MediaQuery.of(context).size.width * (48 / 411),
+                                                                  height: MediaQuery.of(context).size.height * (48 / 867),
                                                                   clipBehavior:
                                                                       Clip.antiAlias,
                                                                   decoration:
@@ -510,8 +534,8 @@ class _ChatPageWidgetState extends State<ChatPageWidget>
                                                             ),
                                                           if (currentUserReference == listViewChatsRecord.user) //현재 사용자와 대화 상대가 같은 경우
                                                             Container(
-                                                              width: 48.0,
-                                                              height: 48.0,
+                                                              width: MediaQuery.of(context).size.width * (48 / 411),
+                                                              height: MediaQuery.of(context).size.height * (48 / 867),
                                                               clipBehavior: Clip
                                                                   .antiAlias,
                                                               decoration:
@@ -532,7 +556,11 @@ class _ChatPageWidgetState extends State<ChatPageWidget>
                                                           Padding(
                                                             padding:
                                                                 EdgeInsetsDirectional //username 과 마지막 채팅 위치 조정
-                                                                    .fromSTEB(12.0, 0.0, 0.0, 0.0),
+                                                                    .fromSTEB(
+                                                                    MediaQuery.of(context).size.width * (12 / 411),
+                                                                    0.0,
+                                                                    0.0,
+                                                                    0.0),
                                                             child: Column(
                                                               mainAxisSize: MainAxisSize.max,
                                                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -550,8 +578,8 @@ class _ChatPageWidgetState extends State<ChatPageWidget>
                                                                         return Center(
                                                                           child:
                                                                               SizedBox(
-                                                                            width: 50.0,
-                                                                            height: 50.0,
+                                                                                width: MediaQuery.of(context).size.width * (50 / 411),
+                                                                                height: MediaQuery.of(context).size.height * (50 / 867),
                                                                             child: CircularProgressIndicator(
                                                                               valueColor: AlwaysStoppedAnimation<Color>(
                                                                                 FlutterFlowTheme.of(context).primary,
@@ -574,7 +602,11 @@ class _ChatPageWidgetState extends State<ChatPageWidget>
                                                                   ),
                                                                 // 마지막 채팅 글
                                                                 Padding(
-                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 6.0, 0.0, 0.0),
+                                                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                                                      0.0,
+                                                                      MediaQuery.of(context).size.width * (6 / 411),
+                                                                      0.0,
+                                                                      0.0),
                                                                   child: listViewChatsRecord.lastMessage == ""
                                                                       ? Text(
                                                                     "사진을 보냈습니다.",
@@ -623,7 +655,11 @@ class _ChatPageWidgetState extends State<ChatPageWidget>
                                                       Padding(
                                                         padding:
                                                             EdgeInsetsDirectional
-                                                                .fromSTEB(0.0, 8.0, 0.0, 0.0),
+                                                                .fromSTEB(
+                                                                0.0,
+                                                                MediaQuery.of(context).size.width * (8 / 411),
+                                                                0.0,
+                                                                0.0),
                                                         child: Column(
                                                           mainAxisSize: MainAxisSize.min,
                                                           mainAxisAlignment: MainAxisAlignment.center,
@@ -638,7 +674,11 @@ class _ChatPageWidgetState extends State<ChatPageWidget>
                                                               Padding(
                                                                 padding:
                                                                     EdgeInsetsDirectional
-                                                                        .fromSTEB(0.0, 6.0, 0.0, 0.0),
+                                                                        .fromSTEB(
+                                                                        0.0,
+                                                                        MediaQuery.of(context).size.width * (6 / 411),
+                                                                        0.0,
+                                                                        0.0),
                                                                 child: Icon(
                                                                   FFIcons.kcheckAll,
                                                                   color: Color(0xFFBDBDBD),
