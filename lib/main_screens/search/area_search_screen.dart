@@ -36,8 +36,8 @@ class _AreaSearchScreenState extends State<AreaSearchScreen> {
                   searchExecuted = true; // 검색이 진행되면 true
                 });
         } else {
-          print('Failed to load data. Status code: ${response.statusCode}');
           setState(() { searchExecuted = false; });
+          print('Failed to load data. Status code: ${response.statusCode}');
         //제대로된 검색값을 요구하는 text출력
         }
       } catch (e) {
@@ -60,7 +60,6 @@ class _AreaSearchScreenState extends State<AreaSearchScreen> {
               IconButton(
                 onPressed: () async {
                   await _searchArea(_searchController.text);
-                  setState(() {}); // 검색 결과가 업데이트되면 UI 다시 그리기
                 },
                 icon: Icon(Icons.search, color: Colors.black, size: 30.0),
               ),
@@ -77,13 +76,15 @@ class _AreaSearchScreenState extends State<AreaSearchScreen> {
           ),
         ),
       ),
-      body: MainLayout(
+            body: MainLayout(
               children: [
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: searchExecuted && _searchResults.isEmpty//검색이 진행되지 않았거나, 검색 데이터가 없을 때
-                    ? [Text("검색결과가 없습니다. \n서울 OO구, 전남 OO군 형식으로 입력해주세요")]
-                    : _searchResults.map((result) => Text(result)).toList(),
+                  children: searchExecuted
+                    ? (_searchResults.isEmpty
+                      ? [Text("검색결과가 없습니다. \n서울 OO구, 전남 OO군 형식으로 입력해주세요")]
+                      : _searchResults.map((result) => Text(result)).toList())
+                    : [Text("검색을 위해 지역을 입력해주세요")], // 검색을 위한 삼항연산자
                 ),
               ],
             ),

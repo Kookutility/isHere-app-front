@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:petdemo/common/app_bar.dart';
 import 'package:petdemo/const/address.dart';
 import 'package:petdemo/main_screens/chat_screen.dart';
-import 'package:petdemo/main_screens/common/bottom_nav_design.dart';
 import 'package:petdemo/main_screens/my_screen.dart';
 import 'package:petdemo/main_screens/search_screen.dart';
 
@@ -57,7 +56,6 @@ class _BottomBarState extends State<BottomBar> {
         currentLocation: "현재 위치",// 현재 위치를 표시할 텍스트
         showButton: selectedIndex == 0,// init_screen에서만 현재위치버튼이 활성화
         ),
-      ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: selectedIndex,
         onTap: (index) {
