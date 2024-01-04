@@ -10,6 +10,10 @@ const initScreen = '/init';
 const areaSearchScreen ='/areaSearch';
 const home = '/';
 
+//widget model
+
+const postDetailWidget = 'postDetail';
+
 //signUp
 const signUpScreen = '/signUp';
 const phoneSignScreen = '/phoneSignUp';
