@@ -7,6 +7,26 @@ class SearchScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final onePost = [
+      {"title": "구의역쪽에서 구찌 반지갑 분실했습니다."},
+      {"price": "7,500원"},
+      {"place": "광진구 구의동"},
+      {"postedTime": "2시간 전"},
+      {
+        "imageURL":
+            'https://img.freepik.com/free-photo/cute-puppy-sitting-in-grass-enjoying-nature-playful-beauty-generated-by-artificial-intelligence_188544-84973.jpg?w=1060&t=st=1704195937~exp=1704196537~hmac=ad3a9d0c1f275c58c7df69163f8da53383d3f97fc52d5765265abfbb970f31b7'
+      },
+    ];
+    List<List<Map<String, String>>> postDataList = [
+      onePost,
+      onePost,
+      onePost,
+      onePost,
+      onePost,
+      onePost,
+      onePost,
+      onePost,
+    ];
     return Scaffold(
       body: SizedBox(
         width: MediaQuery.of(context).size.width,
@@ -165,7 +185,7 @@ class SearchScreen extends StatelessWidget {
                           child: ListView.separated(
                             shrinkWrap: true,
                             physics: NeverScrollableScrollPhysics(),
-                            itemCount: 10,
+                            itemCount: postDataList.length,
                             itemBuilder: (buildContext, item) {
                               return GestureDetector(
                                 onTap: () {
@@ -174,7 +194,13 @@ class SearchScreen extends StatelessWidget {
                                     arguments: item,
                                   );
                                 },
-                                child: PostModel(),
+                                child: PostModel(
+                                  title: postDataList[0][0]["title"]!,
+                                  price: postDataList[0][1]["price"]!,
+                                  place: postDataList[0][2]["place"]!,
+                                  postedTime: postDataList[0][3]["postedTime"]!,
+                                  imageURL: postDataList[0][4]["imageURL"]!,
+                                ),
                               );
                             },
                             separatorBuilder: (buildContext, item) {

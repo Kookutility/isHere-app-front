@@ -15,6 +15,27 @@ class _PostDetailModelState extends State<PostDetailModel> {
     'https://img.freepik.com/free-photo/dog-waiting-in-the-veterinarian-office_23-2149198673.jpg?size=626&ext=jpg',
     'https://img.freepik.com/free-photo/front-view-adorable-shiba-inu-dog_23-2149457807.jpg?size=626&ext=jpg&ga=GA1.1.57940366.1704195866&semt=sph'
   ];
+  final markerNum = 0;
+
+  final marker = NMarker(
+      id: 'test',
+      position: const NLatLng(37.506932467450326, 127.05578661133796));
+  final marker1 = NMarker(
+      id: 'test1',
+      position: const NLatLng(37.606932467450326, 127.05578661133796));
+
+  Set<NMarker> markerList = {};
+  addMarker(NMarker newMarker) {
+    markerList.add(newMarker);
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    markerList.add(marker);
+    markerList.add(marker1);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -193,20 +214,24 @@ class _PostDetailModelState extends State<PostDetailModel> {
                           ),
                         ),
                         child: NaverMap(
-                          options: const NaverMapViewOptions(),
+                          options: const NaverMapViewOptions(
+                            initialCameraPosition: NCameraPosition(
+                              target: NLatLng(
+                                  37.506932467450326, 127.05578661133796),
+                              zoom: 15,
+                            ),
+                          ),
+                          onMapTapped: (NPoint point, NLatLng latLng) {
+                            final pointedMarker = NMarker(
+                              id: 'marker $markerNum++',
+                              position: latLng,
+                            );
+                            addMarker(pointedMarker);
+                          },
                           onMapReady: (controller) {
-                            final marker = NMarker(
-                                id: 'test',
-                                position: const NLatLng(
-                                    37.506932467450326, 127.05578661133796));
-                            final marker1 = NMarker(
-                                id: 'test1',
-                                position: const NLatLng(
-                                    37.606932467450326, 127.05578661133796));
-                            controller.addOverlayAll({marker, marker1});
-
+                            controller.addOverlayAll(markerList);
                             final onMarkerInfoWindow = NInfoWindow.onMarker(
-                                id: marker.info.id, text: "멋쟁이 사자처럼");
+                                id: marker.info.id, text: "구름이 발견 위치");
                             marker.openInfoWindow(onMarkerInfoWindow);
                           },
                         ),

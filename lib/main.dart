@@ -57,7 +57,6 @@ class IsHere extends StatelessWidget {
         bankAccScreen: (context) => BankAccountScreen(),
         signUpDoneScreen: (context) => SignUpDoneScreen(),
         tutorialScreen: (context) => TutorialScreen(),
-
         //notice board
         postDetailWidget: (context) => PostDetailModel(),
       },
