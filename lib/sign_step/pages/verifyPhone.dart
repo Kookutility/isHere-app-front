@@ -43,7 +43,7 @@ class VerifyPhoneScreen extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  "사용하고 계신 전화번호를 입력해주세요.",
+                  "수신받으신 인증문자를 적어주세요.",
                   style: TextStyle(
                     color: Color.fromRGBO(68, 65, 66, 1),
                     fontSize: MediaQuery.of(context).size.width / 23,
@@ -58,14 +58,24 @@ class VerifyPhoneScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: List.generate(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: /*List.generate(
                           focusNode.length,
                           (index) => SingleNum(
                             focusNode: focusNode[index],
                           ),
-                        ),
-                      ),
+                        ),*/
+                              [
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width * 4 / 6,
+                              child: CustomTextFormField(
+                                maxLength: 10,
+                                textEditingController: phoneNumTController,
+                                hintText: '',
+                                keyboardType: TextInputType.number,
+                              ),
+                            ),
+                          ]),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [

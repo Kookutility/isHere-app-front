@@ -12,6 +12,8 @@ class PhoneSignScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final TextEditingController phoneNumTController = TextEditingController();
+    String inputPhoneNum = "";
+
     return SizedBox(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height * 5 / 6,
@@ -41,19 +43,15 @@ class PhoneSignScreen extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: 30,
+                  height: 17.5,
                 ),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  padding: EdgeInsets.symmetric(horizontal: 3),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       SizedBox(
-                        width: MediaQuery.of(context).size.width / 4,
-                        child: CustomTextFormField(),
-                      ),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width * 4 / 9,
+                        width: MediaQuery.of(context).size.width * 4 / 5,
                         child: CustomTextFormField(
                           maxLength: 11,
                           textEditingController: phoneNumTController,
