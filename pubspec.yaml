@@ -83,6 +83,10 @@ dependencies:
   video_player_avfoundation: 2.4.2
   video_player_platform_interface: 6.1.0
   video_player_web: 2.0.15
+
+  percent_indicator: ^4.2.3
+  carousel_slider: ^4.0.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

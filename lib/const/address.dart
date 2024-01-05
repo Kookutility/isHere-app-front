@@ -1,12 +1,30 @@
 /*---------------- pages --------------*/
 const splashScreen = '//';
 const loginScreen = '/login';
-const signUpScreen = '/signUp';
 const notificationScreen = '/notification';
 const searchLookingScreen = '/searchLooking';
 const searchFoundScreen = '/searchFound';
 const mapScreen = '/map';
-const writeScreen ='/write';
+const writeScreen = '/write';
+const initScreen = '/init';
+const areaSearchScreen ='/areaSearch';
+const home = '/';
+
+//widget model
+
+const postDetailWidget = 'postDetail';
+
+//signUp
+const signUpScreen = '/signUp';
+const phoneSignScreen = '/phoneSignUp';
+const verifyphoneScreen = '/verifyPhoneNumSignUp';
+const nickNameScreen = '/nickNameSignUp';
+const condTermScreen = '/conditionAndTermSignUp';
+const bankAccScreen = 'backAccountSignUp';
+const signUpDoneScreen = 'signUpDone';
+const tutorialScreen = 'tutorialSignUp';
+const signUpStepsScreen = 'signUpSteps';
+
 /*---------------- url --------------*/
 
 /*---------------- current device url --------------*/

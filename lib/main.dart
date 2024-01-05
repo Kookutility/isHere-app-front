@@ -20,7 +20,6 @@ import 'index.dart';
 import 'package:flutter/material.dart';
 import 'package:petdemo/common/app_bar.dart';
 import 'package:petdemo/main_screens/chat_screen.dart';
-import 'package:petdemo/main_screens/common/bottom_nav_design.dart';
 import 'package:petdemo/main_screens/my_screen.dart';
 import 'package:petdemo/main_screens/search_screen.dart';
 import 'package:petdemo/main_screens/notification_screen.dart';
@@ -34,7 +33,7 @@ import 'package:petdemo/main_screens/map_screen.dart'; // 여기서 map.dart를 
 
 //플러터 플로우
 //프로필 위젯(ProfileWidget)은 마이페이지
-//홈페이지 위젯(HomepageWidget)은 채팅창 목록을 보는 화면이며, 채팅 위젯(ChatWidget)은 하나의 채팅창을 나타내는 화면입니다.
+//홈페이지 위젯(chatpageWidget)은 채팅창 목록을 보는 화면이며, 채팅 위젯(ChatWidget)은 하나의 채팅창을 나타내는 화면입니다.
 //플러터 플로우 채팅때문에 이런식으로 작동하며 추후 코드 정리 및 수정 예정입니다.  - 작성자  홍택수-
 
 
