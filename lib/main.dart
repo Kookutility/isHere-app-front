@@ -35,6 +35,7 @@ class IsHere extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'isHere',
+      theme: ThemeData(fontFamily: 'Pretendard'),
       debugShowCheckedModeBanner: false,
       initialRoute: home,
       routes: {
@@ -46,7 +47,7 @@ class IsHere extends StatelessWidget {
         searchLookingScreen: (context) => const SearchLookingScreen(),
         searchFoundScreen: (context) => const SearchFoundScreen(),
         mapScreen: (context) => const MapScreen(),
-        writeScreen: (context) => const WriteScreen(),
+        writeScreen: (context) => const WriteScreen(), // 이름 수정 필요
         //signUp
         signUpStepsScreen: (context) => SignUpStepsScreen(),
         phoneSignScreen: (context) => PhoneSignScreen(),
