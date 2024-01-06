@@ -1,9 +1,43 @@
 import 'package:flutter/material.dart';
 import 'package:petdemo/const/address.dart';
 import 'package:petdemo/main_screens/widget_model/post_model.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
-class SearchScreen extends StatelessWidget {
+class SearchScreen extends StatefulWidget {
   const SearchScreen({Key? key}) : super(key: key);
+
+  @override
+  _SearchScreenState createState() => _SearchScreenState();
+}
+
+class _SearchScreenState extends State<SearchScreen> {
+  int _postCount = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchPostCount();
+  }
+
+  Future<void> _fetchPostCount() async {
+    try {
+      final response = await http.get(Uri.parse('http://10.0.2.2:8080/board/count'));
+
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+        print('Fetched data: $data');
+        setState(() {
+          _postCount = data;
+        });
+      } else {
+        // Handle error
+        print('Failed to load post count. Status code: ${response.statusCode}');
+      }
+    } catch (e) {
+      print('Error: $e');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -165,7 +199,7 @@ class SearchScreen extends StatelessWidget {
                           child: ListView.separated(
                             shrinkWrap: true,
                             physics: NeverScrollableScrollPhysics(),
-                            itemCount: 10,
+                              itemCount: _postCount,
                             itemBuilder: (buildContext, item) {
                               return GestureDetector(
                                 onTap: () {
