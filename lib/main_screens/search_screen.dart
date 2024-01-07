@@ -1,9 +1,43 @@
+import 'dart:convert';
+
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:petdemo/API/model/latest_post_model.dart';
 import 'package:petdemo/const/address.dart';
 import 'package:petdemo/main_screens/widget_model/post_model.dart';
 
 class SearchScreen extends StatelessWidget {
   const SearchScreen({Key? key}) : super(key: key);
+
+  Future<List<Post>?> getRequest(
+      /* String sessionID, String toUrl, dynamic data*/) async {
+    final dio = Dio();
+    List<Post> postList = [];
+    try {
+      final Response<String> response = await dio.get(
+        "https://port-0-petish-app-back-1fk9002blr25yq9u.sel5.cloudtype.app/board/list",
+        // options: Options(
+        //   headers: {
+        //     "authorization": 'Basic $sessionID',
+        //   },
+        // ),
+        // data: data,
+      );
+      print("data : $response");
+
+      final List<dynamic> posts = jsonDecode(response.data!);
+
+      for (var post in posts) {
+        print(post);
+        postList.add(Post.fromJson(post));
+      }
+
+      return postList;
+    } on DioException catch (e) {
+      debugPrint(e.message);
+    }
+    return null;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -182,34 +216,49 @@ class SearchScreen extends StatelessWidget {
                     Row(
                       children: [
                         Expanded(
-                          child: ListView.separated(
-                            shrinkWrap: true,
-                            physics: NeverScrollableScrollPhysics(),
-                            itemCount: postDataList.length,
-                            itemBuilder: (buildContext, item) {
-                              return GestureDetector(
-                                onTap: () {
-                                  Navigator.of(context).pushNamed(
-                                    postDetailWidget,
-                                    arguments: item,
-                                  );
-                                },
-                                child: PostModel(
-                                  title: postDataList[0][0]["title"]!,
-                                  price: postDataList[0][1]["price"]!,
-                                  place: postDataList[0][2]["place"]!,
-                                  postedTime: postDataList[0][3]["postedTime"]!,
-                                  imageURL: postDataList[0][4]["imageURL"]!,
-                                ),
-                              );
-                            },
-                            separatorBuilder: (buildContext, item) {
-                              return Divider(
-                                color: Color.fromRGBO(189, 189, 189, 1),
-                                thickness: 0.5,
-                              );
-                            },
-                          ),
+                          child: FutureBuilder<List<Post>?>(
+                              future: getRequest(),
+                              builder: (context, snapshot) {
+                                if (!snapshot.hasData) {
+                                  return CircularProgressIndicator();
+                                }
+
+                                if (snapshot.data == null) {
+                                  print("receivced data is null");
+                                  return CircularProgressIndicator();
+                                }
+
+                                return ListView.separated(
+                                  shrinkWrap: true,
+                                  physics: NeverScrollableScrollPhysics(),
+                                  itemCount: snapshot.data!.length,
+                                  itemBuilder: (buildContext, item) {
+                                    return GestureDetector(
+                                      onTap: () {
+                                        Navigator.of(context).pushNamed(
+                                          postDetailWidget,
+                                          arguments: snapshot.data![item],
+                                        );
+                                      },
+                                      child: PostModel(
+                                        title: snapshot.data![item].postTitle,
+                                        price: postDataList[0][1]["price"]!,
+                                        place: snapshot.data![item].areaName,
+                                        postedTime:
+                                            snapshot.data![item].createdAt,
+                                        imageURL: postDataList[0][4]
+                                            ["imageURL"]!,
+                                      ),
+                                    );
+                                  },
+                                  separatorBuilder: (buildContext, item) {
+                                    return Divider(
+                                      color: Color.fromRGBO(189, 189, 189, 1),
+                                      thickness: 0.5,
+                                    );
+                                  },
+                                );
+                              }),
                         ),
                       ],
                     ),

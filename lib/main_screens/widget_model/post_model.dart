@@ -17,7 +17,7 @@ class PostModel extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height / 10,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Container(
             clipBehavior: Clip.hardEdge,
@@ -35,6 +35,9 @@ class PostModel extends StatelessWidget {
               imageURL,
               fit: BoxFit.cover,
             ),
+          ),
+          SizedBox(
+            width: 20,
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
