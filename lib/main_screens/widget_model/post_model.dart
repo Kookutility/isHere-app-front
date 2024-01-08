@@ -1,31 +1,16 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import '../../model/postmain_model.dart';
-import 'package:http/http.dart' as http;
 
 class PostModel extends StatelessWidget {
-  const PostModel({Key? key}) : super(key: key);
-
-  Future<List<Post>> fetchPosts() async {
-    final response = await http.get(Uri.parse('https://port-0-petish-app-back-1fk9002blr25yq9u.sel5.cloudtype.app/board/list'));
-
-    if (response.statusCode == 200) {
-      List jsonResponse = json.decode(response.body);
-      List<Post> posts = jsonResponse.map((item) => Post.fromJson(item)).toList();
-
-      posts.forEach((post) {
-        print("Post Title: ${post.postTitle}");
-        print("Reward: ${post.reward}");
-        print("Area Name: ${post.areaName}");
-        print("Created At: ${post.createdAt}");
-        print("-----------------------------");
-      });
-
-      return posts;
-    } else {
-      throw Exception('Failed to load posts');
-    }
-  }
+  final String title, price, deal, place, postedTime, imageURL;
+  const PostModel({
+    super.key,
+    required this.title,
+    required this.price,
+    required this.deal,
+    required this.place,
+    required this.postedTime,
+    required this.imageURL,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -33,10 +18,12 @@ class PostModel extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height / 10,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Container(
+            clipBehavior: Clip.hardEdge,
             width: MediaQuery.of(context).size.width / 5,
+            height: MediaQuery.of(context).size.width / 5,
             decoration: BoxDecoration(
               color: Color.fromRGBO(237, 237, 237, 1),
               border: Border.all(
@@ -45,13 +32,20 @@ class PostModel extends StatelessWidget {
               ),
               borderRadius: BorderRadius.circular(30),
             ),
+            child: Image.network(
+              imageURL,
+              fit: BoxFit.cover,
+            ),
+          ),
+          SizedBox(
+            width: 20,
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Text(
-                "구의역쪽에서 구찌 반지갑 분실했습니다.",//post_title
+                title.length > 16 ? title.substring(0, 16) + '...' : title,
                 style: TextStyle(
                   fontFamily: 'Pretendard-ExtraBold',
                   fontWeight: FontWeight.bold,
@@ -63,7 +57,7 @@ class PostModel extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    "사례금 : 7,500원",//7,500=reward
+                    "사례금 : $price",
                     style: TextStyle(
                       fontFamily: 'Pretendard-ExtraBold',
                       fontWeight: FontWeight.w800,
@@ -74,11 +68,11 @@ class PostModel extends StatelessWidget {
                   SizedBox(
                     width: 20,
                   ),
-                  Image.asset("assets/icons/give_immediately.png"),
+                  if (deal == '1') Image.asset("assets/icons/give_immediately.png"),
                 ],
               ),
               Text(
-                "광진구 구의동: 2시간 전", //광진구 구의동=area_name, 2시간 전=created_at
+                "$place: $postedTime",
                 style: TextStyle(
                   fontFamily: 'Pretendard-ExtraBold',
                   fontWeight: FontWeight.bold,

@@ -16,7 +16,7 @@ class _AreaSearchScreenState extends State<AreaSearchScreen> {
   Future<void> _searchArea(String query) async {
       try {
         String encodedQuery = Uri.encodeComponent(query);//한글데이터를 우선 인코딩
-        final response = await http.get(Uri.parse('http://10.0.2.2:8080/area/$encodedQuery'));
+        final response = await http.get(Uri.parse('https://port-0-petish-app-back-1fk9002blr25yq9u.sel5.cloudtype.app /area/$encodedQuery'));
 
         if (response.statusCode == 200) {
           final body = response.bodyBytes;// 한글 데이터가 깨지지 않게 utf8로 디코딩

@@ -1,46 +1,66 @@
+import 'dart:convert';
+
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:petdemo/API/model/latest_post_model.dart';
 import 'package:petdemo/const/address.dart';
 import 'package:petdemo/main_screens/widget_model/post_model.dart';
-import 'dart:convert';
-import 'package:http/http.dart' as http;
 
-class SearchScreen extends StatefulWidget {
+class SearchScreen extends StatelessWidget {
   const SearchScreen({Key? key}) : super(key: key);
 
-  @override
-  _SearchScreenState createState() => _SearchScreenState();
-}
-
-class _SearchScreenState extends State<SearchScreen> {
-  int _postCount = 0;
-
-  @override
-  void initState() {
-    super.initState();
-    _fetchPostCount();
-  }
-
-  Future<void> _fetchPostCount() async {
+  Future<List<Post>?> getRequest(
+      /* String sessionID, String toUrl, dynamic data*/) async {
+    final dio = Dio();
+    List<Post> postList = [];
     try {
-      final response = await http.get(Uri.parse('http://10.0.2.2:8080/board/count'));
+      final Response<String> response = await dio.get(
+        "https://port-0-petish-app-back-1fk9002blr25yq9u.sel5.cloudtype.app/board/list",
+        // options: Options(
+        //   headers: {
+        //     "authorization": 'Basic $sessionID',
+        //   },
+        // ),
+        // data: data,
+      );
+      print("data : $response");
 
-      if (response.statusCode == 200) {
-        final data = jsonDecode(response.body);
-        print('Fetched data: $data');
-        setState(() {
-          _postCount = data;
-        });
-      } else {
-        // Handle error
-        print('Failed to load post count. Status code: ${response.statusCode}');
+      final List<dynamic> posts = jsonDecode(response.data!);
+
+      for (var post in posts) {
+        print(post);
+        postList.add(Post.fromJson(post));
       }
-    } catch (e) {
-      print('Error: $e');
+
+      return postList;
+    } on DioException catch (e) {
+      debugPrint(e.message);
     }
+    return null;
   }
 
   @override
   Widget build(BuildContext context) {
+    final onePost = [
+      {"title": "구의역쪽에서 구찌 반지갑 분실했습니다."},
+      {"price": "7,500원"},
+      {"place": "광진구 구의동"},
+      {"postedTime": "2시간 전"},
+      {
+        "imageURL":
+        'https://img.freepik.com/free-photo/cute-puppy-sitting-in-grass-enjoying-nature-playful-beauty-generated-by-artificial-intelligence_188544-84973.jpg?w=1060&t=st=1704195937~exp=1704196537~hmac=ad3a9d0c1f275c58c7df69163f8da53383d3f97fc52d5765265abfbb970f31b7'
+      },
+    ];
+    List<List<Map<String, String>>> postDataList = [
+      onePost,
+      onePost,
+      onePost,
+      onePost,
+      onePost,
+      onePost,
+      onePost,
+      onePost,
+    ];
     return Scaffold(
       body: SizedBox(
         width: MediaQuery.of(context).size.width,
@@ -196,28 +216,48 @@ class _SearchScreenState extends State<SearchScreen> {
                     Row(
                       children: [
                         Expanded(
-                          child: ListView.separated(
-                            shrinkWrap: true,
-                            physics: NeverScrollableScrollPhysics(),
-                              itemCount: _postCount,
-                            itemBuilder: (buildContext, item) {
-                              return GestureDetector(
-                                onTap: () {
-                                  Navigator.of(context).pushNamed(
-                                    postDetailWidget,
-                                    arguments: item,
-                                  );
-                                },
-                                child: PostModel(),
-                              );
-                            },
-                            separatorBuilder: (buildContext, item) {
-                              return Divider(
-                                color: Color.fromRGBO(189, 189, 189, 1),
-                                thickness: 0.5,
-                              );
-                            },
-                          ),
+                          child: FutureBuilder<List<Post>?>(
+                              future: getRequest(),
+                              builder: (context, snapshot) {
+                                if (!snapshot.hasData) {
+                                  return CircularProgressIndicator();
+                                }
+
+                                if (snapshot.data == null) {
+                                  print("receivced data is null");
+                                  return CircularProgressIndicator();
+                                }
+
+                                return ListView.separated(
+                                  shrinkWrap: true,
+                                  physics: NeverScrollableScrollPhysics(),
+                                  itemCount: snapshot.data!.length,
+                                  itemBuilder: (buildContext, item) {
+                                    return GestureDetector(
+                                      onTap: () {
+                                        Navigator.of(context).pushNamed(
+                                          postDetailWidget,
+                                          arguments: snapshot.data![item],
+                                        );
+                                      },
+                                      child: PostModel(
+                                        title: snapshot.data![item].postTitle,
+                                        price: snapshot.data![item].reward.toString(),
+                                        deal: snapshot.data![item].immediateCase.toString(),
+                                        place: snapshot.data![item].areaName,
+                                        postedTime: snapshot.data![item].createdAt,
+                                        imageURL: postDataList[0][4]["imageURL"]!,
+                                      ),
+                                    );
+                                  },
+                                  separatorBuilder: (buildContext, item) {
+                                    return Divider(
+                                      color: Color.fromRGBO(189, 189, 189, 1),
+                                      thickness: 0.5,
+                                    );
+                                  },
+                                );
+                              }),
                         ),
                       ],
                     ),
