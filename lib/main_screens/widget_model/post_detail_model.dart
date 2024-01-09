@@ -152,7 +152,7 @@ class _PostDetailModelState extends State<PostDetailModel> {
                             ),
                             Expanded(child: SizedBox(width: 8)),
                             Text(
-                              "[ $category ]",
+                              "[ 분실물 ]",
                               style: TextStyle(
                                 fontSize:
                                     MediaQuery.of(context).size.width / 23,
