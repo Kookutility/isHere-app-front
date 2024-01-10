@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_naver_map/flutter_naver_map.dart';
+import 'package:petdemo/main_screens/widget_model/post_model.dart';
+
+import '../../API/model/latest_post_model.dart';
 
 class PostDetailModel extends StatefulWidget {
-  const PostDetailModel({super.key});
 
   @override
   State<PostDetailModel> createState() => _PostDetailModelState();
@@ -15,6 +17,21 @@ class _PostDetailModelState extends State<PostDetailModel> {
     'https://img.freepik.com/free-photo/dog-waiting-in-the-veterinarian-office_23-2149198673.jpg?size=626&ext=jpg',
     'https://img.freepik.com/free-photo/front-view-adorable-shiba-inu-dog_23-2149457807.jpg?size=626&ext=jpg&ga=GA1.1.57940366.1704195866&semt=sph'
   ];
+
+  late String title;
+  late String category;
+  late String description;
+  late String place;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final args = ModalRoute.of(context)!.settings.arguments as Post;
+    title = args.postTitle;
+    category = args.categoryType;
+    place = args.areaName;
+    description = args.description;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -117,7 +134,7 @@ class _PostDetailModelState extends State<PostDetailModel> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              "집 나간 구름이를 찾아주세요!",
+                              title,
                               style: TextStyle(
                                 fontSize:
                                     MediaQuery.of(context).size.width / 23,
@@ -135,7 +152,7 @@ class _PostDetailModelState extends State<PostDetailModel> {
                             ),
                             Expanded(child: SizedBox(width: 8)),
                             Text(
-                              "[ 반려동물 ]",
+                              "[ 분실물 ]",
                               style: TextStyle(
                                 fontSize:
                                     MediaQuery.of(context).size.width / 23,
@@ -149,7 +166,7 @@ class _PostDetailModelState extends State<PostDetailModel> {
                         height: 20,
                       ),
                       Text(
-                        'What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
+                          description,
                         style: TextStyle(
                           fontSize: MediaQuery.of(context).size.width / 25,
                           fontWeight: FontWeight.bold,
@@ -293,3 +310,4 @@ class _ImageSliderState extends State<ImageSlider> {
     );
   }
 }
+

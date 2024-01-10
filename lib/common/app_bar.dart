@@ -42,20 +42,20 @@ class IsHereAppBar extends StatelessWidget implements PreferredSizeWidget {
               elevation: 2, // 버튼의 그림자 높이 설정
               padding: EdgeInsets.zero,// 패딩을 0으로 설정
               shape: RoundedRectangleBorder(  // 모서리를 둥글게 만들기
-                 borderRadius: BorderRadius.circular(30),  // 높은 값일수록 더 둥글게 됨
-               ),
+                borderRadius: BorderRadius.circular(30),  // 높은 값일수록 더 둥글게 됨
+              ),
             ),
             onPressed: () {Navigator.of(context).pushNamed('/areaSearch');
             },
             child: Row(// Row 위젯을 이용하여 아이콘과 텍스트를 한 줄에 배치
-               children: [
-                 Padding(
-                   padding: EdgeInsets.only(left: 7.5),  // 왼쪽에 5.0만큼의 패딩 추가
-                    child: Image.asset('assets/icons/location_purple.png',
-                     width: 30,
-                     height: 30,
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(left: 7.5),  // 왼쪽에 5.0만큼의 패딩 추가
+                  child: Image.asset('assets/icons/location_purple.png',
+                    width: 30,
+                    height: 30,
+                  ),
                 ),
-               ),
               ],
             ),
           ),

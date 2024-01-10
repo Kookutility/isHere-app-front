@@ -28,10 +28,11 @@ class MapScreen extends StatelessWidget {
           controller.addOverlayAll({marker, marker1});
 
           final onMarkerInfoWindow =
-              NInfoWindow.onMarker(id: marker.info.id, text: "구름이");
+          NInfoWindow.onMarker(id: marker.info.id, text: "구름이");
           marker.openInfoWindow(onMarkerInfoWindow);
         },
       ),
     );
   }
 }
+

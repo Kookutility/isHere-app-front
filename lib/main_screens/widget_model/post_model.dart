@@ -1,7 +1,16 @@
 import 'package:flutter/material.dart';
 
 class PostModel extends StatelessWidget {
-  const PostModel({super.key});
+  final String title, price, deal, place, postedTime, imageURL;
+  const PostModel({
+    super.key,
+    required this.title,
+    required this.price,
+    required this.deal,
+    required this.place,
+    required this.postedTime,
+    required this.imageURL,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -9,10 +18,12 @@ class PostModel extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height / 10,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Container(
+            clipBehavior: Clip.hardEdge,
             width: MediaQuery.of(context).size.width / 5,
+            height: MediaQuery.of(context).size.width / 5,
             decoration: BoxDecoration(
               color: Color.fromRGBO(237, 237, 237, 1),
               border: Border.all(
@@ -21,13 +32,20 @@ class PostModel extends StatelessWidget {
               ),
               borderRadius: BorderRadius.circular(30),
             ),
+            child: Image.network(
+              imageURL,
+              fit: BoxFit.cover,
+            ),
+          ),
+          SizedBox(
+            width: 20,
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Text(
-                "구의역쪽에서 구찌 반지갑 분실했습니다.",
+                title.length > 16 ? title.substring(0, 16) + '...' : title,
                 style: TextStyle(
                   fontFamily: 'Pretendard-ExtraBold',
                   fontWeight: FontWeight.bold,
@@ -39,7 +57,7 @@ class PostModel extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    "사례금 : 7,500원",
+                    "사례금 : $price",
                     style: TextStyle(
                       fontFamily: 'Pretendard-ExtraBold',
                       fontWeight: FontWeight.w800,
@@ -50,11 +68,11 @@ class PostModel extends StatelessWidget {
                   SizedBox(
                     width: 20,
                   ),
-                  Image.asset("assets/icons/give_immediately.png"),
+                  if (deal == '1') Image.asset("assets/icons/give_immediately.png"),
                 ],
               ),
               Text(
-                "광진구 구의동: 2시간 전",
+                "$place: $postedTime",
                 style: TextStyle(
                   fontFamily: 'Pretendard-ExtraBold',
                   fontWeight: FontWeight.bold,

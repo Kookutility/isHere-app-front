@@ -5,6 +5,9 @@ import 'package:petdemo/main_screens/chat_screen.dart';
 import 'package:petdemo/main_screens/my_screen.dart';
 import 'package:petdemo/main_screens/search_screen.dart';
 
+import '../chat_page/chat_page_widget.dart';
+import '../profile/profile_widget.dart';
+
 //초기실행화면, 탐색(search)화면의 상단바와 하단바 유지 main은 searchscreen
 
 class InitScreen extends StatelessWidget {
@@ -37,11 +40,11 @@ class _BottomBarState extends State<BottomBar> {
     });
   }
 
-    List<Widget> pages = const [
-      SearchScreen(),
-      ChatScreen(),
-      MyScreen(),
-    ];
+  List<Widget> pages = const [
+    SearchScreen(),
+    ChatPageWidget(), //flutter flow 채팅 메인 화면
+    ProfileWidget(), //flutter flow 마이 프로필
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +58,7 @@ class _BottomBarState extends State<BottomBar> {
         },
         currentLocation: "현재 위치",// 현재 위치를 표시할 텍스트
         showButton: selectedIndex == 0,// init_screen에서만 현재위치버튼이 활성화
-        ),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: selectedIndex,
         onTap: (index) {
