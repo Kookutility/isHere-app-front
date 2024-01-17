@@ -1,6 +1,5 @@
 import 'package:petdemo/const/address.dart';
 
-import '../auth_screens/sigup_screen.dart';
 import '../chat_page/chat_page_widget.dart';
 import '../sign_step/pages/tutorial.dart';
 import '../sign_step/steps.dart';

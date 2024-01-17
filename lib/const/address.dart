@@ -9,7 +9,8 @@ const searchLookingScreen = '/searchLooking';
 const searchFoundScreen = '/searchFound';
 const mapScreen = '/map';
 const writeScreen = '/write';
-
+//areaSearch
+const areaSearchScreen = '/areaSearch';
 //myPage
 const notificationScreen = '/notification';
 const interestedListScreen = '/interestedList';

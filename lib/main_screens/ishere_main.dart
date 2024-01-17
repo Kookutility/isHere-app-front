@@ -5,6 +5,7 @@ import 'package:petdemo/auth_screens/login_screen.dart';
 import 'package:petdemo/auth_screens/splash_screen.dart';
 import 'package:petdemo/main_screens/init_screen.dart';
 import 'package:petdemo/main_screens/interested_screen.dart';
+import 'package:petdemo/main_screens/search/area_search_screen.dart';
 
 import 'package:petdemo/main_screens/search_found_screen.dart';
 import 'package:petdemo/main_screens/search_looking_screen.dart';
@@ -53,7 +54,7 @@ class IsHereMain extends StatelessWidget {
         searchFoundScreen: (context) => const FoundScreen(),
         mapScreen: (context) => const MapScreen(),
         writeScreen: (context) => const WriteScreen(),
-
+        areaSearchScreen: (context) => const AreaSearchScreen(),
         //signUp
         signUpStepsScreen: (context) => SignUpStepsScreen(),
         phoneSignScreen: (context) => PhoneSignScreen(),
