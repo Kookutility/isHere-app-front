@@ -1,16 +1,22 @@
 /*---------------- pages --------------*/
 const splashScreen = '//';
 const loginScreen = '/login';
-const notificationScreen = '/notification';
+const initScreen = '/init';
+const home = '/';
+
+//post
 const searchLookingScreen = '/searchLooking';
 const searchFoundScreen = '/searchFound';
 const mapScreen = '/map';
 const writeScreen = '/write';
-const initScreen = '/init';
-const home = '/';
+
+//myPage
+const notificationScreen = '/notification';
+const interestedListScreen = '/interestedList';
+const wroteListScreen = '/wroteList';
+const transactionRecordScreen = 'transactionRecord';
 
 //widget model
-
 const postDetailWidget = 'postDetail';
 
 //signUp

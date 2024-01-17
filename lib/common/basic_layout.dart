@@ -22,9 +22,14 @@ class MainLayout extends StatelessWidget {
         body: SafeArea(
           child: SingleChildScrollView(
             physics: ClampingScrollPhysics(), // 파란색 바운스 효과 제거
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: children,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 20,
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: children,
+              ),
             ),
           ),
         ),
