@@ -43,7 +43,7 @@ class _BottomBarState extends State<BottomBar> {
   List<Widget> pages = const [
     SearchScreen(),
     ChatPageWidget(), //flutter flow 채팅 메인 화면
-    ProfileWidget(), //flutter flow 마이 프로필
+    MyScreen(), // ProfileWidget()으로 하면 flutter flow 마이 프로필로 가게 됩니다.
   ];
 
   @override
