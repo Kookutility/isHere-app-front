@@ -310,3 +310,4 @@ class _ImageSliderState extends State<ImageSlider> {
     );
   }
 }
+
