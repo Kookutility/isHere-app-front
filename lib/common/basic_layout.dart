@@ -20,11 +20,16 @@ class MainLayout extends StatelessWidget {
         backgroundColor: Colors.white,
         appBar: appBar,
         body: SafeArea(
-          child: SingleChildScrollView(//스크롤 적용
+          child: SingleChildScrollView(
             physics: ClampingScrollPhysics(), // 파란색 바운스 효과 제거
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: children,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 20,
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: children,
+              ),
             ),
           ),
         ),

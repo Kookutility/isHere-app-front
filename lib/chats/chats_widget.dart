@@ -1,4 +1,9 @@
+import 'package:petdemo/const/address.dart';
+
+import '../auth_screens/sigup_screen.dart';
 import '../chat_page/chat_page_widget.dart';
+import '../sign_step/pages/tutorial.dart';
+import '../sign_step/steps.dart';
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
@@ -1151,6 +1156,18 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                                 ),
                                                               );
                                                             }
+                                                          }
+                                                          else if (index == 1) {
+                                                            // Navigate to RewardScreen when index is 1
+                                                            Navigator.push(
+                                                              context,
+                                                              MaterialPageRoute(builder: (context) => SignUpStepsScreen()), // Replace signUpScreen() with your actual screen widget
+                                                            );
+                                                          } else {
+                                                            Navigator.push(
+                                                              context,
+                                                              MaterialPageRoute(builder: (context) => SignUpStepsScreen()), // Replace signUpScreen() with your actual screen widget
+                                                            );
                                                           }
                                                         },
                                                         child: Container(

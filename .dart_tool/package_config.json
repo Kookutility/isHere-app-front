@@ -26,6 +26,18 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "barcode",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/barcode-2.2.6",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "barcode_widget",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/barcode_widget-2.0.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "boolean_selector",
       "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/boolean_selector-2.1.1",
       "packageUri": "lib/",
@@ -124,6 +136,18 @@
     {
       "name": "easy_debounce",
       "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/easy_debounce-2.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "emoji_flag_converter",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/emoji_flag_converter-1.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "equatable",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/equatable-2.0.5",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -248,6 +272,12 @@
       "languageVersion": "2.18"
     },
     {
+      "name": "fl_chart",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/fl_chart-0.55.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "flutter",
       "rootUri": "file:///C:/flutter/packages/flutter",
       "packageUri": "lib/",
@@ -268,6 +298,12 @@
     {
       "name": "flutter_cache_manager",
       "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_cache_manager-3.3.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "flutter_credit_card",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_credit_card-3.0.6",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -332,6 +368,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "flutter_staggered_grid_view",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_staggered_grid_view-0.6.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "flutter_test",
       "rootUri": "file:///C:/flutter/packages/flutter_test",
       "packageUri": "lib/",
@@ -342,6 +384,12 @@
       "rootUri": "file:///C:/flutter/packages/flutter_web_plugins",
       "packageUri": "lib/",
       "languageVersion": "3.2"
+    },
+    {
+      "name": "flutterflow_ui",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/flutterflow_ui-0.2.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
     },
     {
       "name": "font_awesome_flutter",
@@ -408,6 +456,12 @@
       "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/google_sign_in_web-0.11.0+2",
       "packageUri": "lib/",
       "languageVersion": "2.17"
+    },
+    {
+      "name": "graphs",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/graphs-2.3.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
     },
     {
       "name": "html",
@@ -615,7 +669,7 @@
     },
     {
       "name": "percent_indicator",
-      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/percent_indicator-4.2.3",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/percent_indicator-4.2.2",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -644,6 +698,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "qr",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/qr-3.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
       "name": "quiver",
       "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/quiver-3.2.1",
       "packageUri": "lib/",
@@ -654,6 +714,18 @@
       "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/rfc_6901-0.1.1",
       "packageUri": "lib/",
       "languageVersion": "2.15"
+    },
+    {
+      "name": "rive",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/rive-0.10.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "rive_common",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/rive_common-0.0.6",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
     },
     {
       "name": "rxdart",
@@ -728,10 +800,22 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "simple_gesture_detector",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/simple_gesture_detector-0.2.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "sky_engine",
       "rootUri": "file:///C:/flutter/bin/cache/pkg/sky_engine",
       "packageUri": "lib/",
       "languageVersion": "3.2"
+    },
+    {
+      "name": "smooth_page_indicator",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/smooth_page_indicator-1.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
     },
     {
       "name": "source_span",
@@ -776,10 +860,22 @@
       "languageVersion": "2.18"
     },
     {
+      "name": "swipeable_card_stack",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/swipeable_card_stack-0.0.5",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "synchronized",
       "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/synchronized-3.1.0",
       "packageUri": "lib/",
       "languageVersion": "2.18"
+    },
+    {
+      "name": "table_calendar",
+      "rootUri": "file:///C:/Users/hongtaiksu/AppData/Local/Pub/Cache/hosted/pub.dev/table_calendar-3.0.9",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
     },
     {
       "name": "term_glyph",
@@ -932,7 +1028,7 @@
       "languageVersion": "3.1"
     }
   ],
-  "generated": "2024-01-06T09:55:21.392828Z",
+  "generated": "2024-01-17T07:51:28.228146Z",
   "generator": "pub",
   "generatorVersion": "3.2.3"
 }
