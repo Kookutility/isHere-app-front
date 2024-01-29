@@ -40,13 +40,13 @@ class IsHere extends StatelessWidget {
     return MaterialApp(
       title: 'isHere',
       debugShowCheckedModeBanner: false,
-      initialRoute: home,
+      initialRoute: loginScreen,
       theme: ThemeData(fontFamily: 'Pretendard'),
       routes: {
         home: (context) => InitScreen(),
         initScreen: (context) => const InitScreen(),
         splashScreen: (context) => const SplashScreen(),
-        loginScreen: (context) => const LogInScreen(),
+        loginScreen: (context) => const SignUpScreen(),
 
         //post
         searchLookingScreen: (context) => const LookingScreen(),

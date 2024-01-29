@@ -3,7 +3,9 @@ import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:petdemo/common/basic_layout.dart';
 import 'package:petdemo/const/address.dart';
 import 'package:petdemo/sign_step/pages/back_account.dart';
+import 'package:petdemo/sign_step/pages/condi_term.dart';
 import 'package:petdemo/sign_step/pages/nick_name.dart';
+import 'package:petdemo/sign_step/pages/password.dart';
 import 'package:petdemo/sign_step/pages/phone.dart';
 import 'package:petdemo/sign_step/pages/sign_up_done.dart';
 import 'package:petdemo/sign_step/pages/tutorial.dart';
@@ -40,6 +42,17 @@ class _SignUpStepsScreenState extends State<SignUpStepsScreen> {
       ),
       NickNameScreen(
         onCondAgreePressed: pushPage,
+      ),
+      CondTermScreen(
+        onCondAgreePressed: pushPage,
+      ),
+      PasswordScreen(
+        description: "앱 사용시 본인 확인을 위한 비밀번호를 설정합니다.",
+        onContinuePressed: pushPage,
+      ),
+      PasswordScreen(
+        description: "확인을 위해 한번 더 입력해주세요.",
+        onContinuePressed: pushPage,
       ),
       BankAccountScreen(
         onAccountStartPressed: pushPage,

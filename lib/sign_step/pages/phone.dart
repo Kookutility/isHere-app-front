@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:petdemo/common/custom_textform.dart';
 import 'package:petdemo/sign_step/widgets/blue_green_button.dart';
+import 'package:petdemo/sign_step/widgets/phone_text_field.dart';
 
-class PhoneSignScreen extends StatelessWidget {
+class PhoneSignScreen extends StatefulWidget {
   final VoidCallback? onPhoneContinuePressed;
   const PhoneSignScreen({
     super.key,
@@ -10,8 +11,41 @@ class PhoneSignScreen extends StatelessWidget {
   });
 
   @override
+  State<PhoneSignScreen> createState() => _PhoneSignScreenState();
+}
+
+class _PhoneSignScreenState extends State<PhoneSignScreen> {
+  String initialValue = "9867243682"; // Dummy current phone number
+  int selectedCountryCode = 977;
+  bool isValid = false;
+  bool canContinue = false;
+  int recievedVerficationCode = 1234; // Dummy verification code
+
+  TextEditingController phoneNumController = TextEditingController();
+  final List<TextEditingController> digitControllers =
+      List.generate(4, (index) => TextEditingController());
+
+  List<int> alreadyUsedNumbers = [
+    1234567890,
+    4477123456,
+    6141234567,
+  ];
+
+  List<int> bannedPhoneNumbers = [
+    2222244444,
+    3333355555,
+  ];
+
+  void onValueChanged(bool value) {
+    setState(() {
+      isValid = value;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     final TextEditingController phoneNumTController = TextEditingController();
+
     return SizedBox(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height * 5 / 6,
@@ -19,8 +53,7 @@ class PhoneSignScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Flexible(
-            flex: 1,
+          Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -41,36 +74,19 @@ class PhoneSignScreen extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: 30,
+                  height: 20,
                 ),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width / 4,
-                        child: CustomTextFormField(),
-                      ),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width * 4 / 9,
-                        child: CustomTextFormField(
-                          maxLength: 11,
-                          textEditingController: phoneNumTController,
-                          hintText: '01012345678',
-                          keyboardType: TextInputType.number,
-                        ),
-                      ),
-                    ],
-                  ),
+                PhoneNumberEditField(
+                  textEditingController: phoneNumController,
+                  selectedCountryCode: selectedCountryCode,
+                  onValueChanged: onValueChanged,
                 ),
               ],
             ),
           ),
-          Flexible(
-            flex: 1,
+          Expanded(
             child: GestureDetector(
-              onTap: onPhoneContinuePressed,
+              onTap: widget.onPhoneContinuePressed,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
