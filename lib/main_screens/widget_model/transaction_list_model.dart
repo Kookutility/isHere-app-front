@@ -149,9 +149,9 @@ class TransactionListModel extends StatelessWidget {
                                   Container(
                                     clipBehavior: Clip.hardEdge,
                                     width:
-                                        MediaQuery.of(context).size.width / 20,
+                                    MediaQuery.of(context).size.width / 20,
                                     height:
-                                        MediaQuery.of(context).size.width / 20,
+                                    MediaQuery.of(context).size.width / 20,
                                     decoration: BoxDecoration(
                                       color: const Color.fromARGB(
                                           255, 203, 201, 201),
@@ -168,8 +168,8 @@ class TransactionListModel extends StatelessWidget {
                                               Icons.person,
                                               color: Colors.white,
                                               size: MediaQuery.of(context)
-                                                      .size
-                                                      .width /
+                                                  .size
+                                                  .width /
                                                   25,
                                             ),
                                           ),
@@ -179,14 +179,14 @@ class TransactionListModel extends StatelessWidget {
                                   ),
                                   SizedBox(
                                     width:
-                                        MediaQuery.of(context).size.width / 50,
+                                    MediaQuery.of(context).size.width / 50,
                                   ),
                                   Text(
                                     userName,
                                     style: TextStyle(
                                       fontSize:
-                                          MediaQuery.of(context).size.width /
-                                              30,
+                                      MediaQuery.of(context).size.width /
+                                          30,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
@@ -196,9 +196,9 @@ class TransactionListModel extends StatelessWidget {
                                 children: [
                                   Container(
                                     width:
-                                        MediaQuery.of(context).size.width / 50,
+                                    MediaQuery.of(context).size.width / 50,
                                     height:
-                                        MediaQuery.of(context).size.width / 50,
+                                    MediaQuery.of(context).size.width / 50,
                                     decoration: BoxDecoration(
                                       shape: BoxShape.circle,
                                       color: Color(0xff939393),
@@ -213,8 +213,8 @@ class TransactionListModel extends StatelessWidget {
                                       fontFamily: 'Pretendard-ExtraBold',
                                       fontWeight: FontWeight.bold,
                                       fontSize:
-                                          MediaQuery.of(context).size.width /
-                                              40,
+                                      MediaQuery.of(context).size.width /
+                                          40,
                                       color: Color.fromRGBO(130, 130, 130, 1),
                                     ),
                                   ),

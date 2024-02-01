@@ -5,6 +5,9 @@ import 'package:petdemo/main_screens/chat_screen.dart';
 import 'package:petdemo/main_screens/my_screen.dart';
 import 'package:petdemo/main_screens/search_screen.dart';
 
+import '../chat_page/chat_page_widget.dart';
+import '../profile/profile_widget.dart';
+
 //초기실행화면, 탐색(search)화면의 상단바와 하단바 유지 main은 searchscreen
 
 class InitScreen extends StatelessWidget {
@@ -27,7 +30,7 @@ class _BottomBarState extends State<BottomBar> {
   int selectedIndex = 0;
 
   /*
-  * 하단바에 아이콘을 누르면, 누른 
+  * 하단바에 아이콘을 누르면, 누른
   * 아이콘 순서를 인덱스를 인자로 전달 받고,
   * seletedIndex에 저장한 뒤, rebuild
   */
@@ -37,11 +40,10 @@ class _BottomBarState extends State<BottomBar> {
     });
   }
 
-  // 페이지 리스트, 하단바 아이콘에 따라 body에 display
   List<Widget> pages = const [
     SearchScreen(),
-    ChatScreen(),
-    MyScreen(),
+    ChatPageWidget(), //flutter flow 채팅 메인 화면
+    MyScreen(), // ProfileWidget()으로 하면 flutter flow 마이 프로필로 가게 됩니다.
   ];
 
   @override
@@ -54,6 +56,8 @@ class _BottomBarState extends State<BottomBar> {
         onSearchPressed: () {
           // 검색 아이콘이 눌렸을 때의 동작
         },
+        currentLocation: "현재 위치",// 현재 위치를 표시할 텍스트
+        showButton: selectedIndex == 0,// init_screen에서만 현재위치버튼이 활성화
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: selectedIndex,

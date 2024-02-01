@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:petdemo/main_screens/widget_model/interested_list_model.dart';
 import 'package:petdemo/main_screens/widget_model/wrote_list_model.dart';
+import 'widget_model/write_screen_model.dart';
 
 class WroteListScreen extends StatelessWidget {
   const WroteListScreen({super.key});
@@ -22,21 +23,21 @@ class WroteListScreen extends StatelessWidget {
         "price": "7,500원",
         "done": 1,
         "imageURL":
-            'https://img.freepik.com/free-photo/cute-puppy-sitting-in-grass-enjoying-nature-playful-beauty-generated-by-artificial-intelligence_188544-84973.jpg?w=1060&t=st=1704195937~exp=1704196537~hmac=ad3a9d0c1f275c58c7df69163f8da53383d3f97fc52d5765265abfbb970f31b7'
+        'https://img.freepik.com/free-photo/cute-puppy-sitting-in-grass-enjoying-nature-playful-beauty-generated-by-artificial-intelligence_188544-84973.jpg?w=1060&t=st=1704195937~exp=1704196537~hmac=ad3a9d0c1f275c58c7df69163f8da53383d3f97fc52d5765265abfbb970f31b7'
       },
       {
         "title": "구의역쪽에서 구찌 반지갑 분실했습니다.",
         "price": "7,500원",
         "done": 0,
         "imageURL":
-            'https://img.freepik.com/free-photo/cute-puppy-sitting-in-grass-enjoying-nature-playful-beauty-generated-by-artificial-intelligence_188544-84973.jpg?w=1060&t=st=1704195937~exp=1704196537~hmac=ad3a9d0c1f275c58c7df69163f8da53383d3f97fc52d5765265abfbb970f31b7'
+        'https://img.freepik.com/free-photo/cute-puppy-sitting-in-grass-enjoying-nature-playful-beauty-generated-by-artificial-intelligence_188544-84973.jpg?w=1060&t=st=1704195937~exp=1704196537~hmac=ad3a9d0c1f275c58c7df69163f8da53383d3f97fc52d5765265abfbb970f31b7'
       },
       {
         "title": "구의역쪽에서 구찌 반지갑 분실했습니다.",
         "price": "7,500원",
         "done": 0,
         "imageURL":
-            'https://img.freepik.com/free-photo/cute-puppy-sitting-in-grass-enjoying-nature-playful-beauty-generated-by-artificial-intelligence_188544-84973.jpg?w=1060&t=st=1704195937~exp=1704196537~hmac=ad3a9d0c1f275c58c7df69163f8da53383d3f97fc52d5765265abfbb970f31b7'
+        'https://img.freepik.com/free-photo/cute-puppy-sitting-in-grass-enjoying-nature-playful-beauty-generated-by-artificial-intelligence_188544-84973.jpg?w=1060&t=st=1704195937~exp=1704196537~hmac=ad3a9d0c1f275c58c7df69163f8da53383d3f97fc52d5765265abfbb970f31b7'
       },
     ];
     return Scaffold(
@@ -82,7 +83,7 @@ class WroteListScreen extends StatelessWidget {
                         color: Colors.black,
                         size: 30.0,
                       ),
-                      () {},
+                          () {},
                     ),
                   ),
                   Padding(
@@ -93,7 +94,7 @@ class WroteListScreen extends StatelessWidget {
                         width: 30,
                         height: 30,
                       ),
-                      () {},
+                          () {},
                     ),
                   ),
                 ],

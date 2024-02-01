@@ -140,7 +140,7 @@ class MyScreen extends StatelessWidget {
                                 '작성한 글',
                                 style: TextStyle(
                                   fontSize:
-                                      MediaQuery.of(context).size.width / 25,
+                                  MediaQuery.of(context).size.width / 25,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
@@ -156,7 +156,7 @@ class MyScreen extends StatelessWidget {
                                 Image.asset(
                                   'assets/icons/star_purple.png',
                                   height:
-                                      MediaQuery.of(context).size.width / 15,
+                                  MediaQuery.of(context).size.width / 15,
                                 ),
                                 SizedBox(
                                   width: 10,
@@ -165,7 +165,7 @@ class MyScreen extends StatelessWidget {
                                   '관심목록',
                                   style: TextStyle(
                                     fontSize:
-                                        MediaQuery.of(context).size.width / 25,
+                                    MediaQuery.of(context).size.width / 25,
                                     fontWeight: FontWeight.w500,
                                   ),
                                 ),
@@ -182,7 +182,7 @@ class MyScreen extends StatelessWidget {
                                 Image.asset(
                                   'assets/icons/trade_purple.png',
                                   height:
-                                      MediaQuery.of(context).size.width / 15,
+                                  MediaQuery.of(context).size.width / 15,
                                 ),
                                 SizedBox(
                                   width: 10,
@@ -191,7 +191,7 @@ class MyScreen extends StatelessWidget {
                                   '거래내역',
                                   style: TextStyle(
                                     fontSize:
-                                        MediaQuery.of(context).size.width / 25,
+                                    MediaQuery.of(context).size.width / 25,
                                     fontWeight: FontWeight.w500,
                                   ),
                                 ),

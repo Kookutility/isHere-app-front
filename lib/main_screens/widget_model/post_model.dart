@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
 class PostModel extends StatelessWidget {
-  final String title, price, place, postedTime, imageURL;
+  final String title, price, deal, place, postedTime, imageURL;
   const PostModel({
     super.key,
     required this.title,
     required this.price,
+    required this.deal,
     required this.place,
     required this.postedTime,
     required this.imageURL,
@@ -44,7 +45,7 @@ class PostModel extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Text(
-                title,
+                title.length > 16 ? title.substring(0, 16) + '...' : title,
                 style: TextStyle(
                   fontFamily: 'Pretendard-ExtraBold',
                   fontWeight: FontWeight.bold,
@@ -67,7 +68,7 @@ class PostModel extends StatelessWidget {
                   SizedBox(
                     width: 20,
                   ),
-                  Image.asset("assets/icons/give_immediately.png"),
+                  if (deal == '1') Image.asset("assets/icons/give_immediately.png"),
                 ],
               ),
               Text(

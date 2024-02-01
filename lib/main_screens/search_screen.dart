@@ -41,26 +41,6 @@ class SearchScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final onePost = [
-      {"title": "구의역쪽에서 구찌 반지갑 분실했습니다."},
-      {"price": "7,500원"},
-      {"place": "광진구 구의동"},
-      {"postedTime": "2시간 전"},
-      {
-        "imageURL":
-            'https://img.freepik.com/free-photo/cute-puppy-sitting-in-grass-enjoying-nature-playful-beauty-generated-by-artificial-intelligence_188544-84973.jpg?w=1060&t=st=1704195937~exp=1704196537~hmac=ad3a9d0c1f275c58c7df69163f8da53383d3f97fc52d5765265abfbb970f31b7'
-      },
-    ];
-    List<List<Map<String, String>>> postDataList = [
-      onePost,
-      onePost,
-      onePost,
-      onePost,
-      onePost,
-      onePost,
-      onePost,
-      onePost,
-    ];
     return Scaffold(
       body: SizedBox(
         width: MediaQuery.of(context).size.width,
@@ -242,12 +222,11 @@ class SearchScreen extends StatelessWidget {
                                       },
                                       child: PostModel(
                                         title: snapshot.data![item].postTitle,
-                                        price: postDataList[0][1]["price"]!,
+                                        price: snapshot.data![item].reward.toString(),
+                                        deal: snapshot.data![item].immediateCase.toString(),
                                         place: snapshot.data![item].areaName,
-                                        postedTime:
-                                            snapshot.data![item].createdAt,
-                                        imageURL: postDataList[0][4]
-                                            ["imageURL"]!,
+                                        postedTime: snapshot.data![item].createdAt,
+                                        imageURL: 'https://img.freepik.com/free-photo/cute-puppy-sitting-in-grass-enjoying-nature-playful-beauty-generated-by-artificial-intelligence_188544-84973.jpg?w=1060&t=st=1704195937~exp=1704196537~hmac=ad3a9d0c1f275c58c7df69163f8da53383d3f97fc52d5765265abfbb970f31b7',
                                       ),
                                     );
                                   },
