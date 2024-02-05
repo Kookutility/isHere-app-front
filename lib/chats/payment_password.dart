@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:petdemo/chat_page/payment_done.dart';
+import 'package:petdemo/chats/payment_done.dart';
 
 import 'package:petdemo/common/custom_textform.dart';
 import 'package:petdemo/sign_step/widgets/blue_green_button.dart';
@@ -93,19 +93,14 @@ class _PaymentPasswordState extends State<PaymentPassword> {
                         PinCodeTextField(
                           appContext: context,
                           length: 6,
-                          keyboardType: TextInputType.none,
-                          textStyle: TextStyle(
-                            color: Colors.grey,
-                            fontSize: 10,
-                          ),
-                          obscureText: true,
+                          keyboardType: TextInputType.number,
+                          obscureText: false,
                           animationType: AnimationType.fade,
                           pinTheme: PinTheme(
                             shape: PinCodeFieldShape.underline,
                             fieldHeight: 50,
                             fieldWidth: 40,
                             activeFillColor: Colors.white,
-                            activeColor: Colors.blue,
                             inactiveColor: Colors.grey,
                             inactiveFillColor: Colors.white,
                             selectedFillColor: Colors.white,
