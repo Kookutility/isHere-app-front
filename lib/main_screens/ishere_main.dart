@@ -15,6 +15,8 @@ import 'package:petdemo/main_screens/widget_model/post_detail_model.dart';
 import 'package:petdemo/main_screens/write_screen.dart';
 import 'package:petdemo/const/address.dart';
 import 'package:petdemo/main_screens/wrote_screen.dart';
+import 'package:petdemo/main_screens/profile_update_screen.dart';
+
 import 'package:petdemo/sign_step/pages/back_account.dart';
 import 'package:petdemo/sign_step/pages/condi_term.dart';
 import 'package:petdemo/sign_step/pages/nick_name.dart';
@@ -63,6 +65,7 @@ class IsHereMain extends StatelessWidget {
         bankAccScreen: (context) => BankAccountScreen(),
         signUpDoneScreen: (context) => SignUpDoneScreen(),
         tutorialScreen: (context) => TutorialScreen(),
+        profileUpdateScreen: (context) => ProfileUpdateScreenWidget(),
 
         //notice board
         postDetailWidget: (context) => PostDetailModel(),
