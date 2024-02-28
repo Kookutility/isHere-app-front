@@ -5,6 +5,9 @@ import 'package:flutter/services.dart';
 import 'widget_model/profile_update_screen_model.dart';
 export 'widget_model/profile_update_screen_model.dart';
 
+import 'package:petdemo/sign_step/widgets/purple_button.dart';
+import 'package:petdemo/sign_step/widgets/blue_green_button.dart';
+
 class ProfileUpdateScreenWidget extends StatefulWidget {
   const ProfileUpdateScreenWidget({super.key});
 
@@ -62,7 +65,7 @@ class _ProfileUpdateScreenWidgetState extends State<ProfileUpdateScreenWidget> {
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+          backgroundColor: Colors.white,
           automaticallyImplyLeading: false,
           leading: FlutterFlowIconButton(
             borderColor: Colors.transparent,
@@ -307,6 +310,70 @@ class _ProfileUpdateScreenWidgetState extends State<ProfileUpdateScreenWidget> {
                     validator:
                         _model.textController4Validator.asValidator(context),
                   ),
+                ),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 15, 0, 0),
+                  child: Text(
+                    '🔒 비밀번호',
+                    textAlign: TextAlign.start,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                PurpleButton(
+                  width: MediaQuery.of(context).size.width * 3 / 8,
+                  height: MediaQuery.of(context).size.height / 20,
+                  child: Center(
+                    child: Text(
+                      "계정 비밀번호 변경하기",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: MediaQuery.of(context).size.width / 30,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                PurpleButton(
+                  width: MediaQuery.of(context).size.width * 3 / 8,
+                  height: MediaQuery.of(context).size.height / 20,
+                  child: Center(
+                    child: Text(
+                      "결제 비밀번호 변경하기",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: MediaQuery.of(context).size.width / 30,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    BlueGreenButton(
+                      child: Center(
+                        child: Text(
+                          "작성 완료",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: MediaQuery.of(context).size.width / 25,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class BlueGreenButton extends StatelessWidget {
+class PurpleButton extends StatelessWidget {
   final Widget child;
   final bool? isConfirm;
   final double? width;
   final double? height;
-  const BlueGreenButton(
+  const PurpleButton(
       {super.key,
       required this.child,
       this.isConfirm,
@@ -27,19 +27,7 @@ class BlueGreenButton extends StatelessWidget {
                   blurRadius: 3,
                 )
               ],
-        gradient: LinearGradient(
-          begin: Alignment.centerLeft,
-          end: Alignment.centerRight,
-          colors: isConfirm == null
-              ? [
-                  Color.fromRGBO(78, 64, 234, 1),
-                  Color.fromRGBO(107, 224, 210, 1),
-                ]
-              : [
-                  Colors.white,
-                  Colors.white,
-                ],
-        ),
+        color: Color.fromRGBO(78, 64, 234, 1),
         borderRadius: BorderRadius.circular(70),
       ),
       child: child,
