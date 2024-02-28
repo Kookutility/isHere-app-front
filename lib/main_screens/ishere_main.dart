@@ -45,7 +45,8 @@ class IsHereMain extends StatelessWidget {
       initialRoute: home,
       theme: ThemeData(fontFamily: 'Pretendard'),
       routes: {
-        home: (context) => InitScreen(),
+        home: (context) =>
+            SignUpScreen(), // 가입 절차 개발을 위하여 home을 SingUpScreen으로 설정하였음 <병주>
         initScreen: (context) => const InitScreen(),
         splashScreen: (context) => const SplashScreen(),
         loginScreen: (context) => const LogInScreen(),
@@ -57,6 +58,7 @@ class IsHereMain extends StatelessWidget {
         writeScreen: (context) => const WriteScreen(),
 
         //signUp
+        signUpScreen: (context) => SignUpScreen(),
         signUpStepsScreen: (context) => SignUpStepsScreen(),
         phoneSignScreen: (context) => PhoneSignScreen(),
         verifyphoneScreen: (context) => VerifyPhoneScreen(),

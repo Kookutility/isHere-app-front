@@ -51,7 +51,7 @@ class _SignUpStepsScreenState extends State<SignUpStepsScreen> {
         onContinuePressed: pushPage,
       ),
       PasswordScreen(
-        description: "확인을 위해 한번 더 입력해주세요.",
+        description: "방금 입력하신 비밀번호를 한번 더 적어주세요.",
         onContinuePressed: pushPage,
       ),
       BankAccountScreen(
