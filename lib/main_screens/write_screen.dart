@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
@@ -8,7 +9,6 @@ export 'widget_model/write_screen_model.dart';
 
 class WriteScreen extends StatefulWidget {
   const WriteScreen({super.key});
-
   @override
   State<WriteScreen> createState() => _WriteScreenState();
 }
@@ -294,6 +294,7 @@ class _WriteScreenState extends State<WriteScreen> {
                       keyboardType: TextInputType.number,
                       validator:
                           _model.textController2Validator.asValidator(context),
+
                     ),
                   ),
                   Padding(

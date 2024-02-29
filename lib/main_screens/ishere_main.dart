@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_naver_map/flutter_naver_map.dart';
 import 'package:petdemo/auth_screens/login_screen.dart';
-
 import 'package:petdemo/auth_screens/splash_screen.dart';
 import 'package:petdemo/main_screens/init_screen.dart';
 import 'package:petdemo/main_screens/interested_screen.dart';
 import 'package:petdemo/main_screens/search/area_search_screen.dart';
-
 import 'package:petdemo/main_screens/search_found_screen.dart';
 import 'package:petdemo/main_screens/search_looking_screen.dart';
 import 'package:petdemo/main_screens/notification_screen.dart';
@@ -17,7 +15,6 @@ import 'package:petdemo/main_screens/write_screen.dart';
 import 'package:petdemo/const/address.dart';
 import 'package:petdemo/main_screens/wrote_screen.dart';
 import 'package:petdemo/main_screens/profile_update_screen.dart';
-
 import 'package:petdemo/sign_step/pages/back_account.dart';
 import 'package:petdemo/sign_step/pages/condi_term.dart';
 import 'package:petdemo/sign_step/pages/nick_name.dart';
@@ -83,3 +80,4 @@ class IsHereMain extends StatelessWidget {
     );
   }
 }
+

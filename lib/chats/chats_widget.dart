@@ -1,3 +1,4 @@
+
 import 'package:petdemo/chats/payment_password.dart';
 import 'package:petdemo/const/address.dart';
 import '../chat_page/chat_page_widget.dart';
@@ -37,6 +38,7 @@ export 'chats_model.dart';
 // 하단부
 // 상단바 프로필(게시글 사진 들어갈 곳)
 
+
 void main() => runApp(
       MaterialApp(
         home: ChatsWidget(
@@ -57,6 +59,7 @@ class ChatsWidget extends StatefulWidget {
     this.userProfile,
   });
 
+
   final String? userName;
   final DocumentReference? chatUser;
   final DocumentReference? userRef;
@@ -65,6 +68,7 @@ class ChatsWidget extends StatefulWidget {
   @override
   _ChatsWidgetState createState() => _ChatsWidgetState();
 }
+
 
 List<String> imageList = [
   // 사진 리스트
@@ -371,7 +375,6 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                           thickness: 1.0,
                           color: Color(0xFFE0E0E0),
                         ),
-
                         Expanded(
                           //채팅 메시지를 표시하는 부분을 화면 표시
                           child: Padding(
@@ -417,7 +420,6 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                           ),
                                         );
                                       }
-
                                       List<
                                               ChatMessagesRecord> // 스트림에서 비동기로 가져온 채팅 메시지 목록을 변수에 할당
                                           listViewChatMessagesRecordList =
@@ -685,7 +687,6 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                     ],
                                                   ),
                                                 ),
-
                                               //두 번째 블록에서는 이미지 채팅 메시지를 보낸 사용자인 경우에만 사용자 프로필 이미지를 표시
                                               //텍스트 메시지가 있는 경우 (타 사용자 작성)
                                               if ((listViewChatMessagesRecord
@@ -1120,7 +1121,6 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                       ],
                     ),
                   ),
-
                   // 하단부
                   Padding(
                     //텍스트 박스
@@ -1149,7 +1149,6 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                   color: Color(0xFFE0E0E0),
                                 ),
                               ),
-
                               child: Padding(
                                 // 텍스트 상자
                                 padding: EdgeInsetsDirectional.fromSTEB(

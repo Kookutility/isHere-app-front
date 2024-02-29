@@ -95,3 +95,4 @@ class _AreaSearchScreenState extends State<AreaSearchScreen> {
     );
   }
 }
+

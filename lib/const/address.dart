@@ -10,8 +10,6 @@ const searchFoundScreen = '/searchFound';
 const mapScreen = '/map';
 const writeScreen = '/write';
 const areaSearchScreen = '/areaSearch';
-
-//myPage
 const notificationScreen = '/notification';
 const interestedListScreen = '/interestedList';
 const wroteListScreen = '/wroteList';
