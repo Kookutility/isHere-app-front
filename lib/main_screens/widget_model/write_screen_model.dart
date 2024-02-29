@@ -1,12 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 
 import '../write_screen.dart' show WriteScreen;
-import 'package:flutter/material.dart';
-
-// 첫 번째 패키지에서 FlutterFlowTheme 및 FormFieldController를 가져옵니다.
-// 플러터 플로우 패키지가 기존에 있기 때문에 이 경로를 설정하였음.
-import 'package:flutterflow_ui/src/flutter_flow/form_field_controller.dart';
-import 'package:flutterflow_ui/src/flutter_flow/flutter_flow_model.dart';
 
 class WriteScreenModel extends FlutterFlowModel<WriteScreen> {
   ///  State fields for stateful widgets in this page.
@@ -35,8 +30,10 @@ class WriteScreenModel extends FlutterFlowModel<WriteScreen> {
 
   /// Initialization and disposal methods.
 
+  @override
   void initState(BuildContext context) {}
 
+  @override
   void dispose() {
     unfocusNode.dispose();
     textFieldFocusNode1?.dispose();
@@ -52,7 +49,7 @@ class WriteScreenModel extends FlutterFlowModel<WriteScreen> {
     textController4?.dispose();
   }
 
-/// Action blocks are added here.
+  /// Action blocks are added here.
 
-/// Additional helper methods are added here.
+  /// Additional helper methods are added here.
 }

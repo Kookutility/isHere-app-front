@@ -1,22 +1,16 @@
-import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:petdemo/main_screens/widget_model/write_screen_model.dart';
-
-// 첫 번째 패키지에서 FlutterFlowTheme 및 FormFieldController를 가져옵니다.
-// 플러터 플로우 패키지가 기존에 있기 때문에 이 경로를 설정하였음.
-import 'package:flutterflow_ui/src/flutter_flow/flutter_flow_model.dart';
-import 'package:flutterflow_ui/src/flutter_flow/flutter_flow_theme.dart';
-import 'package:flutterflow_ui/src/flutter_flow/form_field_controller.dart';
 
 export 'widget_model/write_screen_model.dart';
 
 class WriteScreen extends StatefulWidget {
-  const WriteScreen({Key? key}) : super(key: key);
+  const WriteScreen({super.key});
 
   @override
-  _WriteScreenState createState() => _WriteScreenState();
+  State<WriteScreen> createState() => _WriteScreenState();
 }
 
 class _WriteScreenState extends State<WriteScreen> {
@@ -133,7 +127,7 @@ class _WriteScreenState extends State<WriteScreen> {
                       '제목(분실물 습득)',
                       textAlign: TextAlign.start,
                       style:
-                      TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                          TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                     ),
                   ),
                   Form(
@@ -191,7 +185,7 @@ class _WriteScreenState extends State<WriteScreen> {
                       '즉시 사례 하기',
                       textAlign: TextAlign.start,
                       style:
-                      TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                          TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                     ),
                   ),
                   Padding(
@@ -205,9 +199,9 @@ class _WriteScreenState extends State<WriteScreen> {
                         textStyle: FlutterFlowTheme.of(context)
                             .bodyMedium
                             .override(
-                          fontFamily: 'Readex Pro',
-                          color: FlutterFlowTheme.of(context).primaryText,
-                        ),
+                              fontFamily: 'Readex Pro',
+                              color: FlutterFlowTheme.of(context).primaryText,
+                            ),
                         iconColor: FlutterFlowTheme.of(context).alternate,
                         iconSize: 18,
                         elevation: 4,
@@ -218,9 +212,9 @@ class _WriteScreenState extends State<WriteScreen> {
                         textStyle: FlutterFlowTheme.of(context)
                             .bodyMedium
                             .override(
-                          fontFamily: 'Readex Pro',
-                          color: FlutterFlowTheme.of(context).secondaryText,
-                        ),
+                              fontFamily: 'Readex Pro',
+                              color: FlutterFlowTheme.of(context).secondaryText,
+                            ),
                         iconColor: FlutterFlowTheme.of(context).secondaryText,
                         iconSize: 18,
                         elevation: 0,
@@ -232,8 +226,8 @@ class _WriteScreenState extends State<WriteScreen> {
                       alignment: WrapAlignment.start,
                       controller: _model.choiceChipsValueController ??=
                           FormFieldController<List<String>>(
-                            [],
-                          ),
+                        [],
+                      ),
                     ),
                   ),
                   Padding(
@@ -253,7 +247,7 @@ class _WriteScreenState extends State<WriteScreen> {
                       '사례금 등록',
                       textAlign: TextAlign.start,
                       style:
-                      TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                          TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                     ),
                   ),
                   Padding(
@@ -299,7 +293,7 @@ class _WriteScreenState extends State<WriteScreen> {
                       style: FlutterFlowTheme.of(context).bodyMedium,
                       keyboardType: TextInputType.number,
                       validator:
-                      _model.textController2Validator.asValidator(context),
+                          _model.textController2Validator.asValidator(context),
                     ),
                   ),
                   Padding(
@@ -308,7 +302,7 @@ class _WriteScreenState extends State<WriteScreen> {
                       '자세한 설명',
                       textAlign: TextAlign.start,
                       style:
-                      TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                          TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                     ),
                   ),
                   Padding(
@@ -321,7 +315,7 @@ class _WriteScreenState extends State<WriteScreen> {
                       obscureText: false,
                       decoration: InputDecoration(
                         hintText:
-                        '1.분실물 정보 요약\n잃어버린 장소를 포함한 분실물 정보 요약\n\n2.잃어버린 장소 혹은 찾은 장소\n구체적인 잃어버린 장소 혹은 찾은 장소 기재\n\n3.분실물 정보\n물건의 종류와 특징적인 특징 작성\n\n4.연락처\n연락 가능한 방법(전화번호 등) 작성\n\n5.추가 정보\n분실 시간, 분실 경위 등 추가 정보 작성',
+                            '1.분실물 정보 요약\n잃어버린 장소를 포함한 분실물 정보 요약\n\n2.잃어버린 장소 혹은 찾은 장소\n구체적인 잃어버린 장소 혹은 찾은 장소 기재\n\n3.분실물 정보\n물건의 종류와 특징적인 특징 작성\n\n4.연락처\n연락 가능한 방법(전화번호 등) 작성\n\n5.추가 정보\n분실 시간, 분실 경위 등 추가 정보 작성',
                         labelStyle: FlutterFlowTheme.of(context).labelMedium,
                         hintStyle: FlutterFlowTheme.of(context).labelMedium,
                         enabledBorder: OutlineInputBorder(
@@ -355,7 +349,7 @@ class _WriteScreenState extends State<WriteScreen> {
                       ),
                       style: FlutterFlowTheme.of(context).bodyMedium,
                       validator:
-                      _model.textController3Validator.asValidator(context),
+                          _model.textController3Validator.asValidator(context),
                     ),
                   ),
                   Padding(
@@ -364,7 +358,7 @@ class _WriteScreenState extends State<WriteScreen> {
                       '분실 전, 마지막으로 확인한 위치',
                       textAlign: TextAlign.start,
                       style:
-                      TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                          TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                     ),
                   ),
                   Padding(
@@ -409,7 +403,7 @@ class _WriteScreenState extends State<WriteScreen> {
                       ),
                       style: FlutterFlowTheme.of(context).bodyMedium,
                       validator:
-                      _model.textController4Validator.asValidator(context),
+                          _model.textController4Validator.asValidator(context),
                     ),
                   ),
                   Padding(
