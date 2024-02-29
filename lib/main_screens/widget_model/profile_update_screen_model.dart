@@ -1,10 +1,9 @@
-
-import 'package:flutter/material.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
+import '../profile_update_screen.dart' show ProfileUpdateScreenWidget;
+import 'package:flutter/material.dart';
 
-import '../write_screen.dart' show WriteScreen;
-
-class WriteScreenModel extends FlutterFlowModel<WriteScreen> {
+class ProfileUpdateScreenModel
+    extends FlutterFlowModel<ProfileUpdateScreenWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -13,9 +12,6 @@ class WriteScreenModel extends FlutterFlowModel<WriteScreen> {
   FocusNode? textFieldFocusNode1;
   TextEditingController? textController1;
   String? Function(BuildContext, String?)? textController1Validator;
-  // State field(s) for ChoiceChips widget.
-  String? choiceChipsValue;
-  FormFieldController<List<String>>? choiceChipsValueController;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode2;
   TextEditingController? textController2;
@@ -31,10 +27,8 @@ class WriteScreenModel extends FlutterFlowModel<WriteScreen> {
 
   /// Initialization and disposal methods.
 
-  @override
   void initState(BuildContext context) {}
 
-  @override
   void dispose() {
     unfocusNode.dispose();
     textFieldFocusNode1?.dispose();

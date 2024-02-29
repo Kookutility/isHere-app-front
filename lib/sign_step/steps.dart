@@ -3,11 +3,20 @@ import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:petdemo/common/basic_layout.dart';
 import 'package:petdemo/const/address.dart';
 import 'package:petdemo/sign_step/pages/back_account.dart';
+import 'package:petdemo/sign_step/pages/condi_term.dart';
 import 'package:petdemo/sign_step/pages/nick_name.dart';
+import 'package:petdemo/sign_step/pages/password.dart';
 import 'package:petdemo/sign_step/pages/phone.dart';
 import 'package:petdemo/sign_step/pages/sign_up_done.dart';
 import 'package:petdemo/sign_step/pages/tutorial.dart';
 import 'package:petdemo/sign_step/pages/verifyPhone.dart';
+
+/*
+* 이즈히어 자체 회원가입 단계에 대한 기본적인 틀
+* 
+
+
+*/
 
 class SignUpStepsScreen extends StatefulWidget {
   const SignUpStepsScreen({super.key});
@@ -17,36 +26,55 @@ class SignUpStepsScreen extends StatefulWidget {
 }
 
 class _SignUpStepsScreenState extends State<SignUpStepsScreen> {
-  int pageIndex = 0;
-  double percentBar = 0.0;
-  late double amountOfProgress = 0.0;
-  List<Widget> signUpPages = [];
+  int pageIndex = 0; // 첫 페이지 인덱스
+  double percentBar = 0.0; // 첫 페이지 페센트
+  late double amountOfProgress = 0.0; // 퍼센트바에 대한 회원가입 단계별 증가량
+  List<Widget> signUpPages = []; // 페이지 리스트
 
   @override
   void initState() {
     super.initState();
     signUpPages = [
       PhoneSignScreen(
-        onPhoneContinuePressed: onPhoneContinuePressed,
+        onPhoneContinuePressed: pushPage,
       ),
       VerifyPhoneScreen(
-        onVerifyContinuePressed: onVerifyContinuePressed,
+        onVerifyContinuePressed: pushPage,
       ),
       NickNameScreen(
-        onCondAgreePressed: onCondAgreePressed,
+        onCondAgreePressed: pushPage,
+      ),
+      CondTermScreen(
+        onCondAgreePressed: pushPage,
+      ),
+      PasswordScreen(
+        description: "앱 사용시 본인 확인을 위한 비밀번호를 설정합니다.",
+        onContinuePressed: pushPage,
+      ),
+      PasswordScreen(
+        description: "방금 입력하신 비밀번호를 한번 더 적어주세요.",
+        onContinuePressed: pushPage,
       ),
       BankAccountScreen(
-        onAccountStartPressed: onAccountStartPressed,
+        onAccountStartPressed: pushPage,
       ),
       SignUpDoneScreen(
         onDonePressed: onDonePressed,
       ),
       TutorialScreen(),
-    ];
-    amountOfProgress = 1 / signUpPages.length;
-    percentBar += amountOfProgress;
+    ]; // 회원가입 페이지에 필요한 페이지들 할당.
+    amountOfProgress =
+        1 / signUpPages.length; // 페이지 개수 등분 중에서 한 페이지 크기 만큼 증가량을 설정.
+    percentBar += amountOfProgress; // 현재 페이지에 대한 퍼센트 증가.
   }
 
+  /* 뒤로가기 버튼
+  * 1. 뒤로가기 버튼을 눌렀을 때 [popPage()메소드]
+      - 페이지 리스트의 인덱스를 감소시켜, 바디를 변경.
+      - 퍼센트 바를 이전 페이지(단계)에 맞게 동기화.
+  * 2. 페이지 리스트의 인덱스가 0인 경우(첫 페이지)
+      - SignUpStepsScreen을 pop해 페이지 전환.
+  */
   void backButtonPressed() {
     if (pageIndex == 0) {
       Navigator.of(context).pop();
@@ -62,31 +90,22 @@ class _SignUpStepsScreenState extends State<SignUpStepsScreen> {
     });
   }
 
+  /* 다음 단계 버튼
+  * 1. 다음으로 가는 버튼을 눌렀을 때 [pushPage()메소드]
+      - 페이지 리스트의 인덱스를 증가시켜, 다음 페이지가 보이도록 바디를 변경.
+      - 퍼센트 바를 다음 페이지(단계)에 맞게 동기화.
+  * 2. 페이지 리스트의 인덱스가 마지막인 경우(마지막 페이지) [onDonePressed()메소드]
+      - SignUpStepsScreen에서 라우터를 이용해 다른 페이지로 전환. 
+  */
   void pushPage() {
     pageIndex++;
     percentBar += amountOfProgress;
     setState(() {});
   }
 
-  void onPhoneContinuePressed() {
-    pushPage();
-  }
-
-  void onVerifyContinuePressed() {
-    pushPage();
-  }
-
-  void onCondAgreePressed() {
-    pushPage();
-  }
-
   void onDonePressed() {
     Navigator.of(context)
         .pushNamedAndRemoveUntil(tutorialScreen, (route) => false);
-  }
-
-  void onAccountStartPressed() {
-    pushPage();
   }
 
   @override

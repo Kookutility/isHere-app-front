@@ -1,16 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:petdemo/const/address.dart';
 
+/* 회원가입 시작 페이지
+  1. 이즈히어 자체 회원가입
+  2. 네이버 회원가입
+  3. 카카오톡 회원가입
+*/
+
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    /* 1. 이즈히어 자체 회원가입 버튼을 눌렀을 때
+    */
     signUpPressed() {
       Navigator.of(context).pushNamed(signUpStepsScreen);
     }
 
+    /* 2. 네이버 버튼을 눌렀을 때
+    */
     naverPressed() {}
+
+    /* 3. 카카오 버튼을 눌렀을 때
+    */
     kakaoPressed() {}
 
     return Scaffold(
@@ -162,12 +175,14 @@ class SignUpScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Flexible(
-                              flex: 1,
-                              fit: FlexFit.loose,
-                              child: SizedBox(
-                                  width: MediaQuery.of(context).size.width / 20,
-                                  child: Image.asset(
-                                      'assets/icons/naver_white.png'))),
+                            flex: 1,
+                            fit: FlexFit.loose,
+                            child: SizedBox(
+                              width: MediaQuery.of(context).size.width / 20,
+                              child:
+                                  Image.asset('assets/icons/naver_white.png'),
+                            ),
+                          ),
                           Flexible(
                             flex: 3,
                             fit: FlexFit.loose,

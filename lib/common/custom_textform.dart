@@ -65,11 +65,11 @@ class CustomTextFormField extends StatelessWidget {
         hintText: hintText,
         hintStyle: const TextStyle(
           color: Color.fromRGBO(68, 65, 66, 1),
-          fontSize: 19.0,
+          fontSize: 14.0,
         ),
         errorText: errorText,
         errorStyle: const TextStyle(
-          fontSize: 15.0,
+          fontSize: 14.0,
           fontWeight: FontWeight.bold,
         ),
         fillColor: Colors.white,

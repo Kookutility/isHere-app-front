@@ -97,6 +97,36 @@ class MyScreen extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height / 25,
+                          width: MediaQuery.of(context).size.width * 4 / 13,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              Navigator.of(context)
+                                  .pushNamed(profileUpdateScreen);
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Color.fromRGBO(242, 242, 242, 1),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15.0),
+                              ),
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  '프로필 수정',
+                                  style: TextStyle(
+                                    fontFamily: 'Pretendard-ExtraBold',
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                    color: Color.fromRGBO(78, 64, 234, 0.81),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ],
@@ -140,7 +170,7 @@ class MyScreen extends StatelessWidget {
                                 '작성한 글',
                                 style: TextStyle(
                                   fontSize:
-                                  MediaQuery.of(context).size.width / 25,
+                                      MediaQuery.of(context).size.width / 25,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
@@ -156,7 +186,7 @@ class MyScreen extends StatelessWidget {
                                 Image.asset(
                                   'assets/icons/star_purple.png',
                                   height:
-                                  MediaQuery.of(context).size.width / 15,
+                                      MediaQuery.of(context).size.width / 15,
                                 ),
                                 SizedBox(
                                   width: 10,
@@ -165,7 +195,7 @@ class MyScreen extends StatelessWidget {
                                   '관심목록',
                                   style: TextStyle(
                                     fontSize:
-                                    MediaQuery.of(context).size.width / 25,
+                                        MediaQuery.of(context).size.width / 25,
                                     fontWeight: FontWeight.w500,
                                   ),
                                 ),
@@ -182,7 +212,7 @@ class MyScreen extends StatelessWidget {
                                 Image.asset(
                                   'assets/icons/trade_purple.png',
                                   height:
-                                  MediaQuery.of(context).size.width / 15,
+                                      MediaQuery.of(context).size.width / 15,
                                 ),
                                 SizedBox(
                                   width: 10,
@@ -191,7 +221,7 @@ class MyScreen extends StatelessWidget {
                                   '거래내역',
                                   style: TextStyle(
                                     fontSize:
-                                    MediaQuery.of(context).size.width / 25,
+                                        MediaQuery.of(context).size.width / 25,
                                     fontWeight: FontWeight.w500,
                                   ),
                                 ),

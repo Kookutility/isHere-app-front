@@ -39,18 +39,10 @@ class CondTermScreen extends StatelessWidget {
               SizedBox(
                 height: 30,
               ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      width: MediaQuery.of(context).size.width * 3 / 4,
-                      height: MediaQuery.of(context).size.height / 2,
-                      color: Color.fromRGBO(224, 224, 224, 1),
-                    ),
-                  ],
-                ),
+              Container(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height / 2,
+                color: Color.fromRGBO(224, 224, 224, 1),
               ),
             ],
           ),

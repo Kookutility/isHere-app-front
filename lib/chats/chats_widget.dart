@@ -1,6 +1,6 @@
-import 'package:petdemo/const/address.dart';
 
-import '../auth_screens/sigup_screen.dart';
+import 'package:petdemo/chats/payment_password.dart';
+import 'package:petdemo/const/address.dart';
 import '../chat_page/chat_page_widget.dart';
 import '../sign_step/pages/tutorial.dart';
 import '../sign_step/steps.dart';
@@ -38,14 +38,27 @@ export 'chats_model.dart';
 // 하단부
 // 상단바 프로필(게시글 사진 들어갈 곳)
 
+
+void main() => runApp(
+      MaterialApp(
+        home: ChatsWidget(
+          chatUser: null,
+          userName: '',
+          userRef: null,
+          userProfile: '',
+        ),
+      ),
+    );
+
 class ChatsWidget extends StatefulWidget {
   const ChatsWidget({
-    Key? key,
+    super.key,
     this.userName,
     this.chatUser, // 채팅방 이름
     this.userRef,
     this.userProfile,
-  }) : super(key: key);
+  });
+
 
   final String? userName;
   final DocumentReference? chatUser;
@@ -56,7 +69,9 @@ class ChatsWidget extends StatefulWidget {
   _ChatsWidgetState createState() => _ChatsWidgetState();
 }
 
-List<String> imageList = [ // 사진 리스트
+
+List<String> imageList = [
+  // 사진 리스트
   'assets/icons/photo_purple.png',
   'assets/icons/send_money_gradation.png',
   'assets/icons/report_gradation.png',
@@ -85,7 +100,6 @@ class _ChatsWidgetState extends State<ChatsWidget> {
 
   @override
   Widget build(BuildContext context) {
-
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
 
@@ -157,13 +171,13 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
-
-                        Padding( // 상단바 프로필(게시글 사진 들어갈 곳)
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                MediaQuery.of(context).size.width * (4 / 411),
-                                MediaQuery.of(context).size.width * (24 / 411),
-                                MediaQuery.of(context).size.width * (20 / 411),
-                                0.0),
+                        Padding(
+                          // 상단바 프로필(게시글 사진 들어갈 곳)
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              MediaQuery.of(context).size.width * (4 / 411),
+                              MediaQuery.of(context).size.width * (24 / 411),
+                              MediaQuery.of(context).size.width * (20 / 411),
+                              0.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -175,7 +189,8 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                 icon: Icon(
                                   Icons.more_vert_sharp,
                                   color: Color(0xFFBDBDBD),
-                                  size: MediaQuery.of(context).size.width * (30 / 411),
+                                  size: MediaQuery.of(context).size.width *
+                                      (30 / 411),
                                 ),
                                 onPressed: () {
                                   showModalBottomSheet(
@@ -191,7 +206,8 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                               onTap: () {
                                                 // '신고하기' 항목을 선택했을 때 수행할 동작 추가
                                                 print('신고하기');
-                                                Navigator.pop(context); // 모달 바텀 시트 닫기
+                                                Navigator.pop(
+                                                    context); // 모달 바텀 시트 닫기
                                               },
                                             ),
                                             ListTile(
@@ -200,7 +216,8 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                               onTap: () {
                                                 // '차단하기' 항목을 선택했을 때 수행할 동작 추가
                                                 print('차단하기');
-                                                Navigator.pop(context); // 모달 바텀 시트 닫기
+                                                Navigator.pop(
+                                                    context); // 모달 바텀 시트 닫기
                                               },
                                             ),
                                             ListTile(
@@ -210,17 +227,27 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                 // '대화방 나가기' 항목을 선택했을 때 경고 다이얼로그 표시
                                                 showDialog(
                                                   context: context,
-                                                  builder: (BuildContext context) {
+                                                  builder:
+                                                      (BuildContext context) {
                                                     return AlertDialog(
-                                                      contentPadding: EdgeInsets.all(MediaQuery.of(context).size.width * (50 / 411)), // 패딩을 조절하여 중앙 정렬
+                                                      contentPadding: EdgeInsets
+                                                          .all(MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .width *
+                                                              (50 /
+                                                                  411)), // 패딩을 조절하여 중앙 정렬
                                                       content: Column(
-                                                        mainAxisSize: MainAxisSize.min,
+                                                        mainAxisSize:
+                                                            MainAxisSize.min,
                                                         children: [
                                                           Text(
                                                             '대화 내용이 모두 삭제됩니다.\n계속 하시겠습니까?',
-                                                            textAlign: TextAlign.center,
+                                                            textAlign: TextAlign
+                                                                .center,
                                                             style: TextStyle(
-                                                              fontSize: 18.0, // 텍스트 크기 조정
+                                                              fontSize:
+                                                                  18.0, // 텍스트 크기 조정
                                                             ),
                                                           ),
                                                         ],
@@ -232,16 +259,23 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                             print('확인 선택');
 
                                                             // chatUser(채팅방 이름)에 해당하는 문서를 삭제
-                                                            if (widget.chatUser != null) {
-                                                               widget.chatUser!.delete();
+                                                            if (widget
+                                                                    .chatUser !=
+                                                                null) {
+                                                              widget.chatUser!
+                                                                  .delete();
                                                             }
 
-                                                            Navigator.popUntil(context, (route) => route.isFirst); // 세 번 뒤로 가기
+                                                            Navigator.popUntil(
+                                                                context,
+                                                                (route) => route
+                                                                    .isFirst); // 세 번 뒤로 가기
                                                           },
                                                           child: Text(
                                                             '확인',
                                                             style: TextStyle(
-                                                              fontSize: 18.0, // 버튼 텍스트 크기 조정
+                                                              fontSize:
+                                                                  18.0, // 버튼 텍스트 크기 조정
                                                             ),
                                                           ),
                                                         ),
@@ -249,13 +283,16 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                           onPressed: () {
                                                             // "아니오"를 선택했을 때 수행할 동작 추가
                                                             print('취소 선택');
-                                                            Navigator.pop(context); // 경고 다이얼로그 닫기
-                                                            Navigator.pop(context); // showModalBottomSheet 닫기
+                                                            Navigator.pop(
+                                                                context); // 경고 다이얼로그 닫기
+                                                            Navigator.pop(
+                                                                context); // showModalBottomSheet 닫기
                                                           },
                                                           child: Text(
                                                             '취소',
                                                             style: TextStyle(
-                                                              fontSize: 18.0, // 버튼 텍스트 크기 조정
+                                                              fontSize:
+                                                                  18.0, // 버튼 텍스트 크기 조정
                                                             ),
                                                           ),
                                                         ),
@@ -275,8 +312,10 @@ class _ChatsWidgetState extends State<ChatsWidget> {
 
                               SizedBox(width: 5.0), // 간격 조정
                               Container(
-                                width: MediaQuery.of(context).size.width * (60 / 411),
-                                height: MediaQuery.of(context).size.height * (60 / 867),
+                                width: MediaQuery.of(context).size.width *
+                                    (60 / 411),
+                                height: MediaQuery.of(context).size.height *
+                                    (60 / 867),
                                 clipBehavior: Clip.antiAlias,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(20),
@@ -295,19 +334,23 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                   children: [
                                     Text(
                                       '그린 플로럴',
-                                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                        fontFamily: 'Urbanist',
-                                        color: Color(0xc9000000),
-                                        fontSize: 14.0,
-                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Urbanist',
+                                            color: Color(0xc9000000),
+                                            fontSize: 14.0,
+                                          ),
                                     ),
                                     Text(
                                       '[귀중품] 구의역쪽에서 구찌 반지갑\n분실했습니다.',
-                                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                        fontFamily: 'Urbanist',
-                                        color: Color(0xa5000000),
-                                        fontSize: 14.0,
-                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Urbanist',
+                                            color: Color(0xa5000000),
+                                            fontSize: 14.0,
+                                          ),
                                     ),
                                   ],
                                 ),
@@ -316,21 +359,24 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                               Image.asset(
                                 'assets/icons/right_gray.png',
                                 color: Color(0xFFBDBDBD),
-                                width: MediaQuery.of(context).size.width * (24 / 411),
-                                height: MediaQuery.of(context).size.height * (24 / 867),
+                                width: MediaQuery.of(context).size.width *
+                                    (24 / 411),
+                                height: MediaQuery.of(context).size.height *
+                                    (24 / 867),
                               ),
                             ],
                           ),
                         ),
 
-
-                        Divider( //채팅 메시지 목록과 다른 UI 요소 간의 구분을 위한 수평 구분선을 생성
-                          height: MediaQuery.of(context).size.height * (48 / 867),
+                        Divider(
+                          //채팅 메시지 목록과 다른 UI 요소 간의 구분을 위한 수평 구분선을 생성
+                          height:
+                              MediaQuery.of(context).size.height * (48 / 867),
                           thickness: 1.0,
                           color: Color(0xFFE0E0E0),
                         ),
-
-                        Expanded( //채팅 메시지를 표시하는 부분을 화면 표시
+                        Expanded(
+                          //채팅 메시지를 표시하는 부분을 화면 표시
                           child: Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 MediaQuery.of(context).size.width * (20 / 411),
@@ -345,7 +391,10 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                     stream: queryChatMessagesRecord(
                                       queryBuilder: (chatMessagesRecord) =>
                                           chatMessagesRecord
-                                              .where('chat_user', isEqualTo: widget.chatUser,)
+                                              .where(
+                                                'chat_user',
+                                                isEqualTo: widget.chatUser,
+                                              )
                                               .orderBy('timestamp'),
                                     ),
                                     builder: (context, snapshot) {
@@ -353,8 +402,14 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                       if (!snapshot.hasData) {
                                         return Center(
                                           child: SizedBox(
-                                            width: MediaQuery.of(context).size.width * (50 / 411),
-                                            height: MediaQuery.of(context).size.height * (50 / 867),
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                (50 / 411),
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                (50 / 867),
                                             child: CircularProgressIndicator(
                                               valueColor:
                                                   AlwaysStoppedAnimation<Color>(
@@ -365,17 +420,20 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                           ),
                                         );
                                       }
-
-                                      List<ChatMessagesRecord> // 스트림에서 비동기로 가져온 채팅 메시지 목록을 변수에 할당
+                                      List<
+                                              ChatMessagesRecord> // 스트림에서 비동기로 가져온 채팅 메시지 목록을 변수에 할당
                                           listViewChatMessagesRecordList =
                                           snapshot.data!;
 
-                                      return ListView.builder( // 동적으로 아이템을 생성하여 스크롤 가능한 목록을 생성
+                                      return ListView.builder(
+                                        // 동적으로 아이템을 생성하여 스크롤 가능한 목록을 생성
                                         padding: EdgeInsets.zero,
                                         primary: false,
                                         shrinkWrap: true,
                                         scrollDirection: Axis.vertical,
-                                        itemCount: listViewChatMessagesRecordList.length,
+                                        itemCount:
+                                            listViewChatMessagesRecordList
+                                                .length,
                                         itemBuilder: (context, listViewIndex) {
                                           final listViewChatMessagesRecord =
                                               listViewChatMessagesRecordList[
@@ -387,24 +445,43 @@ class _ChatsWidgetState extends State<ChatsWidget> {
 
                                               //첫 번째 블록에서는 상대방이 보낸 이미지인 경우에만 사용자 프로필 이미지를 표시
                                               //이미지 메시지가 있는 경우 (타 사용자 작성)
-                                              if ((listViewChatMessagesRecord.user != currentUserReference) &&
-                                                  (listViewChatMessagesRecord.image != null && listViewChatMessagesRecord.image != ''))
+                                              if ((listViewChatMessagesRecord
+                                                          .user !=
+                                                      currentUserReference) &&
+                                                  (listViewChatMessagesRecord
+                                                          .image !=
+                                                      ''))
                                                 Padding(
                                                   padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0,
-                                                      MediaQuery.of(context).size.width * (24 / 411),
-                                                      0.0,
-                                                      0.0),
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .width *
+                                                              (24 / 411),
+                                                          0.0,
+                                                          0.0),
                                                   child: Row(
-                                                    mainAxisSize: MainAxisSize.max,
-                                                    mainAxisAlignment: MainAxisAlignment.start,
-                                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.start,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
                                                     children: [
                                                       // 1. 사용자 프로필 이미지
                                                       Container(
-                                                        width: MediaQuery.of(context).size.width * (36 / 411),
-                                                        height: MediaQuery.of(context).size.height * (36 / 867),
+                                                        width: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .width *
+                                                            (36 / 411),
+                                                        height: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .height *
+                                                            (36 / 867),
                                                         clipBehavior:
                                                             Clip.antiAlias,
                                                         decoration:
@@ -413,47 +490,90 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                               BoxShape.circle,
                                                         ),
                                                         // 상대방 프로필 사진 (이미지를 보낼때)
-                                                        child: widget.userProfile != null && widget.userProfile!.isNotEmpty
+                                                        child: widget.userProfile !=
+                                                                    null &&
+                                                                widget
+                                                                    .userProfile!
+                                                                    .isNotEmpty
                                                             ? Image.network(
-                                                          widget.userProfile!,
-                                                          fit: BoxFit.cover,
-                                                        )
+                                                                widget
+                                                                    .userProfile!,
+                                                                fit: BoxFit
+                                                                    .cover,
+                                                              )
                                                             : Image.asset(
-                                                          'assets/images/profile.png',
-                                                          fit: BoxFit.cover,
-                                                        ),
+                                                                'assets/images/profile.png',
+                                                                fit: BoxFit
+                                                                    .cover,
+                                                              ),
                                                       ),
 
                                                       // 2. 이미지 채팅 메시지 컨테이너
                                                       Padding(
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(MediaQuery.of(context).size.width * (16 / 411),
+                                                        padding: EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .width *
+                                                                    (16 / 411),
                                                                 0.0,
                                                                 0.0,
                                                                 0.0),
                                                         child: Container(
-                                                          width: MediaQuery.of(context).size.width * (300 / 411),
-                                                          height: MediaQuery.of(context).size.height * (180 / 867),
+                                                          width: MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .width *
+                                                              (300 / 411),
+                                                          height: MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .height *
+                                                              (180 / 867),
                                                           constraints:
                                                               BoxConstraints(
-                                                            maxWidth: MediaQuery.of(context).size.width * (260 / 411),
-                                                            maxHeight: MediaQuery.of(context).size.height * (180 / 867),
+                                                            maxWidth: MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .width *
+                                                                (260 / 411),
+                                                            maxHeight: MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .height *
+                                                                (180 / 867),
                                                           ),
                                                           decoration:
                                                               BoxDecoration(
-                                                            color: FlutterFlowTheme.of(context).secondaryBackground,
-                                                            image: DecorationImage(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .secondaryBackground,
+                                                            image:
+                                                                DecorationImage(
                                                               fit: BoxFit.cover,
-                                                              image: Image.network(
-                                                                listViewChatMessagesRecord.image,
+                                                              image:
+                                                                  Image.network(
+                                                                listViewChatMessagesRecord
+                                                                    .image,
                                                               ).image,
                                                             ),
-                                                            borderRadius: BorderRadius.only(
-                                                              bottomLeft: Radius.circular(24.0),
-                                                              bottomRight: Radius.circular(24.0),
-                                                              topLeft: Radius.circular(24.0),
-                                                              topRight: Radius.circular(24.0),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .only(
+                                                              bottomLeft: Radius
+                                                                  .circular(
+                                                                      24.0),
+                                                              bottomRight:
+                                                                  Radius
+                                                                      .circular(
+                                                                          24.0),
+                                                              topLeft: Radius
+                                                                  .circular(
+                                                                      24.0),
+                                                              topRight: Radius
+                                                                  .circular(
+                                                                      24.0),
                                                             ),
                                                           ),
                                                         ),
@@ -464,48 +584,100 @@ class _ChatsWidgetState extends State<ChatsWidget> {
 
                                               //채팅 메시지가 현재 사용자에 의해 작성되었고, 해당 메시지에 이미지가 첨부되어 있을 경우
                                               //이미지 메시지가 있는 경우 (타 사용자 작성)
-                                              if ((listViewChatMessagesRecord.user == currentUserReference) &&
-                                                  (listViewChatMessagesRecord.image != null && listViewChatMessagesRecord.image != ''))
-
+                                              if ((listViewChatMessagesRecord
+                                                          .user ==
+                                                      currentUserReference) &&
+                                                  (listViewChatMessagesRecord
+                                                          .image !=
+                                                      ''))
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0,
-                                                      MediaQuery.of(context).size.width * (24 / 411),
-                                                      0.0,
-                                                      0.0),
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0,
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .width *
+                                                              (24 / 411),
+                                                          0.0,
+                                                          0.0),
                                                   child: Row(
-                                                    mainAxisSize: MainAxisSize.max,
-                                                    mainAxisAlignment: MainAxisAlignment.end,
-                                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.end,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
                                                     children: [
                                                       // 이미지 채팅 메시지 컨테이너
                                                       Container(
-                                                        width: MediaQuery.of(context).size.width * (300 / 411),
-                                                        height: MediaQuery.of(context).size.height * (180 / 867),
-                                                        constraints: BoxConstraints(
-                                                          maxWidth: MediaQuery.of(context).size.width * (260 / 411),
-                                                          maxHeight: MediaQuery.of(context).size.height * (180 / 867),
+                                                        width: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .width *
+                                                            (300 / 411),
+                                                        height: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .height *
+                                                            (180 / 867),
+                                                        constraints:
+                                                            BoxConstraints(
+                                                          maxWidth: MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .width *
+                                                              (260 / 411),
+                                                          maxHeight:
+                                                              MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .height *
+                                                                  (180 / 867),
                                                         ),
-                                                        decoration: BoxDecoration(
-                                                          color: FlutterFlowTheme.of(context).secondaryBackground,
-                                                          image: DecorationImage(
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryBackground,
+                                                          image:
+                                                              DecorationImage(
                                                             fit: BoxFit.cover,
-                                                            image: Image.network(listViewChatMessagesRecord.image,
+                                                            image:
+                                                                Image.network(
+                                                              listViewChatMessagesRecord
+                                                                  .image,
                                                             ).image,
                                                           ),
-                                                          borderRadius: BorderRadius.only(
-                                                            bottomLeft: Radius.circular(24.0),
-                                                            bottomRight: Radius.circular(24.0),
-                                                            topLeft: Radius.circular(24.0),
-                                                            topRight: Radius.circular(24.0),
+                                                          borderRadius:
+                                                              BorderRadius.only(
+                                                            bottomLeft:
+                                                                Radius.circular(
+                                                                    24.0),
+                                                            bottomRight:
+                                                                Radius.circular(
+                                                                    24.0),
+                                                            topLeft:
+                                                                Radius.circular(
+                                                                    24.0),
+                                                            topRight:
+                                                                Radius.circular(
+                                                                    24.0),
                                                           ),
                                                         ),
                                                         child: Stack(
                                                           children: [
                                                             // 체크 아이콘
                                                             Align(
-                                                              alignment: AlignmentDirectional(0.90, 0.85),
-                                                              child: Icon(FFIcons.kcheckAll,
-                                                                color: Colors.white,
+                                                              alignment:
+                                                                  AlignmentDirectional(
+                                                                      0.90,
+                                                                      0.85),
+                                                              child: Icon(
+                                                                FFIcons
+                                                                    .kcheckAll,
+                                                                color: Colors
+                                                                    .white,
                                                                 size: 16.0,
                                                               ),
                                                             ),
@@ -515,93 +687,184 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                     ],
                                                   ),
                                                 ),
-
-
                                               //두 번째 블록에서는 이미지 채팅 메시지를 보낸 사용자인 경우에만 사용자 프로필 이미지를 표시
                                               //텍스트 메시지가 있는 경우 (타 사용자 작성)
-                                              if ((listViewChatMessagesRecord.user != currentUserReference) &&
-                                                  (listViewChatMessagesRecord.text != null && listViewChatMessagesRecord.text != ''))
-
+                                              if ((listViewChatMessagesRecord
+                                                          .user !=
+                                                      currentUserReference) &&
+                                                  (listViewChatMessagesRecord
+                                                          .text !=
+                                                      ''))
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0,
-                                                      MediaQuery.of(context).size.width * (24 / 411),
-                                                      0.0,
-                                                      0.0),
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0,
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .width *
+                                                              (24 / 411),
+                                                          0.0,
+                                                          0.0),
                                                   child: Row(
-                                                    mainAxisSize: MainAxisSize.max,
-                                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
                                                     children: [
                                                       Container(
-                                                        width: MediaQuery.of(context).size.width * (36 / 411),
-                                                        height: MediaQuery.of(context).size.height * (36 / 867),
-                                                        clipBehavior: Clip.antiAlias,
-                                                        decoration: BoxDecoration(
-                                                          shape: BoxShape.circle,
+                                                        width: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .width *
+                                                            (36 / 411),
+                                                        height: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .height *
+                                                            (36 / 867),
+                                                        clipBehavior:
+                                                            Clip.antiAlias,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          shape:
+                                                              BoxShape.circle,
                                                         ),
                                                         // 상대방 프로필 사진 (텍스트만 보낼때)
-                                                        child: widget.userProfile != null && widget.userProfile!.isNotEmpty
+                                                        child: widget.userProfile !=
+                                                                    null &&
+                                                                widget
+                                                                    .userProfile!
+                                                                    .isNotEmpty
                                                             ? Image.network(
-                                                          widget.userProfile!,
-                                                          fit: BoxFit.cover,
-                                                        )
+                                                                widget
+                                                                    .userProfile!,
+                                                                fit: BoxFit
+                                                                    .cover,
+                                                              )
                                                             : Image.asset(
-                                                          'assets/images/profile.png',
-                                                          fit: BoxFit.cover,
-                                                        ),
+                                                                'assets/images/profile.png',
+                                                                fit: BoxFit
+                                                                    .cover,
+                                                              ),
                                                       ),
-
-                                                      Padding( //상대방 채팅 창
-                                                        padding:
-                                                            EdgeInsetsDirectional.fromSTEB(
-                                                                MediaQuery.of(context).size.width * (16 / 411),
+                                                      Padding(
+                                                        //상대방 채팅 창
+                                                        padding: EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .width *
+                                                                    (16 / 411),
                                                                 0.0,
                                                                 0.0,
                                                                 0.0),
                                                         child: Container(
-                                                          width: MediaQuery.of(context).size.width * (300 / 411),
-                                                          constraints: BoxConstraints(
-                                                            maxWidth: MediaQuery.of(context).size.width * (260 / 411),
+                                                          width: MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .width *
+                                                              (300 / 411),
+                                                          constraints:
+                                                              BoxConstraints(
+                                                            maxWidth: MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .width *
+                                                                (260 / 411),
                                                           ),
                                                           decoration:
                                                               BoxDecoration(
-                                                                color: FlutterFlowTheme.of(context).secondaryBackground,
-                                                                borderRadius:
-                                                                BorderRadius.only(
-                                                              bottomLeft: Radius.circular(4.0),
-                                                              bottomRight: Radius.circular(18.0),
-                                                              topLeft: Radius.circular(18.0),
-                                                              topRight: Radius.circular(18.0),
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .secondaryBackground,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .only(
+                                                              bottomLeft: Radius
+                                                                  .circular(
+                                                                      4.0),
+                                                              bottomRight:
+                                                                  Radius
+                                                                      .circular(
+                                                                          18.0),
+                                                              topLeft: Radius
+                                                                  .circular(
+                                                                      18.0),
+                                                              topRight: Radius
+                                                                  .circular(
+                                                                      18.0),
                                                             ),
-                                                                border: Border.all(
-                                                                  color: Color(0xFF828282),
-                                                                ),
+                                                            border: Border.all(
+                                                              color: Color(
+                                                                  0xFF828282),
+                                                            ),
                                                           ),
                                                           child: Padding(
                                                             padding: EdgeInsetsDirectional.fromSTEB(
-                                                                MediaQuery.of(context).size.width * (16 / 411),
-                                                                MediaQuery.of(context).size.width * (12 / 411),
-                                                                MediaQuery.of(context).size.width * (16 / 411),
-                                                                MediaQuery.of(context).size.width * (12 / 411)),
+                                                                MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .width *
+                                                                    (16 / 411),
+                                                                MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .width *
+                                                                    (12 / 411),
+                                                                MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .width *
+                                                                    (16 / 411),
+                                                                MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .width *
+                                                                    (12 / 411)),
                                                             child: Row(
-                                                              mainAxisSize: MainAxisSize.max,
-                                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                              crossAxisAlignment: CrossAxisAlignment.end,
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceBetween,
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .end,
                                                               children: [
                                                                 Column(
-                                                                  mainAxisSize: MainAxisSize.max,
-                                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .center,
                                                                   children: [
                                                                     Container(
-                                                                      width: MediaQuery.of(context).size.width * (160 / 411),
-                                                                      constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width * (260 / 411),
+                                                                      width: MediaQuery.of(context)
+                                                                              .size
+                                                                              .width *
+                                                                          (160 /
+                                                                              411),
+                                                                      constraints:
+                                                                          BoxConstraints(
+                                                                        maxWidth:
+                                                                            MediaQuery.of(context).size.width *
+                                                                                (260 / 411),
                                                                       ),
-                                                                      decoration: BoxDecoration(
-                                                                        color: FlutterFlowTheme.of(context).secondaryBackground,
+                                                                      decoration:
+                                                                          BoxDecoration(
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .secondaryBackground,
                                                                       ),
                                                                       child:
-                                                                      Text(
-                                                                        listViewChatMessagesRecord.text,
-                                                                        style: FlutterFlowTheme.of(context).bodyMedium
+                                                                          Text(
+                                                                        listViewChatMessagesRecord
+                                                                            .text,
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
                                                                             .override(
                                                                               fontFamily: 'Urbanist',
                                                                               color: Color(0xff000000),
@@ -611,18 +874,28 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                                   ],
                                                                 ),
                                                                 Column(
-                                                                  mainAxisSize: MainAxisSize.max,
-                                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .center,
                                                                   children: [
                                                                     Text(
                                                                       dateTimeFormat(
                                                                           'jm',
-                                                                          listViewChatMessagesRecord.timestamp!),
-                                                                      style: FlutterFlowTheme.of(context).bodyMedium
+                                                                          listViewChatMessagesRecord
+                                                                              .timestamp!),
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
                                                                           .override(
-                                                                            fontFamily: 'Urbanist',
-                                                                            color: Color(0xff000000),
-                                                                            fontSize: 10.0,
+                                                                            fontFamily:
+                                                                                'Urbanist',
+                                                                            color:
+                                                                                Color(0xff000000),
+                                                                            fontSize:
+                                                                                10.0,
                                                                           ),
                                                                     ),
                                                                   ],
@@ -637,58 +910,125 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                 ),
 
                                               //텍스트 메시지가 있는 경우 (자신이 작성)
-                                              if (listViewChatMessagesRecord.user == widget.userRef)
-                                                Padding( // 본인 채팅 박스
-                                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                                      0.0,
-                                                      MediaQuery.of(context).size.width * (24 / 411),
-                                                      0.0,
-                                                      0.0),
+                                              if (listViewChatMessagesRecord
+                                                      .user ==
+                                                  widget.userRef)
+                                                Padding(
+                                                  // 본인 채팅 박스
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0,
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .width *
+                                                              (24 / 411),
+                                                          0.0,
+                                                          0.0),
                                                   child: Row(
-                                                    mainAxisSize: MainAxisSize.max,
-                                                    mainAxisAlignment: MainAxisAlignment.end,
-                                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.end,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
                                                     children: [
-                                                      if (listViewChatMessagesRecord.text != null &&
-                                                          listViewChatMessagesRecord.text != '')
+                                                      if (listViewChatMessagesRecord
+                                                              .text !=
+                                                          '')
                                                         Container(
-                                                          width: MediaQuery.of(context).size.width * (300 / 411),
-                                                          constraints: BoxConstraints(
-                                                            maxWidth: MediaQuery.of(context).size.width * (260 / 411),
+                                                          width: MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .width *
+                                                              (300 / 411),
+                                                          constraints:
+                                                              BoxConstraints(
+                                                            maxWidth: MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .width *
+                                                                (260 / 411),
                                                           ),
                                                           decoration:
-                                                          // 내가 보내는 채팅
+                                                              // 내가 보내는 채팅
                                                               BoxDecoration(
-                                                            color: Color(0xff4d40ea),
-                                                            borderRadius: BorderRadius.only(
-                                                              bottomLeft: Radius.circular(18.0),
-                                                              bottomRight: Radius.circular(4.0),
-                                                              topLeft: Radius.circular(18.0),
-                                                              topRight: Radius.circular(18.0),
+                                                            color: Color(
+                                                                0xff4d40ea),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .only(
+                                                              bottomLeft: Radius
+                                                                  .circular(
+                                                                      18.0),
+                                                              bottomRight:
+                                                                  Radius
+                                                                      .circular(
+                                                                          4.0),
+                                                              topLeft: Radius
+                                                                  .circular(
+                                                                      18.0),
+                                                              topRight: Radius
+                                                                  .circular(
+                                                                      18.0),
                                                             ),
                                                           ),
                                                           child: Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional.fromSTEB(
-                                                                    MediaQuery.of(context).size.width * (16 / 411),
-                                                                    MediaQuery.of(context).size.width * (12 / 411),
-                                                                    MediaQuery.of(context).size.width * (16 / 411),
-                                                                    MediaQuery.of(context).size.width * (12 / 411)),
+                                                            padding: EdgeInsetsDirectional.fromSTEB(
+                                                                MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .width *
+                                                                    (16 / 411),
+                                                                MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .width *
+                                                                    (12 / 411),
+                                                                MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .width *
+                                                                    (16 / 411),
+                                                                MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .width *
+                                                                    (12 / 411)),
                                                             child: Row(
-                                                              mainAxisSize: MainAxisSize.max,
-                                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                              crossAxisAlignment: CrossAxisAlignment.end,
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceBetween,
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .end,
                                                               children: [
                                                                 Column(
-                                                                  mainAxisSize: MainAxisSize.max,
-                                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .center,
                                                                   children: [
-                                                                    Container( // 채팅 메시지를 표시 컨테이너
-                                                                      width: MediaQuery.of(context).size.width * (160 / 411),
-                                                                      decoration: BoxDecoration(),
+                                                                    Container(
+                                                                      // 채팅 메시지를 표시 컨테이너
+                                                                      width: MediaQuery.of(context)
+                                                                              .size
+                                                                              .width *
+                                                                          (160 /
+                                                                              411),
+                                                                      decoration:
+                                                                          BoxDecoration(),
                                                                       child:
-                                                                          Text(listViewChatMessagesRecord.text,
-                                                                        style: FlutterFlowTheme.of(context).bodyMedium
+                                                                          Text(
+                                                                        listViewChatMessagesRecord
+                                                                            .text,
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
                                                                             .override(
                                                                               fontFamily: 'Urbanist',
                                                                               color: Color(0xffffffff),
@@ -697,15 +1037,22 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                                     ),
                                                                   ],
                                                                 ),
-
-
-                                                                Row( // 채팅 메시지의 타임스탬프(timestamp)를 형식화하여 표시
-                                                                  mainAxisSize: MainAxisSize.max,
-                                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                Row(
+                                                                  // 채팅 메시지의 타임스탬프(timestamp)를 형식화하여 표시
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .spaceBetween,
                                                                   children: [
                                                                     Column(
-                                                                      mainAxisSize: MainAxisSize.max,
-                                                                      mainAxisAlignment: MainAxisAlignment.center,
+                                                                      mainAxisSize:
+                                                                          MainAxisSize
+                                                                              .max,
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment
+                                                                              .center,
                                                                       children: [
                                                                         Text(
                                                                           dateTimeFormat(
@@ -721,19 +1068,21 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                                         ),
                                                                       ],
                                                                     ),
-
-
-                                                                    Padding( // 채팅 메시지가 읽음 여부 아이콘
+                                                                    Padding(
+                                                                      // 채팅 메시지가 읽음 여부 아이콘
                                                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                                                          MediaQuery.of(context).size.width * (6 / 411),
+                                                                          MediaQuery.of(context).size.width *
+                                                                              (6 / 411),
                                                                           0.0,
                                                                           0.0,
                                                                           0.0),
                                                                       child:
                                                                           Column(
-                                                                        mainAxisSize: MainAxisSize.max,
+                                                                        mainAxisSize:
+                                                                            MainAxisSize.max,
                                                                         children: [
-                                                                          if (chatsChatsRecord?.messageSeen ?? true)
+                                                                          if (chatsChatsRecord?.messageSeen ??
+                                                                              true)
                                                                             Icon(
                                                                               FFIcons.kcheckAll,
                                                                               color: Color(0xffffffff),
@@ -772,16 +1121,14 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                       ],
                     ),
                   ),
-
-
                   // 하단부
-                  Padding( //텍스트 박스
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(
-                            MediaQuery.of(context).size.width * (20 / 411),
-                            0.0,
-                            MediaQuery.of(context).size.width * (20 / 411),
-                            MediaQuery.of(context).size.width * (24 / 411)),
+                  Padding(
+                    //텍스트 박스
+                    padding: EdgeInsetsDirectional.fromSTEB(
+                        MediaQuery.of(context).size.width * (20 / 411),
+                        0.0,
+                        MediaQuery.of(context).size.width * (20 / 411),
+                        MediaQuery.of(context).size.width * (24 / 411)),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
@@ -790,8 +1137,10 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Container(
-                              width: MediaQuery.of(context).size.width * (290 / 411), //텍스트 박스 크기
-                              height: MediaQuery.of(context).size.height * (50 / 867),
+                              width: MediaQuery.of(context).size.width *
+                                  (290 / 411), //텍스트 박스 크기
+                              height: MediaQuery.of(context).size.height *
+                                  (50 / 867),
                               decoration: BoxDecoration(
                                 color: FlutterFlowTheme.of(context)
                                     .secondaryBackground,
@@ -800,14 +1149,17 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                   color: Color(0xFFE0E0E0),
                                 ),
                               ),
-
-
-                              child: Padding( // 텍스트 상자
+                              child: Padding(
+                                // 텍스트 상자
                                 padding: EdgeInsetsDirectional.fromSTEB(
-                                    MediaQuery.of(context).size.width * (12 / 411),
-                                    MediaQuery.of(context).size.width * (6 / 411),
-                                    MediaQuery.of(context).size.width * (12 / 411),
-                                    MediaQuery.of(context).size.width * (6 / 411)),
+                                    MediaQuery.of(context).size.width *
+                                        (12 / 411),
+                                    MediaQuery.of(context).size.width *
+                                        (6 / 411),
+                                    MediaQuery.of(context).size.width *
+                                        (12 / 411),
+                                    MediaQuery.of(context).size.width *
+                                        (6 / 411)),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
@@ -880,16 +1232,17 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                       ),
                                     ),
                                     SizedBox(
-                                      height: MediaQuery.of(context).size.height * (24 / 867),
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              (24 / 867),
                                       child: VerticalDivider(
                                         thickness: 1.0,
                                       ),
                                     ),
-
-
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          MediaQuery.of(context).size.width * (6 / 411),
+                                          MediaQuery.of(context).size.width *
+                                              (6 / 411),
                                           0.0,
                                           0.0,
                                           0.0),
@@ -1029,196 +1382,342 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                         }, */
                                         // Plus버튼 onTab UI
                                         onTap: () async {
-                                          showModalBottomSheet( // 모달 바텀 시트 보여주기
+                                          showModalBottomSheet(
+                                            // 모달 바텀 시트 보여주기
                                             context: context,
                                             isDismissible: false,
                                             builder: (context) {
                                               return Container(
                                                 decoration: BoxDecoration(
-                                                  borderRadius: BorderRadius.only(
+                                                  borderRadius:
+                                                      BorderRadius.only(
                                                     topLeft: Radius.zero,
                                                     topRight: Radius.zero,
                                                   ),
                                                   gradient: LinearGradient(
                                                     begin: Alignment(0, -1),
                                                     end: Alignment(0, 1),
-                                                    colors: <Color>[Color(0x0c4d40ea), Color(0x0c6be0d2)], // 그라디언트 색상
-                                                    stops: <double>[0, 1], // 그라디언트 색상의 위치
+                                                    colors: <Color>[
+                                                      Color(0x0c4d40ea),
+                                                      Color(0x0c6be0d2)
+                                                    ], // 그라디언트 색상
+                                                    stops: <double>[
+                                                      0,
+                                                      1
+                                                    ], // 그라디언트 색상의 위치
                                                   ),
                                                 ),
                                                 width: double.infinity,
-                                                height: MediaQuery.of(context).size.height * (190 / 867),
+                                                height: MediaQuery.of(context)
+                                                        .size
+                                                        .height *
+                                                    (190 / 867),
                                                 child: Row(
-                                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceAround,
                                                   children: List.generate(
                                                     3,
-                                                        (index) => Transform.translate(
-                                                      offset: Offset(0, -5.0), // 상단으로 올리고 싶은 만큼의 값 설정
+                                                    (index) =>
+                                                        Transform.translate(
+                                                      offset: Offset(0,
+                                                          -5.0), // 상단으로 올리고 싶은 만큼의 값 설정
                                                       child: GestureDetector(
                                                         onTap: () async {
                                                           if (index == 0) {
                                                             // 미디어 선택
-                                                            final selectedMedia = await selectMedia(
-                                                              maxWidth: MediaQuery.of(context).size.width * (300 / 411),
-                                                              maxHeight: MediaQuery.of(context).size.height * (300 / 867),
+                                                            final selectedMedia =
+                                                                await selectMedia(
+                                                              maxWidth: MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .width *
+                                                                  (300 / 411),
+                                                              maxHeight: MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .height *
+                                                                  (300 / 867),
                                                               imageQuality: 50,
-                                                              mediaSource: MediaSource.photoGallery,
+                                                              mediaSource:
+                                                                  MediaSource
+                                                                      .photoGallery,
                                                               multiImage: false,
                                                             );
-                                                            if (selectedMedia != null &&
+                                                            if (selectedMedia !=
+                                                                    null &&
                                                                 selectedMedia.every((m) =>
-                                                                    validateFileFormat(m.storagePath, context))) {
-                                                              setState(() => _model.isDataUploading = true);
-                                                              var selectedUploadedFiles = <FFUploadedFile>[];
+                                                                    validateFileFormat(
+                                                                        m.storagePath,
+                                                                        context))) {
+                                                              setState(() =>
+                                                                  _model.isDataUploading =
+                                                                      true);
+                                                              var selectedUploadedFiles =
+                                                                  <FFUploadedFile>[];
 
-                                                              var downloadUrls = <String>[];
+                                                              var downloadUrls =
+                                                                  <String>[];
                                                               try {
                                                                 showUploadMessage(
                                                                   context,
                                                                   'Uploading file...',
-                                                                  showLoading: true,
+                                                                  showLoading:
+                                                                      true,
                                                                 );
-                                                                selectedUploadedFiles = selectedMedia
-                                                                    .map(
-                                                                      (m) => FFUploadedFile(
-                                                                    name: m.storagePath.split('/').last,
-                                                                    bytes: m.bytes,
-                                                                    height: m.dimensions?.height,
-                                                                    width: m.dimensions?.width,
-                                                                    blurHash: m.blurHash,
-                                                                  ),
-                                                                )
-                                                                    .toList();
+                                                                selectedUploadedFiles =
+                                                                    selectedMedia
+                                                                        .map(
+                                                                          (m) =>
+                                                                              FFUploadedFile(
+                                                                            name:
+                                                                                m.storagePath.split('/').last,
+                                                                            bytes:
+                                                                                m.bytes,
+                                                                            height:
+                                                                                m.dimensions?.height,
+                                                                            width:
+                                                                                m.dimensions?.width,
+                                                                            blurHash:
+                                                                                m.blurHash,
+                                                                          ),
+                                                                        )
+                                                                        .toList();
 
-                                                                downloadUrls = (await Future.wait(
-                                                                  selectedMedia.map(
-                                                                        (m) async =>
-                                                                    await uploadData(m.storagePath, m.bytes),
+                                                                downloadUrls = (await Future
+                                                                        .wait(
+                                                                  selectedMedia
+                                                                      .map(
+                                                                    (m) async =>
+                                                                        await uploadData(
+                                                                            m.storagePath,
+                                                                            m.bytes),
                                                                   ),
                                                                 ))
-                                                                    .where((u) => u != null)
-                                                                    .map((u) => u!)
+                                                                    .where((u) =>
+                                                                        u !=
+                                                                        null)
+                                                                    .map((u) =>
+                                                                        u!)
                                                                     .toList();
                                                               } finally {
-                                                                ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                                                                _model.isDataUploading = false;
+                                                                ScaffoldMessenger.of(
+                                                                        context)
+                                                                    .hideCurrentSnackBar();
+                                                                _model.isDataUploading =
+                                                                    false;
                                                               }
-                                                              if (selectedUploadedFiles.length ==
-                                                                  selectedMedia.length &&
-                                                                  downloadUrls.length == selectedMedia.length) {
+                                                              if (selectedUploadedFiles
+                                                                          .length ==
+                                                                      selectedMedia
+                                                                          .length &&
+                                                                  downloadUrls
+                                                                          .length ==
+                                                                      selectedMedia
+                                                                          .length) {
                                                                 setState(() {
                                                                   _model.uploadedLocalFile =
-                                                                      selectedUploadedFiles.first;
-                                                                  _model.uploadedFileUrl = downloadUrls.first;
+                                                                      selectedUploadedFiles
+                                                                          .first;
+                                                                  _model.uploadedFileUrl =
+                                                                      downloadUrls
+                                                                          .first;
                                                                 });
-                                                                showUploadMessage(context, 'Success!');
-                                                                Navigator.pop(context);
+                                                                showUploadMessage(
+                                                                    context,
+                                                                    'Success!');
+                                                                Navigator.pop(
+                                                                    context);
                                                               } else {
                                                                 setState(() {});
-                                                                showUploadMessage(context, 'Failed to upload data');
+                                                                showUploadMessage(
+                                                                    context,
+                                                                    'Failed to upload data');
                                                                 return;
                                                               }
                                                             }
 
-                                                            if ((_model.textController.text != null &&
-                                                                _model.textController.text != '') ||
-                                                                (_model.uploadedFileUrl != null &&
-                                                                    _model.uploadedFileUrl != '')) {
+                                                            if ((_model.textController
+                                                                        .text !=
+                                                                    '') ||
+                                                                (_model.uploadedFileUrl !=
+                                                                    '')) {
                                                               // 채팅 메시지 생성
-                                                              await ChatMessagesRecord.collection.doc().set(
-                                                                createChatMessagesRecordData(
-                                                                  user: currentUserReference,
-                                                                  chatUser: widget.chatUser,
-                                                                  timestamp: getCurrentTimestamp,
-                                                                  image: _model.uploadedFileUrl,
-                                                                ),
-                                                              );
+                                                              await ChatMessagesRecord
+                                                                  .collection
+                                                                  .doc()
+                                                                  .set(
+                                                                    createChatMessagesRecordData(
+                                                                      user:
+                                                                          currentUserReference,
+                                                                      chatUser:
+                                                                          widget
+                                                                              .chatUser,
+                                                                      timestamp:
+                                                                          getCurrentTimestamp,
+                                                                      image: _model
+                                                                          .uploadedFileUrl,
+                                                                    ),
+                                                                  );
                                                               // 마지막 메시지 업데이트 1
-                                                              await (widget.chatUser?.update(createChatsRecordData(
-                                                                lastMessageTime: getCurrentTimestamp,
-                                                                lastMessage: _model.textController.text,
-                                                              )) ?? Future.value());
+                                                              await (widget
+                                                                      .chatUser
+                                                                      ?.update(
+                                                                          createChatsRecordData(
+                                                                    lastMessageTime:
+                                                                        getCurrentTimestamp,
+                                                                    lastMessage:
+                                                                        _model
+                                                                            .textController
+                                                                            .text,
+                                                                  )) ??
+                                                                  Future
+                                                                      .value());
                                                               setState(() {
-                                                                _model.textController?.clear();
+                                                                _model
+                                                                    .textController
+                                                                    ?.clear();
                                                               });
                                                             } else {
-                                                              ScaffoldMessenger.of(context).showSnackBar(
+                                                              ScaffoldMessenger
+                                                                      .of(context)
+                                                                  .showSnackBar(
                                                                 SnackBar(
                                                                   content: Text(
                                                                     'Please type something...',
-                                                                    style: TextStyle(
-                                                                      color:
-                                                                      FlutterFlowTheme.of(context).primaryText,
+                                                                    style:
+                                                                        TextStyle(
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primaryText,
                                                                     ),
                                                                   ),
-                                                                  duration: Duration(milliseconds: 4000),
-                                                                  backgroundColor: Color(0x00000000),
+                                                                  duration: Duration(
+                                                                      milliseconds:
+                                                                          4000),
+                                                                  backgroundColor:
+                                                                      Color(
+                                                                          0x00000000),
                                                                 ),
                                                               );
                                                             }
-                                                          }
-                                                          else if (index == 1) {
+                                                          } else if (index ==
+                                                              1) {
                                                             // Navigate to RewardScreen when index is 1
                                                             Navigator.push(
                                                               context,
-                                                              MaterialPageRoute(builder: (context) => SignUpStepsScreen()), // Replace signUpScreen() with your actual screen widget
+                                                              MaterialPageRoute(
+                                                                  builder:
+                                                                      (context) =>
+                                                                          PaymentPassword()), // Replace signUpScreen() with your actual screen widget
                                                             );
                                                           } else {
                                                             Navigator.push(
                                                               context,
-                                                              MaterialPageRoute(builder: (context) => SignUpStepsScreen()), // Replace signUpScreen() with your actual screen widget
+                                                              MaterialPageRoute(
+                                                                  builder:
+                                                                      (context) =>
+                                                                          SignUpStepsScreen()), // Replace signUpScreen() with your actual screen widget
                                                             );
                                                           }
                                                         },
-                                                        child: Container(
-                                                          width: MediaQuery.of(context).size.width * (70 / 411),
-                                                          height: MediaQuery.of(context).size.height * (120 / 867),
+                                                        child: SizedBox(
+                                                          width: MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .width *
+                                                              (70 / 411),
+                                                          height: MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .height *
+                                                              (120 / 867),
                                                           child: Column(
-                                                            mainAxisAlignment: MainAxisAlignment.center,
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .center,
                                                             children: [
                                                               Container(
-                                                                width: MediaQuery.of(context).size.width * (70 / 411),
-                                                                height: MediaQuery.of(context).size.height * (70 / 867),
-                                                                decoration: BoxDecoration(
-                                                                  border: Border.all(color: Color(0x0c000000)),
-                                                                  borderRadius: BorderRadius.circular(50),
-                                                                  gradient: LinearGradient(
-                                                                    begin: Alignment(0, -1),
-                                                                    end: Alignment(0, 1),
+                                                                width: MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .width *
+                                                                    (70 / 411),
+                                                                height: MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .height *
+                                                                    (70 / 867),
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  border: Border.all(
+                                                                      color: Color(
+                                                                          0x0c000000)),
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              50),
+                                                                  gradient:
+                                                                      LinearGradient(
+                                                                    begin:
+                                                                        Alignment(
+                                                                            0,
+                                                                            -1),
+                                                                    end:
+                                                                        Alignment(
+                                                                            0,
+                                                                            1),
                                                                     colors: <Color>[
-                                                                      Color(0x0c000000),
-                                                                      Color(0x00ffffff)
+                                                                      Color(
+                                                                          0x0c000000),
+                                                                      Color(
+                                                                          0x00ffffff)
                                                                     ],
-                                                                    stops: <double>[0, 1],
+                                                                    stops: <double>[
+                                                                      0,
+                                                                      1
+                                                                    ],
                                                                   ),
                                                                 ),
                                                                 child: Stack(
                                                                   children: [
                                                                     Positioned(
-                                                                      child: Align(
-                                                                        alignment: Alignment.center,
-                                                                        child: Image.asset(
-                                                                          imageList[index],
-                                                                          width: MediaQuery.of(context).size.width * (45 / 411),
-                                                                          height: MediaQuery.of(context).size.height * (45 / 867),
+                                                                      child:
+                                                                          Align(
+                                                                        alignment:
+                                                                            Alignment.center,
+                                                                        child: Image
+                                                                            .asset(
+                                                                          imageList[
+                                                                              index],
+                                                                          width:
+                                                                              MediaQuery.of(context).size.width * (45 / 411),
+                                                                          height:
+                                                                              MediaQuery.of(context).size.height * (45 / 867),
                                                                         ),
                                                                       ),
                                                                     ),
                                                                   ],
                                                                 ),
                                                               ),
-                                                              SizedBox(height: 8.0),
+                                                              SizedBox(
+                                                                  height: 8.0),
                                                               Text(
                                                                 index == 0
                                                                     ? '사진\n전송하기'
                                                                     : index == 1
-                                                                    ? '사례금\n전달하기'
-                                                                    : '부정사례\n신고하기',
-                                                                style: TextStyle(
-                                                                  color: Color(0xc5000000),
-                                                                  fontSize: 13.0,
+                                                                        ? '사례금\n전달하기'
+                                                                        : '부정사례\n신고하기',
+                                                                style:
+                                                                    TextStyle(
+                                                                  color: Color(
+                                                                      0xc5000000),
+                                                                  fontSize:
+                                                                      13.0,
                                                                 ),
-                                                                textAlign: TextAlign.center,
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .center,
                                                               ),
                                                             ],
                                                           ),
@@ -1234,7 +1733,10 @@ class _ChatsWidgetState extends State<ChatsWidget> {
 
                                         child: Image.asset(
                                           'assets/icons/plus_white.png',
-                                          height: MediaQuery.of(context).size.height * (16 / 867),
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              (16 / 867),
                                           fit: BoxFit.contain,
                                         ),
                                       ),
@@ -1250,20 +1752,24 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                               highlightColor: Colors.transparent,
                               // 메세지 전송 (파이어 베이스)
                               onTap: () async {
-                                if (_model.textController.text != null && _model.textController.text != '') {
+                                if (_model.textController.text != '') {
                                   // 사용자 간의 채팅 메시지 생성
-                                  await ChatMessagesRecord.collection.doc().set(createChatMessagesRecordData(
-                                    user: currentUserReference,
-                                    chatUser: widget.chatUser,
-                                    text: _model.textController.text,
-                                    timestamp: getCurrentTimestamp,
-                                  ));
+                                  await ChatMessagesRecord.collection
+                                      .doc()
+                                      .set(createChatMessagesRecordData(
+                                        user: currentUserReference,
+                                        chatUser: widget.chatUser,
+                                        text: _model.textController.text,
+                                        timestamp: getCurrentTimestamp,
+                                      ));
 
                                   // 해당 채팅방의 마지막 메시지 업데이트 2
-                                  await (widget.chatUser?.update(createChatsRecordData(
-                                    lastMessageTime: getCurrentTimestamp,
-                                    lastMessage: _model.textController.text,
-                                  )) ?? Future.value());
+                                  await (widget.chatUser
+                                          ?.update(createChatsRecordData(
+                                        lastMessageTime: getCurrentTimestamp,
+                                        lastMessage: _model.textController.text,
+                                      )) ??
+                                      Future.value());
                                   setState(() {
                                     _model.textController?.clear();
                                   });
@@ -1284,8 +1790,10 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                 }
                               },
                               child: Container(
-                                width: MediaQuery.of(context).size.width * (60 / 411),
-                                height: MediaQuery.of(context).size.height * (50 / 867),
+                                width: MediaQuery.of(context).size.width *
+                                    (60 / 411),
+                                height: MediaQuery.of(context).size.height *
+                                    (50 / 867),
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
@@ -1300,7 +1808,9 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                   children: [
                                     Image.asset(
                                       'assets/icons/send_gradation.png',
-                                      height: MediaQuery.of(context).size.height * (24 / 867),
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              (24 / 867),
                                       fit: BoxFit.contain,
                                     ),
                                   ],

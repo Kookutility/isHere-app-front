@@ -1,9 +1,12 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import 'package:petdemo/common/custom_textform.dart';
 import 'package:petdemo/sign_step/widgets/blue_green_button.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
 
-class VerifyPhoneScreen extends StatelessWidget {
+class VerifyPhoneScreen extends StatefulWidget {
   final VoidCallback? onVerifyContinuePressed;
   const VerifyPhoneScreen({
     super.key,
@@ -11,17 +14,19 @@ class VerifyPhoneScreen extends StatelessWidget {
   });
 
   @override
+  State<VerifyPhoneScreen> createState() => _VerifyPhoneScreenState();
+}
+
+class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
+  String currentText = '';
+  StreamController<ErrorAnimationType> errorController =
+      StreamController<ErrorAnimationType>();
+  bool isConfirm = false;
+  String leftTime = "4:58";
+
+  final TextEditingController phoneNumTController = TextEditingController();
+  @override
   Widget build(BuildContext context) {
-    const String leftTime = "4:58";
-    final List<FocusNode> focusNode = [
-      FocusNode(),
-      FocusNode(),
-      FocusNode(),
-      FocusNode(),
-      FocusNode(),
-      FocusNode(),
-    ];
-    final TextEditingController phoneNumTController = TextEditingController();
     return SizedBox(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height * 5 / 6,
@@ -57,14 +62,40 @@ class VerifyPhoneScreen extends StatelessWidget {
                   padding: EdgeInsets.symmetric(horizontal: 20),
                   child: Column(
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: List.generate(
-                          focusNode.length,
-                          (index) => SingleNum(
-                            focusNode: focusNode[index],
-                          ),
+                      PinCodeTextField(
+                        appContext: context,
+                        length: 6,
+                        keyboardType: TextInputType.number,
+                        obscureText: false,
+                        animationType: AnimationType.fade,
+                        pinTheme: PinTheme(
+                          shape: PinCodeFieldShape.underline,
+                          fieldHeight: 50,
+                          fieldWidth: 40,
+                          activeFillColor: Colors.white,
+                          inactiveColor: Colors.grey,
+                          inactiveFillColor: Colors.white,
+                          selectedFillColor: Colors.white,
                         ),
+                        animationDuration: Duration(milliseconds: 300),
+                        backgroundColor: Colors.white,
+                        enableActiveFill: true,
+                        errorAnimationController: errorController,
+                        controller: phoneNumTController,
+                        onCompleted: (v) {
+                          print("Completed");
+                        },
+                        onChanged: (value) {
+                          print(value);
+                          setState(() {
+                            currentText = value;
+                          });
+                        },
+                        beforeTextPaste: (text) {
+                          print("Allowing to paste $text");
+
+                          return true;
+                        },
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -76,6 +107,9 @@ class VerifyPhoneScreen extends StatelessWidget {
                           ),
                         ],
                       ),
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: []),
                     ],
                   ),
                 ),
@@ -85,16 +119,18 @@ class VerifyPhoneScreen extends StatelessWidget {
           Flexible(
             flex: 1,
             child: GestureDetector(
-              onTap: onVerifyContinuePressed,
+              onTap: widget.onVerifyContinuePressed,
+              // isConfirm ? widget.onVerifyContinuePressed : null,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   BlueGreenButton(
+                    isConfirm: isConfirm,
                     child: Center(
                       child: Text(
                         "계속하기",
                         style: TextStyle(
-                          color: Colors.white,
+                          color: isConfirm ? Colors.white : Colors.grey,
                           fontSize: MediaQuery.of(context).size.width / 25,
                           fontWeight: FontWeight.w700,
                         ),
