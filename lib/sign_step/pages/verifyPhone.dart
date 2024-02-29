@@ -22,11 +22,11 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
   StreamController<ErrorAnimationType> errorController =
       StreamController<ErrorAnimationType>();
   bool isConfirm = false;
+  String leftTime = "4:58";
+
+  final TextEditingController phoneNumTController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    const String leftTime = "4:58";
-
-    final TextEditingController phoneNumTController = TextEditingController();
     return SizedBox(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height * 5 / 6,

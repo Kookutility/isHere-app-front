@@ -14,15 +14,9 @@ import 'package:petdemo/sign_step/pages/verifyPhone.dart';
 /*
 * 이즈히어 자체 회원가입 단계에 대한 기본적인 틀
 * 
-voi
+
 
 */
-
-void main() => runApp(
-      MaterialApp(
-        home: SignUpStepsScreen(),
-      ),
-    );
 
 class SignUpStepsScreen extends StatefulWidget {
   const SignUpStepsScreen({super.key});
