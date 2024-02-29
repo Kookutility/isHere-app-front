@@ -89,150 +89,143 @@ class _TossPaymentWidgetState extends State<PaymentScreenForPost> {
           ),
         ],
       ),
-      body: SingleChildScrollView(
-        child: SizedBox(
-          width: mediaQuerySize.width,
-          height: mediaQuerySize.height,
-          child: SafeArea(
-            child: Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: mediaQuerySize.width / 20,
+      body: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: mediaQuerySize.width / 20,
+          ),
+          child: Column(
+            children: [
+              SizedBox(
+                height: mediaQuerySize.height / 40,
               ),
-              child: Column(
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(
-                    height: mediaQuerySize.height / 40,
+                  Container(
+                    width: mediaQuerySize.width,
+                    decoration: contentBoxDeco,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        "사례금 등록 정보",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: mediaQuerySize.width / 25,
+                        ),
+                      ),
+                    ),
                   ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        width: mediaQuerySize.width,
-                        decoration: contentBoxDeco,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            "사례금 등록 정보",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: mediaQuerySize.width / 25,
-                            ),
-                          ),
-                        ),
+                  Container(
+                    decoration: contentBoxDeco,
+                    child: Content(
+                      imageURL: imageURL,
+                      titleLarge: titleLarge,
+                      price: numberWithCommas(price),
+                      userName: userName,
+                      postedTime: postedTime,
+                    ),
+                  ),
+                  Container(
+                    decoration: contentBoxDeco.copyWith(
+                      color: Color.fromRGBO(
+                        78,
+                        64,
+                        234,
+                        0.1,
                       ),
-                      Container(
-                        decoration: contentBoxDeco,
-                        child: Content(
-                          imageURL: imageURL,
-                          titleLarge: titleLarge,
-                          price: numberWithCommas(price),
-                          userName: userName,
-                          postedTime: postedTime,
-                        ),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 15,
+                        vertical: 8,
                       ),
-                      Container(
-                        decoration: contentBoxDeco.copyWith(
-                          color: Color.fromRGBO(
-                            78,
-                            64,
-                            234,
-                            0.1,
-                          ),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 15,
-                            vertical: 8,
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
                             children: [
-                              Row(
-                                children: [
-                                  Text(
-                                    "결제 금액",
-                                    style: TextStyle(
-                                      fontSize: mediaQuerySize.width / 30,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  Text(
-                                    "(기타 소득세 및 수수료 포함)",
-                                    style: TextStyle(
-                                      fontSize: mediaQuerySize.width / 35,
-                                      fontWeight: FontWeight.bold,
-                                      color: Color(0xf0484848),
-                                    ),
-                                  ),
-                                ],
-                              ),
                               Text(
-                                '${numberWithCommas(price + price * commissionPercent ~/ 100)}원',
+                                "결제 금액",
                                 style: TextStyle(
-                                  color: Color(0xff4E40EA),
                                   fontSize: mediaQuerySize.width / 30,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Expanded(
-                    child: ListView(
-                      children: [
-                        PaymentMethodWidget(
-                          paymentWidget: _paymentWidget,
-                          selector: 'methods',
-                        ),
-                        AgreementWidget(
-                            paymentWidget: _paymentWidget,
-                            selector: 'agreement'),
-                        GestureDetector(
-                          onTap: () async {
-                            final paymentResult =
-                                await _paymentWidget.requestPayment(
-                                    paymentInfo: const PaymentInfo(
-                                        orderId: 'OrderId_123',
-                                        orderName: '파란티셔츠 외 2건'));
-                            if (paymentResult.success != null) {
-                              // 결제 성공 처리
-                            } else if (paymentResult.fail != null) {
-                              // 결제 실패 처리
-
-                              final selectedPaymentMethod =
-                                  await _paymentMethodWidgetControl
-                                      ?.getSelectedPaymentMethod();
-                              print(
-                                  '${selectedPaymentMethod?.method} ${selectedPaymentMethod?.easyPay?.provider ?? ''}');
-
-                              final agreementStatus =
-                                  await _agreementWidgetControl
-                                      ?.getAgreementStatus();
-                              print('${agreementStatus?.agreedRequiredTerms}');
-                            }
-                          },
-                          child: BlueGreenButton(
-                            child: Center(
-                              child: Text(
-                                "결제하기",
+                              Text(
+                                "(기타 소득세 및 수수료 포함)",
                                 style: TextStyle(
-                                  color: isConfirm ? Colors.white : Colors.grey,
-                                  fontSize: mediaQuerySize.width / 25,
-                                  fontWeight: FontWeight.w700,
+                                  fontSize: mediaQuerySize.width / 35,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color(0xf0484848),
                                 ),
                               ),
+                            ],
+                          ),
+                          Text(
+                            '${numberWithCommas(price + price * commissionPercent ~/ 100)}원',
+                            style: TextStyle(
+                              color: Color(0xff4E40EA),
+                              fontSize: mediaQuerySize.width / 30,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ],
               ),
-            ),
+              Expanded(
+                child: ListView(
+                  children: [
+                    PaymentMethodWidget(
+                      paymentWidget: _paymentWidget,
+                      selector: 'methods',
+                    ),
+                    AgreementWidget(
+                        paymentWidget: _paymentWidget, selector: 'agreement'),
+                  ],
+                ),
+              ),
+              GestureDetector(
+                onTap: () async {
+                  final paymentResult = await _paymentWidget.requestPayment(
+                      paymentInfo: const PaymentInfo(
+                          orderId: 'OrderId_123', orderName: '파란티셔츠 외 2건'));
+                  if (paymentResult.success != null) {
+                    // 결제 성공 처리
+                  } else if (paymentResult.fail != null) {
+                    // 결제 실패 처리
+
+                    final selectedPaymentMethod =
+                        await _paymentMethodWidgetControl
+                            ?.getSelectedPaymentMethod();
+                    print(
+                        '${selectedPaymentMethod?.method} ${selectedPaymentMethod?.easyPay?.provider ?? ''}');
+
+                    final agreementStatus =
+                        await _agreementWidgetControl?.getAgreementStatus();
+                    print('${agreementStatus?.agreedRequiredTerms}');
+                  }
+                },
+                child: BlueGreenButton(
+                  child: Center(
+                    child: Text(
+                      "결제하기",
+                      style: TextStyle(
+                        color: isConfirm ? Colors.white : Colors.grey,
+                        fontSize: mediaQuerySize.width / 25,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: mediaQuerySize.height / 40,
+              ),
+            ],
           ),
         ),
       ),
