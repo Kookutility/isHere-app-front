@@ -64,7 +64,7 @@ dependencies:
   path_provider_android: 2.0.25
   path_provider_foundation: 2.2.2
   path_provider_platform_interface: 2.0.6
-  plugin_platform_interface: 2.1.3
+  plugin_platform_interface: 2.1.8
   provider: 6.0.4
   rxdart: 0.27.7
   shared_preferences: 2.0.15
@@ -91,6 +91,7 @@ dependencies:
 
   percent_indicator: ^4.2.2
   carousel_slider: ^4.0.0
+  tosspayments_widget_sdk_flutter: ^2.0.0
 
 dev_dependencies:
   flutter_test:

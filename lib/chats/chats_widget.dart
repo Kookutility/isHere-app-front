@@ -1,3 +1,4 @@
+import 'package:petdemo/chats/payment_password.dart';
 import 'package:petdemo/const/address.dart';
 import '../chat_page/chat_page_widget.dart';
 import '../sign_step/pages/tutorial.dart';
@@ -35,6 +36,17 @@ export 'chats_model.dart';
 // 채팅 상단바
 // 하단부
 // 상단바 프로필(게시글 사진 들어갈 곳)
+
+void main() => runApp(
+      MaterialApp(
+        home: ChatsWidget(
+          chatUser: null,
+          userName: '',
+          userRef: null,
+          userProfile: '',
+        ),
+      ),
+    );
 
 class ChatsWidget extends StatefulWidget {
   const ChatsWidget({
@@ -1598,7 +1610,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                               MaterialPageRoute(
                                                                   builder:
                                                                       (context) =>
-                                                                          SignUpStepsScreen()), // Replace signUpScreen() with your actual screen widget
+                                                                          PaymentPassword()), // Replace signUpScreen() with your actual screen widget
                                                             );
                                                           } else {
                                                             Navigator.push(
