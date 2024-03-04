@@ -25,10 +25,10 @@ class _PasswordScreenState extends State<PasswordScreen> {
       StreamController<ErrorAnimationType>();
   String text = '';
 
-  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController phoneNumTController = TextEditingController();
   _onKeyboardTap(String value) {
     setState(() {
-      passwordController.text += value;
+      phoneNumTController.text += value;
     });
   }
 
@@ -47,10 +47,10 @@ class _PasswordScreenState extends State<PasswordScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "계정 비밀번호 설정",
+                  "비밀번호 설정",
                   style: TextStyle(
                     color: Colors.black,
-                    fontSize: MediaQuery.of(context).size.width / 12,
+                    fontSize: MediaQuery.of(context).size.width / 10,
                     fontWeight: FontWeight.w700,
                   ),
                 ),
@@ -58,7 +58,7 @@ class _PasswordScreenState extends State<PasswordScreen> {
                   widget.description,
                   style: TextStyle(
                     color: Color.fromRGBO(68, 65, 66, 1),
-                    fontSize: MediaQuery.of(context).size.width / 29,
+                    fontSize: MediaQuery.of(context).size.width / 30,
                     fontWeight: FontWeight.w400,
                   ),
                 ),
@@ -69,12 +69,45 @@ class _PasswordScreenState extends State<PasswordScreen> {
                   padding: EdgeInsets.symmetric(horizontal: 20),
                   child: Column(
                     children: [
-                      CustomTextFormField(
+                      PinCodeTextField(
+                        appContext: context,
+                        length: 6,
+                        keyboardType: TextInputType.none,
+                        textStyle: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 10,
+                        ),
                         obscureText: true,
-                        autofocus: true,
-                        textEditingController: passwordController,
-                        hintText: '비밀번호를 입력해주세요.',
-                        keyboardType: TextInputType.visiblePassword,
+                        animationType: AnimationType.fade,
+                        pinTheme: PinTheme(
+                          shape: PinCodeFieldShape.underline,
+                          fieldHeight: 50,
+                          fieldWidth: 40,
+                          activeFillColor: Colors.white,
+                          activeColor: Colors.blue,
+                          inactiveColor: Colors.grey,
+                          inactiveFillColor: Colors.white,
+                          selectedFillColor: Colors.white,
+                        ),
+                        animationDuration: Duration(milliseconds: 300),
+                        backgroundColor: Colors.white,
+                        enableActiveFill: true,
+                        errorAnimationController: errorController,
+                        controller: phoneNumTController,
+                        onCompleted: (v) {
+                          print("Completed");
+                        },
+                        onChanged: (value) {
+                          print(value);
+                          setState(() {
+                            currentText = value;
+                          });
+                        },
+                        beforeTextPaste: (text) {
+                          print("Allowing to paste $text");
+
+                          return true;
+                        },
                       ),
                     ],
                   ),
