@@ -2,10 +2,10 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:petdemo/common/const/address.dart';
 
 class ApiService {
-  final ip = androidEmulatorIP;
+  final ip =
+      "https://port-0-ishere-app-back-1fk9002blr25yq9u.sel5.cloudtype.app";
   final dio = Dio();
 
   /* ===================== basic login& signin request ==================== */
@@ -49,7 +49,7 @@ class ApiService {
     }
     if (response.statusCode == 200) {
       dynamic res = jsonDecode(response.data);
-      print(res);
+      print(res.toString());
       String data = res['message'];
       print("data ::::::: $data");
       switch (data) {

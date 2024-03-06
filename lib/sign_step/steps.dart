@@ -116,13 +116,17 @@ class _SignUpStepsScreenState extends State<SignUpStepsScreen> {
     });
   }
 
-  void onDonePressed() {
+  void onDonePressed() async {
     final phoneNumSend = ApiService();
-    phoneNumSend.postRequest("user/register", {
+    print("$nickName $phoneNum $pinNum");
+    final response = await phoneNumSend.postRequest("/user/register", {
       "userName": nickName,
       "phoneNumber": phoneNum,
       "pinNumber": pinNum,
     });
+
+    final result = await phoneNumSend.reponseMessageCheck(response);
+    print(result);
 
     Navigator.of(context).pushAndRemoveUntil(
       MaterialPageRoute(
