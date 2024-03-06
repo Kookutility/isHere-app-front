@@ -6,10 +6,12 @@ import 'package:petdemo/sign_step/widgets/blue_green_button.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class VerifyPhoneField extends StatefulWidget {
-  final VoidCallback? onVerifyContinuePressed;
+  final VoidCallback onVerifyContinuePressed;
+  final ValueChanged<String> getPinNum;
   const VerifyPhoneField({
     super.key,
-    this.onVerifyContinuePressed,
+    required this.onVerifyContinuePressed,
+    required this.getPinNum,
   });
 
   @override
@@ -118,7 +120,10 @@ class _VerifyPhoneFieldState extends State<VerifyPhoneField> {
           Flexible(
             flex: 1,
             child: GestureDetector(
-              onTap: widget.onVerifyContinuePressed,
+              onTap: () {
+                widget.onVerifyContinuePressed();
+                widget.getPinNum(currentText);
+              },
               // isConfirm ? widget.onVerifyContinuePressed : null,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,

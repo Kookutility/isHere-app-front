@@ -3,10 +3,12 @@ import 'package:petdemo/common/custom_textform.dart';
 import 'package:petdemo/sign_step/widgets/blue_green_button.dart';
 
 class NickNameField extends StatelessWidget {
-  final VoidCallback? onCondAgreePressed;
+  final VoidCallback onContinuePressed;
+  final ValueChanged<String>? getNickName;
   const NickNameField({
     super.key,
-    this.onCondAgreePressed,
+    required this.onContinuePressed,
+    this.getNickName,
   });
 
   @override
@@ -67,7 +69,10 @@ class NickNameField extends StatelessWidget {
           ),
           Expanded(
             child: GestureDetector(
-              onTap: onCondAgreePressed,
+              onTap: () {
+                onContinuePressed();
+                getNickName!(nickNameController.text);
+              },
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [

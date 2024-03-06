@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
+import 'package:petdemo/API/service/rest_api.dart';
 import 'package:petdemo/common/basic_layout.dart';
 import 'package:petdemo/sign_step/pages/condi_term.dart';
 import 'package:petdemo/sign_step/pages/nick_name.dart';
@@ -28,25 +29,44 @@ class _SignUpStepsScreenState extends State<SignUpStepsScreen> {
   double percentBar = 0.0; // 첫 페이지 페센트
   late double amountOfProgress = 0.0; // 퍼센트바에 대한 회원가입 단계별 증가량
   List<Widget> signUpPages = []; // 페이지 리스트
-
+  String phoneNum = '';
+  String pinNum = '';
+  String payPinNum = '';
+  String nickName = '';
   @override
   void initState() {
     super.initState();
     signUpPages = [
       PhoneField(
         onPhoneContinuePressed: pushPage,
+        getPhoneNum: (value) {
+          print(value);
+          phoneNum = value;
+        },
       ),
       VerifyPhoneField(
         onVerifyContinuePressed: pushPage,
+        getPinNum: (value) {
+          print(value);
+          pinNum = value;
+        },
       ),
       NickNameField(
-        onCondAgreePressed: pushPage,
+        onContinuePressed: pushPage,
+        getNickName: (value) {
+          print(value);
+          nickName = value;
+        },
       ),
       CondTermScreenField(
         onCondAgreePressed: pushPage,
       ),
       PaymentPassword(
         onPinContinuePressed: pushPage,
+        getPayPinNum: (value) {
+          print(value);
+          payPinNum = value;
+        },
       ),
       SignUpDoneScreen(
         onDonePressed: onDonePressed,
@@ -90,10 +110,20 @@ class _SignUpStepsScreenState extends State<SignUpStepsScreen> {
   void pushPage() {
     pageIndex++;
     percentBar += amountOfProgress;
-    setState(() {});
+    setState(() {
+      print(pageIndex);
+      print(percentBar);
+    });
   }
 
   void onDonePressed() {
+    final phoneNumSend = ApiService();
+    phoneNumSend.postRequest("user/register", {
+      "userName": nickName,
+      "phoneNumber": phoneNum,
+      "pinNumber": pinNum,
+    });
+
     Navigator.of(context).pushAndRemoveUntil(
       MaterialPageRoute(
         builder: (context) {

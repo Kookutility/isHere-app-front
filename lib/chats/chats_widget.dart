@@ -1607,6 +1607,9 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                               MaterialPageRoute(
                                                                   builder: (context) =>
                                                                       PaymentPassword(
+                                                                        getPayPinNum:
+                                                                            (value) =>
+                                                                                print(value),
                                                                         onPinContinuePressed:
                                                                             () =>
                                                                                 Navigator.of(context).push(

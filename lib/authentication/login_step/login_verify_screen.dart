@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:petdemo/API/service/rest_api.dart';
 import 'package:petdemo/init_screen.dart';
 import 'package:petdemo/sign_step/pages/verifyPhone.dart';
 
@@ -17,6 +18,10 @@ class LoginVerifyScreen extends StatelessWidget {
                 horizontal: MediaQuery.of(context).size.width / 10,
               ),
               child: VerifyPhoneField(
+                getPinNum: (value) {
+                  final phoneNumSend = ApiService();
+                  phoneNumSend.postRequest("SendForLogin", {"user": value});
+                },
                 onVerifyContinuePressed: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(

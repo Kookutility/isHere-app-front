@@ -6,11 +6,12 @@ import 'package:petdemo/sign_step/widgets/blue_green_button.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class PaymentPassword extends StatefulWidget {
-  final VoidCallback? onPinContinuePressed;
-
+  final VoidCallback onPinContinuePressed;
+  final ValueChanged<String> getPayPinNum;
   const PaymentPassword({
     super.key,
     required this.onPinContinuePressed,
+    required this.getPayPinNum,
   });
 
   @override
@@ -56,7 +57,7 @@ class _PaymentPasswordState extends State<PaymentPassword> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  "비밀번호 입력",
+                  "결제 비밀번호 입력",
                   style: TextStyle(
                     fontSize: MediaQuery.of(context).size.width / 20,
                     fontWeight: FontWeight.w700,
@@ -115,7 +116,10 @@ class _PaymentPasswordState extends State<PaymentPassword> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 GestureDetector(
-                  onTap: widget.onPinContinuePressed,
+                  onTap: () {
+                    widget.onPinContinuePressed();
+                    widget.getPayPinNum(currentText);
+                  },
                   child: BlueGreenButton(
                     child: Center(
                       child: Text(

@@ -15,12 +15,9 @@ import 'package:petdemo/main_screens/post/search_looking_screen.dart';
 import 'package:petdemo/main_screens/post/write_screen.dart';
 import 'package:petdemo/sign_step/pages/back_account.dart';
 import 'package:petdemo/sign_step/pages/condi_term.dart';
-import 'package:petdemo/sign_step/pages/nick_name.dart';
-import 'package:petdemo/sign_step/pages/phone.dart';
-import 'package:petdemo/sign_step/tutorial.dart';
-import 'package:petdemo/sign_step/pages/verifyPhone.dart';
 import 'package:petdemo/sign_step/sign_up_done.dart';
 import 'package:petdemo/sign_step/steps.dart';
+import 'package:petdemo/sign_step/tutorial.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -53,9 +50,9 @@ class IsHereMain extends StatelessWidget {
 
         //signUp
         signUpStepsScreen: (context) => SignUpStepsScreen(),
-        phoneSignScreen: (context) => PhoneField(),
-        verifyphoneScreen: (context) => VerifyPhoneField(),
-        nickNameScreen: (context) => NickNameField(),
+        // phoneSignScreen: (context) => PhoneField(),
+        // verifyphoneScreen: (context) => VerifyPhoneField(),
+        // nickNameScreen: (context) => NickNameField(),
         condTermScreen: (context) => CondTermScreenField(),
         bankAccScreen: (context) => BankAccountField(),
         signUpDoneScreen: (context) => SignUpDoneScreen(),

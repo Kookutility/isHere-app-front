@@ -3,12 +3,12 @@ import 'package:petdemo/sign_step/widgets/blue_green_button.dart';
 import 'package:petdemo/sign_step/widgets/phone_text_field.dart';
 
 class PhoneField extends StatefulWidget {
-  final VoidCallback? onPhoneContinuePressed;
-  final ValueChanged? getPhoneNum;
+  final VoidCallback onPhoneContinuePressed;
+  final ValueChanged<String> getPhoneNum;
   const PhoneField({
     super.key,
-    this.getPhoneNum,
-    this.onPhoneContinuePressed,
+    required this.getPhoneNum,
+    required this.onPhoneContinuePressed,
   });
 
   @override
@@ -45,8 +45,6 @@ class _PhoneFieldState extends State<PhoneField> {
 
   @override
   Widget build(BuildContext context) {
-    final TextEditingController phoneNumTController = TextEditingController();
-
     return SizedBox(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height * 5 / 6,
@@ -87,7 +85,11 @@ class _PhoneFieldState extends State<PhoneField> {
           ),
           Expanded(
             child: GestureDetector(
-              onTap: widget.onPhoneContinuePressed,
+              onTap: () {
+                print("hihihi");
+                widget.getPhoneNum(phoneNumController.text);
+                widget.onPhoneContinuePressed();
+              },
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
