@@ -1,30 +1,18 @@
 import 'dart:io';
 
-import 'package:provider/provider.dart';
-import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
-
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'auth/firebase_auth/firebase_user_provider.dart';
-import 'auth/firebase_auth/auth_util.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_naver_map/flutter_naver_map.dart';
+import 'package:flutter_web_plugins/url_strategy.dart';
+import 'package:provider/provider.dart';
 
+import 'authentication/auth/firebase_auth/auth_util.dart';
+import 'authentication/auth/firebase_auth/firebase_user_provider.dart';
 import 'backend/firebase/firebase_config.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
 import 'flutter_flow/flutter_flow_util.dart';
 import 'flutter_flow/internationalization.dart';
-import 'flutter_flow/nav/nav.dart';
-import 'index.dart';
-
-import 'package:flutter/material.dart';
-import 'package:petdemo/common/app_bar.dart';
-import 'package:petdemo/main_screens/chat_screen.dart';
-import 'package:petdemo/main_screens/my_screen.dart';
-import 'package:petdemo/main_screens/search_screen.dart';
-import 'package:petdemo/main_screens/notification_screen.dart';
-import 'package:flutter_naver_map/flutter_naver_map.dart';
-import 'package:petdemo/main_screens/map_screen.dart'; // 여기서 map.dart를 import해야 합니다.
 
 //**안내**
 //-dart 파일은 플러터 플로우(main)의 메인 코드-입니다. -ishere_main.dart 파일은 우리의 ishere 메인 코드-입니다.
@@ -68,22 +56,22 @@ void main() async {
 
   runApp(ChangeNotifierProvider(
     create: (context) => appState,
-    child: MyApp(),
+    child: IsHere(),
   ));
 }
 
-class MyApp extends StatefulWidget {
-  const MyApp({super.key});
+class IsHere extends StatefulWidget {
+  const IsHere({super.key});
 
   // This widget is the root of your application.
   @override
-  State<MyApp> createState() => _MyAppState();
+  State<IsHere> createState() => _IsHereState();
 
-  static _MyAppState of(BuildContext context) =>
-      context.findAncestorStateOfType<_MyAppState>()!;
+  static _IsHereState of(BuildContext context) =>
+      context.findAncestorStateOfType<_IsHereState>()!;
 }
 
-class _MyAppState extends State<MyApp> {
+class _IsHereState extends State<IsHere> {
   Locale? _locale;
   ThemeMode _themeMode = FlutterFlowTheme.themeMode;
 

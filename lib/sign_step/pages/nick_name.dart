@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:petdemo/common/custom_textform.dart';
 import 'package:petdemo/sign_step/widgets/blue_green_button.dart';
 
-class NickNameScreen extends StatelessWidget {
+class NickNameField extends StatelessWidget {
   final VoidCallback? onCondAgreePressed;
-  const NickNameScreen({
+  const NickNameField({
     super.key,
     this.onCondAgreePressed,
   });

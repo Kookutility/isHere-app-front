@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:petdemo/common/custom_textform.dart';
 import 'package:petdemo/sign_step/widgets/blue_green_button.dart';
 import 'package:petdemo/sign_step/widgets/phone_text_field.dart';
 
-class PhoneSignScreen extends StatefulWidget {
+class PhoneField extends StatefulWidget {
   final VoidCallback? onPhoneContinuePressed;
-  const PhoneSignScreen({
+  final ValueChanged? getPhoneNum;
+  const PhoneField({
     super.key,
+    this.getPhoneNum,
     this.onPhoneContinuePressed,
   });
 
   @override
-  State<PhoneSignScreen> createState() => _PhoneSignScreenState();
+  State<PhoneField> createState() => _PhoneFieldState();
 }
 
-class _PhoneSignScreenState extends State<PhoneSignScreen> {
+class _PhoneFieldState extends State<PhoneField> {
   String initialValue = "9867243682"; // Dummy current phone number
   int selectedCountryCode = 977;
   bool isValid = false;

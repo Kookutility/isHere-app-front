@@ -5,10 +5,10 @@ import 'package:go_router/go_router.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:petdemo/main_screens/ishere_main.dart';
 import 'package:provider/provider.dart';
-import '../../chat_page/chat_page_widget.dart';
+import '../../chats/chat_page/chat_page_widget.dart';
 import '/backend/backend.dart';
 
-import '/auth/base_auth_user_provider.dart';
+import '../../authentication/auth/base_auth_user_provider.dart';
 
 import '/index.dart';
 import '/main.dart';

@@ -1,22 +1,21 @@
 import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:petdemo/const/address.dart';
+import 'package:petdemo/common/const/address.dart';
 
 class ApiService {
-  //final ip = androidEmulatorIP;
+  final ip = androidEmulatorIP;
   final dio = Dio();
 
   /* ===================== basic login& signin request ==================== */
-  Future<Response?> postRequest(
-      String sessionID, String toUrl, dynamic data) async {
+  Future<Response?> postRequest(String toUrl, dynamic data) async {
     try {
       final Response<dynamic> response = await dio.post(
-        toUrl,
+        ip + toUrl,
         options: Options(
           headers: {
             'Content-Type': 'application/json',
-            "authorization": 'Basic $sessionID',
           },
         ),
         data: data,
@@ -29,16 +28,10 @@ class ApiService {
     }
   }
 
-  Future<Response?> getRequest(
-      String sessionID, String toUrl, dynamic data) async {
+  Future<Response?> getRequest(String toUrl, dynamic data) async {
     try {
       final Response<dynamic> response = await dio.get(
-        toUrl,
-        options: Options(
-          headers: {
-            "authorization": 'Basic $sessionID',
-          },
-        ),
+        ip + toUrl,
         data: data,
       );
       return response;

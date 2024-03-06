@@ -1,23 +1,22 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-
 import 'package:petdemo/common/custom_textform.dart';
 import 'package:petdemo/sign_step/widgets/blue_green_button.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
-class VerifyPhoneScreen extends StatefulWidget {
+class VerifyPhoneField extends StatefulWidget {
   final VoidCallback? onVerifyContinuePressed;
-  const VerifyPhoneScreen({
+  const VerifyPhoneField({
     super.key,
     this.onVerifyContinuePressed,
   });
 
   @override
-  State<VerifyPhoneScreen> createState() => _VerifyPhoneScreenState();
+  State<VerifyPhoneField> createState() => _VerifyPhoneFieldState();
 }
 
-class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
+class _VerifyPhoneFieldState extends State<VerifyPhoneField> {
   String currentText = '';
   StreamController<ErrorAnimationType> errorController =
       StreamController<ErrorAnimationType>();

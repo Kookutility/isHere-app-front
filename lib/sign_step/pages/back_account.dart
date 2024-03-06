@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:petdemo/sign_step/widgets/blue_green_button.dart';
 
-class BankAccountScreen extends StatelessWidget {
+class BankAccountField extends StatelessWidget {
   final VoidCallback? onAccountStartPressed;
-  const BankAccountScreen({
+  const BankAccountField({
     super.key,
     this.onAccountStartPressed,
   });

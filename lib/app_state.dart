@@ -1,6 +1,6 @@
-  import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
+
 import '/backend/backend.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'flutter_flow/flutter_flow_util.dart';
 
 class FFAppState extends ChangeNotifier {
@@ -25,8 +25,8 @@ class FFAppState extends ChangeNotifier {
 
   bool _searchuser = false;
   bool get searchuser => _searchuser;
-  set searchuser(bool _value) {
-    _searchuser = _value;
+  set searchuser(bool value) {
+    _searchuser = value;
   }
 }
 
