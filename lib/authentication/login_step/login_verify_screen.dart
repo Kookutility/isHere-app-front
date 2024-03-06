@@ -20,7 +20,7 @@ class LoginVerifyScreen extends StatelessWidget {
               child: VerifyPhoneField(
                 getPinNum: (value) {
                   final phoneNumSend = ApiService();
-                  phoneNumSend.postRequest("SendForLogin", {"user": value});
+                  phoneNumSend.postRequest("/inputNum", {"inputNum": value});
                 },
                 onVerifyContinuePressed: () {
                   Navigator.of(context).push(

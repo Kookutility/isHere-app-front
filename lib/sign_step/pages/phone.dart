@@ -86,7 +86,6 @@ class _PhoneFieldState extends State<PhoneField> {
           Expanded(
             child: GestureDetector(
               onTap: () {
-                print("hihihi");
                 widget.getPhoneNum(phoneNumController.text);
                 widget.onPhoneContinuePressed();
               },

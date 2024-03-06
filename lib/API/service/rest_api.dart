@@ -2,10 +2,10 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:petdemo/common/const/address.dart';
 
 class ApiService {
-  final ip =
-      "https://port-0-ishere-app-back-1fk9002blr25yq9u.sel5.cloudtype.app";
+  final ip = androidEmulatorIP;
   final dio = Dio();
 
   /* ===================== basic login& signin request ==================== */

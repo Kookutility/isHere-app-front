@@ -26,6 +26,7 @@ class _LoginPhoneScreenState extends State<LoginPhoneScreen> {
               ),
               child: PhoneField(
                 getPhoneNum: (val) {
+                  print(val);
                   setState(() {
                     phoneNum = val;
                   });
@@ -34,8 +35,8 @@ class _LoginPhoneScreenState extends State<LoginPhoneScreen> {
                     ? () {}
                     : () {
                         final phoneNumSend = ApiService();
-                        phoneNumSend
-                            .postRequest("SendForLogin", {"user": phoneNum});
+                        phoneNumSend.postRequest(
+                            "/SendForLogin", {"username": phoneNum});
                         Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (context) {
