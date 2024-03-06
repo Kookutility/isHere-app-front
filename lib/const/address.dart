@@ -15,6 +15,7 @@ const interestedListScreen = '/interestedList';
 const wroteListScreen = '/wroteList';
 const transactionRecordScreen = 'transactionRecord';
 const profileUpdateScreen = 'ProfileUpdateScreenWidget';
+const accountUpdateScreen = 'accountUpdate';
 
 //widget model
 const postDetailWidget = 'postDetail';

@@ -8,6 +8,8 @@ export 'widget_model/profile_update_screen_model.dart';
 import 'package:petdemo/sign_step/widgets/purple_button.dart';
 import 'package:petdemo/sign_step/widgets/blue_green_button.dart';
 
+import 'package:petdemo/const/address.dart';
+
 class ProfileUpdateScreenWidget extends StatefulWidget {
   const ProfileUpdateScreenWidget({super.key});
 
@@ -222,93 +224,26 @@ class _ProfileUpdateScreenWidgetState extends State<ProfileUpdateScreenWidget> {
                     ),
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 3, 30, 0),
-                  child: TextFormField(
-                    controller: _model.textController3,
-                    focusNode: _model.textFieldFocusNode3,
-                    obscureText: false,
-                    decoration: InputDecoration(
-                      labelStyle: FlutterFlowTheme.of(context).labelMedium,
-                      hintText: '은행 이름을 적어주세요.',
-                      hintStyle: FlutterFlowTheme.of(context).labelMedium,
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: FlutterFlowTheme.of(context).alternate,
-                          width: 2,
-                        ),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: FlutterFlowTheme.of(context).primary,
-                          width: 2,
-                        ),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      errorBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: FlutterFlowTheme.of(context).error,
-                          width: 2,
-                        ),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      focusedErrorBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: FlutterFlowTheme.of(context).error,
-                          width: 2,
-                        ),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                    ),
-                    style: FlutterFlowTheme.of(context).bodyMedium,
-                    validator:
-                        _model.textController3Validator.asValidator(context),
-                  ),
+                SizedBox(
+                  height: 10,
                 ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 3, 30, 0),
-                  child: TextFormField(
-                    controller: _model.textController4,
-                    focusNode: _model.textFieldFocusNode4,
-                    obscureText: false,
-                    decoration: InputDecoration(
-                      labelStyle: FlutterFlowTheme.of(context).labelMedium,
-                      hintText: '계좌번호를 입력해주세요.',
-                      hintStyle: FlutterFlowTheme.of(context).labelMedium,
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: FlutterFlowTheme.of(context).alternate,
-                          width: 2,
+                GestureDetector(
+                  onTap: () async {
+                    Navigator.of(context).pushNamed(accountUpdateScreen);
+                  },
+                  child: PurpleButton(
+                    width: MediaQuery.of(context).size.width * 3 / 8,
+                    height: MediaQuery.of(context).size.height / 20,
+                    child: Center(
+                      child: Text(
+                        "계좌 등록하기",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: MediaQuery.of(context).size.width / 30,
+                          fontWeight: FontWeight.w700,
                         ),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: FlutterFlowTheme.of(context).primary,
-                          width: 2,
-                        ),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      errorBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: FlutterFlowTheme.of(context).error,
-                          width: 2,
-                        ),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      focusedErrorBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: FlutterFlowTheme.of(context).error,
-                          width: 2,
-                        ),
-                        borderRadius: BorderRadius.circular(8),
                       ),
                     ),
-                    style: FlutterFlowTheme.of(context).bodyMedium,
-                    keyboardType: TextInputType.number,
-                    validator:
-                        _model.textController4Validator.asValidator(context),
                   ),
                 ),
                 Padding(

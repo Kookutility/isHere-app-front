@@ -18,7 +18,7 @@ class _AreaSearchScreenState extends State<AreaSearchScreen> {
     try {
       String encodedQuery = Uri.encodeComponent(query); //한글데이터를 우선 인코딩
       final response = await http.get(Uri.parse(
-          'https://port-0-petish-app-back-1fk9002blr25yq9u.sel5.cloudtype.app /area/$encodedQuery'));
+          'https://port-0-petish-app-back-1fk9002blr25yq9u.sel5.cloudtype.app/area/$encodedQuery'));
 
       if (response.statusCode == 200) {
         final body = response.bodyBytes; // 한글 데이터가 깨지지 않게 utf8로 디코딩
@@ -63,6 +63,9 @@ class _AreaSearchScreenState extends State<AreaSearchScreen> {
             children: [
               IconButton(
                 onPressed: () async {
+                  setState(() {
+                    searchExecuted = true; // 검색 버튼이 클릭되었음을 표시
+                  });
                   await _searchArea(_searchController.text);
                 },
                 icon: Icon(Icons.search, color: Colors.black, size: 30.0),
@@ -95,4 +98,3 @@ class _AreaSearchScreenState extends State<AreaSearchScreen> {
     );
   }
 }
-

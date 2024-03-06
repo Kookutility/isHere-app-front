@@ -15,6 +15,7 @@ import 'package:petdemo/main_screens/write_screen.dart';
 import 'package:petdemo/const/address.dart';
 import 'package:petdemo/main_screens/wrote_screen.dart';
 import 'package:petdemo/main_screens/profile_update_screen.dart';
+import 'package:petdemo/main_screens/account_update_screen.dart';
 import 'package:petdemo/sign_step/pages/back_account.dart';
 import 'package:petdemo/sign_step/pages/condi_term.dart';
 import 'package:petdemo/sign_step/pages/nick_name.dart';
@@ -67,6 +68,7 @@ class IsHereMain extends StatelessWidget {
         signUpDoneScreen: (context) => SignUpDoneScreen(),
         tutorialScreen: (context) => TutorialScreen(),
         profileUpdateScreen: (context) => ProfileUpdateScreenWidget(),
+        accountUpdateScreen: (context) => AccountUpdateScreen(),
 
         //notice board
         postDetailWidget: (context) => PostDetailModel(),
@@ -80,4 +82,3 @@ class IsHereMain extends StatelessWidget {
     );
   }
 }
-
