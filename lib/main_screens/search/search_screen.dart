@@ -3,29 +3,25 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:petdemo/API/model/latest_post_model.dart';
+import 'package:petdemo/API/service/rest_api.dart';
 import 'package:petdemo/common/const/address.dart';
 import 'package:petdemo/main_screens/post/component/post_model.dart';
 
 class SearchScreen extends StatelessWidget {
-  const SearchScreen({Key? key}) : super(key: key);
+  const SearchScreen({super.key});
 
   Future<List<Post>?> getRequest(
-      /* String sessionID, String toUrl, dynamic data*/) async {
+      {required String url, dynamic data, BuildContext? context}) async {
     final dio = Dio();
     List<Post> postList = [];
     try {
-      final Response<String> response = await dio.get(
-        "https://port-0-petish-app-back-1fk9002blr25yq9u.sel5.cloudtype.app/board/list",
-        // options: Options(
-        //   headers: {
-        //     "authorization": 'Basic $sessionID',
-        //   },
-        // ),
-        // data: data,
-      );
-      print("data : $response");
+      final getLatestPost = ApiService(context: context);
+      final Response<dynamic>? response =
+          await getLatestPost.getRequest(url, data);
 
-      final List<dynamic> posts = jsonDecode(response.data!);
+      print("data : $response");
+      print(getLatestPost.reponseMessageCheck(response));
+      final List<dynamic> posts = jsonDecode(response!.data!);
 
       for (var post in posts) {
         print(post);
@@ -197,7 +193,7 @@ class SearchScreen extends StatelessWidget {
                       children: [
                         Expanded(
                           child: FutureBuilder<List<Post>?>(
-                              future: getRequest(),
+                              future: getRequest(context: context, url: ""),
                               builder: (context, snapshot) {
                                 if (!snapshot.hasData) {
                                   return CircularProgressIndicator();
@@ -222,11 +218,15 @@ class SearchScreen extends StatelessWidget {
                                       },
                                       child: PostModel(
                                         title: snapshot.data![item].postTitle,
-                                        price: snapshot.data![item].reward.toString(),
-                                        deal: snapshot.data![item].immediateCase.toString(),
+                                        price: snapshot.data![item].reward
+                                            .toString(),
+                                        deal: snapshot.data![item].immediateCase
+                                            .toString(),
                                         place: snapshot.data![item].areaName,
-                                        postedTime: snapshot.data![item].createdAt,
-                                        imageURL: 'https://img.freepik.com/free-photo/cute-puppy-sitting-in-grass-enjoying-nature-playful-beauty-generated-by-artificial-intelligence_188544-84973.jpg?w=1060&t=st=1704195937~exp=1704196537~hmac=ad3a9d0c1f275c58c7df69163f8da53383d3f97fc52d5765265abfbb970f31b7',
+                                        postedTime:
+                                            snapshot.data![item].createdAt,
+                                        imageURL:
+                                            'https://img.freepik.com/free-photo/cute-puppy-sitting-in-grass-enjoying-nature-playful-beauty-generated-by-artificial-intelligence_188544-84973.jpg?w=1060&t=st=1704195937~exp=1704196537~hmac=ad3a9d0c1f275c58c7df69163f8da53383d3f97fc52d5765265abfbb970f31b7',
                                       ),
                                     );
                                   },

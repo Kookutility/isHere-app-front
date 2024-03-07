@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:petdemo/authentication/login_step/login_phone_screen.dart';
 import 'package:petdemo/common/const/address.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -9,9 +10,9 @@ class ApiService {
   final ip = androidEmulatorIP;
   final dio = Dio();
   late final SharedPreferences prefs;
-  late final VoidCallback? sendUserTo;
+  late final BuildContext? context;
 
-  ApiService({this.sendUserTo});
+  ApiService({this.context});
 
   /* ===================== basic login& signin request ==================== */
   Future<Response?> postRequest(String toUrl, dynamic data) async {
@@ -82,25 +83,32 @@ class ApiService {
 
         refreshDio.interceptors.clear(); // 초기화
 
-        refreshDio.interceptors
-            .add(InterceptorsWrapper(onError: (error, handler) async {
-          // if 인증 에러 :  재발급 토큰 만료 -> 이경우 둘다 만료
-          if (error.response?.statusCode == 402) {
-            // 토큰 지우기
-            prefs.remove('accesss');
-            prefs.remove('refresh');
+        refreshDio.interceptors.add(
+          InterceptorsWrapper(
+            onError: (error, handler) async {
+              // if 인증 에러 :  재발급 토큰 만료 -> 이경우 둘다 만료
+              if (error.response?.statusCode == 402) {
+                // 토큰 지우기
+                prefs.remove('accesss');
+                prefs.remove('refresh');
 
-            // . . .
-            // 토큰이 만료됐다는 팝업 -> 로그인 페이지로 redirect 시켜야 함.
-            if (sendUserTo == null) {
-              print("redirect 주소가 없습니다.");
-            } else {
-              sendUserTo!();
-            }
-            // . . .
-          }
-          return handler.next(error);
-        }));
+                // . . .
+                // 토큰이 만료됐다는 팝업 -> 로그인 페이지로 redirect 시켜야 함.
+                if (context == null) {
+                  print("redirect 주소가 없습니다.");
+                } else {
+                  Navigator.of(context!).pushAndRemoveUntil(MaterialPageRoute(
+                    builder: (context) {
+                      return LoginPhoneScreen();
+                    },
+                  ), (route) => false);
+                }
+                // . . .
+              }
+              return handler.next(error);
+            },
+          ),
+        );
 
         // refresh 토큰으로 access 토큰 발급받기
         final refreshResponse = await refreshDio.post(
