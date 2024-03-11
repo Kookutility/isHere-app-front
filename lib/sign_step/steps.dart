@@ -1,7 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:petdemo/API/service/rest_api.dart';
 import 'package:petdemo/common/basic_layout.dart';
+import 'package:petdemo/firebase_options.dart';
 import 'package:petdemo/sign_step/pages/condi_term.dart';
 import 'package:petdemo/sign_step/pages/nick_name.dart';
 import 'package:petdemo/sign_step/pages/payment_password.dart';
@@ -16,6 +20,23 @@ import 'package:petdemo/sign_step/tutorial.dart';
 
 
 */
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();  
+  await Firebase.initializeApp(
+  options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(SignUpStepsScreenApp());
+}
+
+class SignUpStepsScreenApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: SignUpStepsScreen(),
+    );
+  }
+}
 
 class SignUpStepsScreen extends StatefulWidget {
   const SignUpStepsScreen({super.key});
@@ -125,18 +146,42 @@ class _SignUpStepsScreenState extends State<SignUpStepsScreen> {
       "pinNumber": pinNum,
     });
 
-    final result = await phoneNumSend.reponseMessageCheck(response);
-    print(result);
+   try {
+    // Firebase 초기화
+    await Firebase.initializeApp();
 
-    Navigator.of(context).pushAndRemoveUntil(
-      MaterialPageRoute(
-        builder: (context) {
-          return TutorialScreen();
-        },
-      ),
-      (route) => false,
+    // FirebaseAuth 인스턴스 사용
+    await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      email: phoneNum + "@ishere.com",
+      password: "ishere0903@@!@",
     );
+    User? user = FirebaseAuth.instance.currentUser;
+
+    if (user != null) {
+      // Firestore에 닉네임 저장하기
+      await FirebaseFirestore.instance.collection('users').doc(user.uid).set({
+        'nickname': nickName,
+      }, SetOptions(merge: true)); // 기존 데이터와 병합
+
+      // Firebase 유저 프로필 업데이트하기
+      await user.updateDisplayName(nickName);
+      
+      final result = await phoneNumSend.reponseMessageCheck(response);
+      print(result);
+
+      Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(
+          builder: (context) {
+            return TutorialScreen();
+          },
+        ),
+        (route) => false,
+      );
+    }
+  } catch (e) {
+    print("Error creating user: $e");
   }
+}
 
   @override
   Widget build(BuildContext context) {

@@ -7,7 +7,7 @@ import 'package:petdemo/common/const/address.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ApiService {
-  final ip = androidEmulatorIP;
+  final ip = "https://port-0-ishere-app-back-1fk9002blr25yq9u.sel5.cloudtype.app";
   final dio = Dio();
   late final SharedPreferences prefs;
   late final BuildContext? context;
