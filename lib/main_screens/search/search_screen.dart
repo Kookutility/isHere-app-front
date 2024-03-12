@@ -193,7 +193,7 @@ class SearchScreen extends StatelessWidget {
                       children: [
                         Expanded(
                           child: FutureBuilder<List<Post>?>(
-                              future: getRequest(context: context, url: ""),
+                              future: null,
                               builder: (context, snapshot) {
                                 if (!snapshot.hasData) {
                                   return CircularProgressIndicator();

@@ -13,6 +13,7 @@ import 'backend/firebase/firebase_config.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
 import 'flutter_flow/flutter_flow_util.dart';
 import 'flutter_flow/internationalization.dart';
+import 'package:petdemo/firebase_options.dart';
 
 //**안내**
 //-dart 파일은 플러터 플로우(main)의 메인 코드-입니다. -ishere_main.dart 파일은 우리의 ishere 메인 코드-입니다.
@@ -37,16 +38,9 @@ void main() async {
   // Firebase 프로젝트의 API 키, 인증 도메인, 프로젝트 ID 등을 설정합니다.
   // FirebaseOptions의 옵션을 설정한 후 Firebase.initializeApp() 함수를 호출하여 Firebase를 초기화합니다.
   Platform.isAndroid
-      ? await Firebase.initializeApp(
-          options: FirebaseOptions(
-            apiKey: "AIzaSyD9D9so0lurfFnM-uWRtgRPgSFW4tCu2Mo",
-            authDomain: "ishere-7726d.firebaseapp.com",
-            projectId: "ishere-7726d",
-            storageBucket: "ishere-7726d.appspot.com",
-            messagingSenderId: "463768315666",
-            appId: "1:463768315666:web:2deed5ef18f8f8567a75cb",
-          ),
-        )
+      ?   await Firebase.initializeApp(
+          options: DefaultFirebaseOptions.currentPlatform,
+          )
       : await initFirebase(); // Android가 아닌 경우 initFirebase() 함수를 호출하여 Firebase를 초기화합니다.
 
   await FlutterFlowTheme.initialize();
