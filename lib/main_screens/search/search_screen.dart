@@ -12,15 +12,19 @@ class SearchScreen extends StatelessWidget {
 
   Future<List<Post>?> getRequest(
       {required String url, dynamic data, BuildContext? context}) async {
-    final dio = Dio();
     List<Post> postList = [];
     try {
+
+      
       final getLatestPost = ApiService(context: context);
       final Response<dynamic>? response =
           await getLatestPost.getRequest(url, data);
-
       print("data : $response");
       print(getLatestPost.reponseMessageCheck(response));
+
+
+
+
       final List<dynamic> posts = jsonDecode(response!.data!);
 
       for (var post in posts) {
