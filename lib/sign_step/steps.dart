@@ -163,12 +163,10 @@ class _SignUpStepsScreenState extends State<SignUpStepsScreen> {
     if (user != null) { 
       // Firestore에 닉네임 저장하기
        await FirebaseFirestore.instance.collection('users').doc(user.uid).set({
+      'created_time': createdTime,
+      'display_name': nickName,
       'email': phoneNum + "@ishere.com",
-      'displayName': nickName,
-      'photoUrl': null, // 사용자 프로필 사진은 초기에 null로 설정하거나 기본값 사용
       'uid': user.uid,
-      'createdTime': createdTime,
-      'phoneNumber': phoneNum,
       }); // 기존 데이터와 병합
 
       // Firebase 유저 프로필 업데이트하기
