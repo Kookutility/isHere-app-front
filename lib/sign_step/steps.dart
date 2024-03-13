@@ -4,6 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:petdemo/API/service/rest_api.dart';
+import 'package:petdemo/backend/backend.dart';
 import 'package:petdemo/common/basic_layout.dart';
 import 'package:petdemo/firebase_options.dart';
 import 'package:petdemo/sign_step/pages/condi_term.dart';
@@ -13,6 +14,7 @@ import 'package:petdemo/sign_step/pages/phone.dart';
 import 'package:petdemo/sign_step/pages/verifyPhone.dart';
 import 'package:petdemo/sign_step/sign_up_done.dart';
 import 'package:petdemo/sign_step/tutorial.dart';
+import 'package:petdemo/backend/backend.dart';
 
 /*
 * 이즈히어 자체 회원가입 단계에 대한 기본적인 틀
@@ -156,15 +158,21 @@ class _SignUpStepsScreenState extends State<SignUpStepsScreen> {
       password: "ishere0903@@!@",
     );
     User? user = FirebaseAuth.instance.currentUser;
-
-    if (user != null) {
+    DateTime createdTime = DateTime.now();
+    
+    if (user != null) { 
       // Firestore에 닉네임 저장하기
-      await FirebaseFirestore.instance.collection('users').doc(user.uid).set({
-        'nickname': nickName,
-      }, SetOptions(merge: true)); // 기존 데이터와 병합
+       await FirebaseFirestore.instance.collection('users').doc(user.uid).set({
+      'email': phoneNum + "@ishere.com",
+      'displayName': nickName,
+      'photoUrl': null, // 사용자 프로필 사진은 초기에 null로 설정하거나 기본값 사용
+      'uid': user.uid,
+      'createdTime': createdTime,
+      'phoneNumber': phoneNum,
+      }); // 기존 데이터와 병합
 
       // Firebase 유저 프로필 업데이트하기
-      await user.updateDisplayName(nickName);
+      //await user.updateDisplayName(nickName);
       
       final result = await phoneNumSend.reponseMessageCheck(response);
       print(result);
