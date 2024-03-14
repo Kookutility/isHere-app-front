@@ -16,7 +16,7 @@ class PostDetailModel extends StatefulWidget {
 }
 
 class _PostDetailModelState extends State<PostDetailModel> {
-  final List<String> imageList = [
+  List<String> imageList = [
     'https://img.freepik.com/free-photo/cute-puppy-sitting-in-grass-enjoying-nature-playful-beauty-generated-by-artificial-intelligence_188544-84973.jpg?w=1060&t=st=1704195937~exp=1704196537~hmac=ad3a9d0c1f275c58c7df69163f8da53383d3f97fc52d5765265abfbb970f31b7',
     'https://img.freepik.com/free-photo/dog-waiting-in-the-veterinarian-office_23-2149198673.jpg?size=626&ext=jpg',
     'https://img.freepik.com/free-photo/front-view-adorable-shiba-inu-dog_23-2149457807.jpg?size=626&ext=jpg&ga=GA1.1.57940366.1704195866&semt=sph'
@@ -35,6 +35,7 @@ class _PostDetailModelState extends State<PostDetailModel> {
     category = args.categoryType;
     place = args.areaName;
     description = args.description;
+    imageList = args.imageUrls as List<String>;
   }
 
   @override

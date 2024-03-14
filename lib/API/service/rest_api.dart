@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:petdemo/authentication/login_step/login_phone_screen.dart';
@@ -188,37 +186,17 @@ class ApiService {
 
 /* ============================ error Check =========================== */
   // Method to check response message errors
-  Future<String> reponseMessageCheck(Response? response) async {
+  Future<Map<String, dynamic>?> reponseMessageCheck(Response? response) async {
     if (response == null) {
-      return 'error';
+      return null;
     }
     if (response.statusCode == 200) {
-      dynamic res = jsonDecode(response.data);
-      print(res.toString());
-      String data = res['message'];
-      print("data ::::::: $data");
-      switch (data) {
-        case 'success':
-        case 'login done':
-        case 'signUp done':
-          return 'success';
-        case 'no user':
-          return '!NO USER INFORMATION!';
-        case 'pw mismatch':
-          return '!PASSWORD MISMATCH!';
-        case 'duplicated':
-          return '!DUPLICATE ACCOUNT!';
-        case 'gps saved':
-          return 'success';
-        case 'no data':
-          return 'no data';
-        default:
-          print('=====>>>>> Response body: ${response.data}');
-      }
+      print(response.data);
+      return response.data;
     } else {
       print('=====>>>>> Request failed with status: ${response.statusCode}');
     }
-    return ' ===== !UNEXPECTED ERROR OCCURED! ===== ';
+    return null;
   }
 /* ============================ error Check =========================== */
 }

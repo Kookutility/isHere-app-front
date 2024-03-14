@@ -1,9 +1,11 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:http_parser/http_parser.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:petdemo/API/model/latest_post_model.dart';
 import 'package:petdemo/API/service/rest_api.dart';
 import 'package:petdemo/main_screens/post/component/post_detail_model.dart';
 import 'package:petdemo/main_screens/post/component/write_screen_model.dart';
@@ -83,10 +85,12 @@ class _WriteScreenState extends State<WriteScreen> {
           'postDTO': MultipartFile.fromString(
             jsonEncode({
               "postTitle": _model.textController1.text,
-              "description": _model.textController2.text,
+              "description": _model.textController3.text,
               "categoryType": widget.categoryTypeIsFind ? "찾고 있어요" : "찾았어요",
               "immediateCase": isInstantPayButtonOn ? 1 : 0,
-              "reward": _model.textController3.text,
+              "reward": int.parse(
+                _model.textController2.text,
+              ),
               "xLoc": xLoc ?? 0,
               "yLoc": yLoc ?? 0,
             }),
@@ -103,9 +107,24 @@ class _WriteScreenState extends State<WriteScreen> {
       );
       var result = await writePost.reponseMessageCheck(response);
       print(result);
+      print(result!['imageUrls']);
+      print(result['imageUrls'].runtimeType);
+      // print(jsonDecode(result['imageUrls']));
+      sendToDetail(result);
     } else {
       // 아무런 파일도 선택되지 않음.
     }
+  }
+
+  sendToDetail(Map<String, dynamic> result) {
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(
+        builder: (context) {
+          return PostDetailModel();
+        },
+        settings: RouteSettings(arguments: Post.fromJson(result)),
+      ),
+    );
   }
 
   instantPayTap() {
@@ -459,6 +478,7 @@ class BlueButton extends StatelessWidget {
       ),
       child: Center(
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Padding(
               padding: EdgeInsets.only(
@@ -472,6 +492,14 @@ class BlueButton extends StatelessWidget {
                 ),
               ),
             ),
+            isConfirm
+                ? Padding(
+                    padding: const EdgeInsets.only(right: 20),
+                    child: CupertinoActivityIndicator(
+                      color: Colors.black,
+                    ),
+                  )
+                : Container(),
           ],
         ),
       ),
