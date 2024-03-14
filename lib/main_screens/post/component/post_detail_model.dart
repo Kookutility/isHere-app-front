@@ -1,11 +1,15 @@
-import 'package:flutter/material.dart';
+import 'dart:io';
+
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_naver_map/flutter_naver_map.dart';
-import 'package:petdemo/main_screens/post/component/post_model.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:petdemo/chats/chats_widget.dart';
 
 import '../../../API/model/latest_post_model.dart';
 
 class PostDetailModel extends StatefulWidget {
+  const PostDetailModel({super.key});
 
   @override
   State<PostDetailModel> createState() => _PostDetailModelState();
@@ -166,7 +170,7 @@ class _PostDetailModelState extends State<PostDetailModel> {
                         height: 20,
                       ),
                       Text(
-                          description,
+                        description,
                         style: TextStyle(
                           fontSize: MediaQuery.of(context).size.width / 25,
                           fontWeight: FontWeight.bold,
@@ -241,9 +245,14 @@ class _PostDetailModelState extends State<PostDetailModel> {
 }
 
 class ImageSlider extends StatefulWidget {
-  final List<String> imageList;
+  final List<String>? imageList;
+  final List<XFile?>? imageXFileList;
 
-  const ImageSlider({Key? key, required this.imageList}) : super(key: key);
+  const ImageSlider({
+    super.key,
+    this.imageList,
+    this.imageXFileList,
+  });
 
   @override
   State<ImageSlider> createState() => _ImageSliderState();
@@ -254,37 +263,27 @@ class _ImageSliderState extends State<ImageSlider> {
 
   @override
   Widget build(BuildContext context) {
+    List<dynamic> listOfImage = widget.imageXFileList ?? imageList;
     return Stack(
       children: [
         SizedBox(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height / 3,
           child: CarouselSlider(
-            options: CarouselOptions(
-              height: MediaQuery.of(context).size.height / 3,
-              viewportFraction: 1,
-              enlargeCenterPage: true,
-              autoPlay: true,
-              onPageChanged: (index, reason) {
-                setState(() {
-                  _currentIndex = index;
-                });
-              },
-            ),
-            items: widget.imageList.map((url) {
-              return Container(
-                width: MediaQuery.of(context).size.width,
+              options: CarouselOptions(
                 height: MediaQuery.of(context).size.height / 3,
-                decoration: BoxDecoration(
-                  color: Colors.grey.withOpacity(0.6),
-                ),
-                child: Image.network(
-                  url,
-                  fit: BoxFit.cover,
-                ),
-              );
-            }).toList(),
-          ),
+                viewportFraction: 1,
+                enlargeCenterPage: true,
+                autoPlay: true,
+                onPageChanged: (index, reason) {
+                  setState(() {
+                    _currentIndex = index;
+                  });
+                },
+              ),
+              items: widget.imageXFileList == null
+                  ? showImageByURL()
+                  : showImageByXFile()),
         ),
         Positioned(
           width: MediaQuery.of(context).size.width,
@@ -292,8 +291,8 @@ class _ImageSliderState extends State<ImageSlider> {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.end,
             mainAxisAlignment: MainAxisAlignment.center,
-            children: widget.imageList.map((url) {
-              int index = widget.imageList.indexOf(url);
+            children: listOfImage.map((content) {
+              int index = listOfImage.indexOf(content);
               return Container(
                 width: _currentIndex != index ? 8 : 10,
                 height: _currentIndex != index ? 8 : 10,
@@ -309,5 +308,35 @@ class _ImageSliderState extends State<ImageSlider> {
       ],
     );
   }
-}
 
+  List<Widget> showImageByURL() {
+    return widget.imageList!.map((url) {
+      return Container(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height / 3,
+        decoration: BoxDecoration(
+          color: Colors.grey.withOpacity(0.6),
+        ),
+        child: Image.network(
+          url,
+          fit: BoxFit.cover,
+        ),
+      );
+    }).toList();
+  }
+
+  List<Widget> showImageByXFile() {
+    return widget.imageXFileList!.map((xfile) {
+      return Container(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height / 3,
+        decoration: BoxDecoration(
+          color: Colors.grey.withOpacity(0.6),
+        ),
+        child: Image.file(
+          File(xfile!.path),
+        ),
+      );
+    }).toList();
+  }
+}

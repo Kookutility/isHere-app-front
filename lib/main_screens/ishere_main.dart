@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_naver_map/flutter_naver_map.dart';
-import 'package:petdemo/authentication/auth_screens/login_screen.dart';
-import 'package:petdemo/authentication/auth_screens/splash_screen.dart';
+import 'package:petdemo/authentication/login_step/login_phone_screen.dart';
 import 'package:petdemo/common/const/address.dart';
 import 'package:petdemo/init_screen.dart';
 import 'package:petdemo/main_screens/exception/notification_screen.dart';
@@ -37,16 +36,16 @@ class IsHereMain extends StatelessWidget {
       initialRoute: home,
       theme: ThemeData(fontFamily: 'Pretendard'),
       routes: {
-        home: (context) => InitScreen(),
+        home: (context) => LoginPhoneScreen(),
         initScreen: (context) => const InitScreen(),
-        splashScreen: (context) => const SplashScreen(),
-        loginScreen: (context) => const LogInScreen(),
 
         //post
         searchLookingScreen: (context) => const LookingScreen(),
         searchFoundScreen: (context) => const FoundScreen(),
         mapScreen: (context) => const MapScreen(),
-        writeScreen: (context) => const WriteScreen(),
+        writeScreen: (context) => const WriteScreen(
+              categoryTypeIsFind: false,
+            ),
 
         //signUp
         signUpStepsScreen: (context) => SignUpStepsScreen(),
