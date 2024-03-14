@@ -26,6 +26,10 @@ class ChatsModel extends FlutterFlowModel<ChatsWidget> {
       FFUploadedFile(bytes: Uint8List.fromList([]));
   String uploadedFileUrl = '';
 
+  Object? get receiverPhoneNumber => null;
+
+  Object? get senderPhoneNumber => null;
+
   /// Initialization and disposal methods.
 
   void initState(BuildContext context) {}

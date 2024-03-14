@@ -114,12 +114,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'Chats',
           path: 'chats',
           builder: (context, params) => ChatsWidget(
-            userName: params.getParam('userName', ParamType.String),
-            chatUser: params.getParam(
-                'chatUser', ParamType.DocumentReference, false, ['chats']),
-            userRef: params.getParam(
-                'userRef', ParamType.DocumentReference, false, ['users']),
+            chatUser: params.getParam('chatUser', ParamType.DocumentReference, false, ['chats']),
+            userRef: params.getParam('userRef', ParamType.DocumentReference, false, ['users']),
             userProfile: params.getParam('userProfile', ParamType.String),
+            userName: params.getParam('userName', ParamType.String),
+            senderPhoneNumber: params.getParam('senderPhoneNumber', ParamType.String),
+            receiverPhoneNumber: params.getParam('receiverPhoneNumber', ParamType.String),
           ),
         ),
         FFRoute(

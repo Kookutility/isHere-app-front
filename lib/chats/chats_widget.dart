@@ -34,34 +34,40 @@ export 'chats_model.dart';
 // 하단부
 // 상단바 프로필(게시글 사진 들어갈 곳)
 
-void main() => runApp(
-      MaterialApp(
-        home: ChatsWidget(
-          chatUser: null,
-          userName: '',
-          userRef: null,
-          userProfile: '',
+  void main() => runApp(
+        MaterialApp(
+          home: ChatsWidget(
+            userName: '',
+            chatUser: null,
+            userRef: null,
+            userProfile: '',
+            senderPhoneNumber: '',
+            receiverPhoneNumber: '',
+          ),
         ),
-      ),
-    );
+      );
 
-class ChatsWidget extends StatefulWidget {
-  const ChatsWidget({
-    super.key,
-    this.userName,
-    this.chatUser, // 채팅방 이름
-    this.userRef,
-    this.userProfile,
-  });
+  class ChatsWidget extends StatefulWidget {
+    const ChatsWidget({
+      Key? key,
+      this.userName,
+      this.chatUser,
+      this.userRef,
+      this.userProfile,
+      this.senderPhoneNumber,
+      this.receiverPhoneNumber, // 새로운 매개변수 추가
+    });
 
-  final String? userName;
-  final DocumentReference? chatUser;
-  final DocumentReference? userRef;
-  final String? userProfile;
+    final String? userName;
+    final DocumentReference? chatUser;
+    final DocumentReference? userRef;
+    final String? userProfile;
+    final String? senderPhoneNumber;
+    final String? receiverPhoneNumber; // 새로운 매개변수
 
-  @override
-  _ChatsWidgetState createState() => _ChatsWidgetState();
-}
+    @override
+    _ChatsWidgetState createState() => _ChatsWidgetState();
+  }
 
 List<String> imageList = [
   // 사진 리스트
@@ -93,11 +99,15 @@ class _ChatsWidgetState extends State<ChatsWidget> {
 
   @override
   Widget build(BuildContext context) {
+    
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
 
     print('화면 가로 픽셀 크기: $screenWidth'); //411
     print('화면 세로 픽셀 크기: $screenHeight'); //867
+
+    print(widget.senderPhoneNumber);
+    print(widget.receiverPhoneNumber);
 
     if (isiOS) {
       SystemChrome.setSystemUIOverlayStyle(
@@ -1604,23 +1614,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                             // Navigate to RewardScreen when index is 1
                                                             Navigator.push(
                                                               context,
-                                                              MaterialPageRoute(
-                                                                  builder: (context) =>
-                                                                      PaymentPassword(
-                                                                        getPayPinNum:
-                                                                            (value) =>
-                                                                                print(value),
-                                                                        onPinContinuePressed:
-                                                                            () =>
-                                                                                Navigator.of(context).push(
-                                                                          MaterialPageRoute(
-                                                                            builder:
-                                                                                (context) {
-                                                                              return PaymentDone();
-                                                                            },
-                                                                          ),
-                                                                        ),
-                                                                      )), // Replace signUpScreen() with your actual screen widget
+                                                             showPasswordPaymentPage(), 
                                                             );
                                                           } else {
                                                             Navigator.push(
@@ -1840,5 +1834,36 @@ class _ChatsWidgetState extends State<ChatsWidget> {
         );
       },
     );
+  }
+
+  MaterialPageRoute<dynamic> showPasswordPaymentPage() {
+    return MaterialPageRoute(
+        builder: (context) => Scaffold(
+              body: SizedBox(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height,
+                child: Column(
+                  children: [
+                    Flexible(
+                      flex: 1,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: PaymentPassword(
+                          getPayPinNum: (value) => print(value),
+                          onPinContinuePressed: () =>
+                              Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return PaymentDone(onDonePressed: () {});  //Done 서버로 보낼때
+                              },
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ));
   }
 }

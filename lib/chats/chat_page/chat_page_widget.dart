@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+
 import '../../authentication/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
@@ -413,7 +415,8 @@ class _ChatPageWidgetState extends State<ChatPageWidget>
                                           );
                                         }
                                         final containerUsersRecord = snapshot.data!;
-
+                                        FirebaseAuth auth = FirebaseAuth.instance;
+                                          User? user = auth.currentUser;
                                         return InkWell(
                                           splashColor: Colors.transparent,
                                           focusColor: Colors.transparent,
@@ -441,6 +444,14 @@ class _ChatPageWidgetState extends State<ChatPageWidget>
                                                 ),
                                                 'userName': serializeParam(
                                                   containerUsersRecord.displayName,
+                                                  ParamType.String,
+                                                ),
+                                                'senderPhoneNumber': serializeParam(
+                                                  user?.email,
+                                                  ParamType.String,
+                                                ),
+                                                'receiverPhoneNumber': serializeParam(
+                                                  containerUsersRecord.email,
                                                   ParamType.String,
                                                 ),
                                               }.withoutNulls,
