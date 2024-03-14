@@ -1,7 +1,10 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
+import 'package:http_parser/http_parser.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:petdemo/API/service/rest_api.dart';
 import 'package:petdemo/main_screens/post/component/write_screen_model.dart';
 
 export 'component/write_screen_model.dart';
@@ -45,6 +48,60 @@ class _WriteScreenState extends State<WriteScreen> {
     _model.dispose();
 
     super.dispose();
+  }
+
+  Future<void> uploadFile() async {
+    if (multiImage.isNotEmpty) {
+      for (var image in multiImage) {
+        print(image!.name);
+      }
+      final writePost = ApiService(context: context);
+      // JSON 데이터 설정
+
+      // 이미지 파일과 JSON 데이터를 함께 전송하기 위해 FormData 생성
+
+      List<MultipartFile> files = [];
+
+      // 이미지 파일 추가
+      for (XFile? image in multiImage) {
+        if (image != null) {
+          files.add(
+            await MultipartFile.fromFile(
+              image.path,
+              filename: image.name,
+            ),
+          );
+        }
+      }
+      FormData formData = FormData.fromMap(
+        {
+          'files': files,
+          'postDTO': MultipartFile.fromString(
+            jsonEncode({
+              "postTitle": "테스트 제목",
+              "description": "테스트 내용",
+              "categoryType": "찾고있어요",
+              "immediateCase": 1,
+              "reward": 10000,
+              "xLoc": 0.0,
+              "yLoc": 0.0
+            }),
+            contentType: MediaType.parse('application/json'),
+          )
+        },
+      );
+
+      // 업로드 요청
+      final response = await writePost.postRequestWithToken(
+        toUrl: '/board/upload',
+        data: formData,
+        contentType: 'multipart/form-data',
+      );
+      var result = await writePost.reponseMessageCheck(response);
+      print(result);
+    } else {
+      // 아무런 파일도 선택되지 않음.
+    }
   }
 
   @override
@@ -115,6 +172,7 @@ class _WriteScreenState extends State<WriteScreen> {
                             setState(() {
                               images.addAll(multiImage);
                             });
+                            uploadFile();
                           },
                           icon: Icon(
                             Icons.add_photo_alternate_outlined,

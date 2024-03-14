@@ -1604,23 +1604,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                             // Navigate to RewardScreen when index is 1
                                                             Navigator.push(
                                                               context,
-                                                              MaterialPageRoute(
-                                                                  builder: (context) =>
-                                                                      PaymentPassword(
-                                                                        getPayPinNum:
-                                                                            (value) =>
-                                                                                print(value),
-                                                                        onPinContinuePressed:
-                                                                            () =>
-                                                                                Navigator.of(context).push(
-                                                                          MaterialPageRoute(
-                                                                            builder:
-                                                                                (context) {
-                                                                              return PaymentDone();
-                                                                            },
-                                                                          ),
-                                                                        ),
-                                                                      )), // Replace signUpScreen() with your actual screen widget
+                                                              showPasswordPaymentPage(), // Replace signUpScreen() with your actual screen widget
                                                             );
                                                           } else {
                                                             Navigator.push(
@@ -1840,5 +1824,36 @@ class _ChatsWidgetState extends State<ChatsWidget> {
         );
       },
     );
+  }
+
+  MaterialPageRoute<dynamic> showPasswordPaymentPage() {
+    return MaterialPageRoute(
+        builder: (context) => Scaffold(
+              body: SizedBox(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height,
+                child: Column(
+                  children: [
+                    Flexible(
+                      flex: 1,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: PaymentPassword(
+                          getPayPinNum: (value) => print(value),
+                          onPinContinuePressed: () =>
+                              Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return PaymentDone(onDonePressed: () {});
+                              },
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ));
   }
 }

@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:petdemo/sign_step/widgets/blue_green_button.dart';
 
 class PaymentDone extends StatelessWidget {
-  const PaymentDone({super.key});
+  final VoidCallback? onDonePressed;
+  const PaymentDone({
+    super.key,
+    required this.onDonePressed,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +54,7 @@ class PaymentDone extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   GestureDetector(
-                    onTap: () {},
+                    onTap: onDonePressed,
                     child: BlueGreenButton(
                       child: Center(
                         child: Text(

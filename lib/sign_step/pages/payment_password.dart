@@ -49,7 +49,10 @@ class _PaymentPasswordState extends State<PaymentPassword> {
       child: Column(
         children: [
           SizedBox(
-            height: MediaQuery.of(context).size.height / 30,
+            height: MediaQuery.of(context).size.height / 15,
+          ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height / 15,
           ),
           Flexible(
             flex: 1,

@@ -7,12 +7,14 @@ import 'package:petdemo/common/const/address.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ApiService {
-  final ip = "https://port-0-ishere-app-back-1fk9002blr25yq9u.sel5.cloudtype.app";
+  final ip = androidEmulatorIP;
   final dio = Dio();
-  late final SharedPreferences prefs;
+
   late final BuildContext? context;
 
-  ApiService({this.context});
+  ApiService({
+    this.context,
+  });
 
   /* ===================== basic login& signin request ==================== */
   Future<Response?> postRequest(String toUrl, dynamic data) async {
@@ -50,21 +52,23 @@ class ApiService {
   /* ===================== token request ==================== */
 
   Future<String?> readToken() async {
-    return prefs.getString('accesss');
+    final prefs = await SharedPreferences.getInstance();
+    String? accessToken = prefs.getString('access');
+    return accessToken;
   }
 
   void saveToken(
       {required String accessToken, required String refreshToken}) async {
-    prefs = await SharedPreferences.getInstance();
+    final prefs = await SharedPreferences.getInstance();
     prefs.setString("access", accessToken);
     prefs.setString("refresh", refreshToken);
     print("accessToken : $accessToken");
     print("refreshToken $refreshToken");
   }
 
-  Future<Dio> authDio() async {
+  Future<Dio> _authDio() async {
     dio.interceptors.clear();
-    prefs = await SharedPreferences.getInstance();
+    final prefs = await SharedPreferences.getInstance();
 
     dio.interceptors
         .add(InterceptorsWrapper(onRequest: (options, handler) async {
@@ -91,7 +95,7 @@ class ApiService {
                 // 토큰 지우기
                 prefs.remove('accesss');
                 prefs.remove('refresh');
-
+                print("hihihihi this is for refreshing token");
                 // . . .
                 // 토큰이 만료됐다는 팝업 -> 로그인 페이지로 redirect 시켜야 함.
                 if (context == null) {
@@ -144,9 +148,10 @@ class ApiService {
     return dio;
   }
 
-  Future<Response?> getRequestWithToken(String toUrl, dynamic data) async {
+  Future<Response?> getRequestWithToken(
+      {required String toUrl, required dynamic data}) async {
     try {
-      final dio = await authDio();
+      final dio = await _authDio();
       final Response<dynamic> response = await dio.get(
         ip + toUrl,
         data: data,
@@ -158,11 +163,20 @@ class ApiService {
     }
   }
 
-  Future<Response?> postRequestWithToken(String toUrl, dynamic data) async {
+  Future<Response?> postRequestWithToken({
+    required String toUrl,
+    required dynamic data,
+    String? contentType,
+  }) async {
     try {
-      final dio = await authDio();
+      final option = Options(headers: {
+        'Content-Type': contentType,
+        'Authorization': await readToken(),
+      }, method: 'POST');
+      final dio = Dio();
       final Response<dynamic> response = await dio.post(
         ip + toUrl,
+        options: option,
         data: data,
       );
       return response;
