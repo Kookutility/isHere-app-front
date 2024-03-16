@@ -1,15 +1,18 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
+import 'package:petdemo/API/service/rest_api.dart';
 import 'package:petdemo/common/basic_layout.dart';
-import 'package:petdemo/const/address.dart';
-import 'package:petdemo/sign_step/pages/back_account.dart';
+import 'package:petdemo/firebase_options.dart';
 import 'package:petdemo/sign_step/pages/condi_term.dart';
 import 'package:petdemo/sign_step/pages/nick_name.dart';
-import 'package:petdemo/sign_step/pages/password.dart';
+import 'package:petdemo/sign_step/pages/payment_password.dart';
 import 'package:petdemo/sign_step/pages/phone.dart';
-import 'package:petdemo/sign_step/pages/sign_up_done.dart';
-import 'package:petdemo/sign_step/pages/tutorial.dart';
 import 'package:petdemo/sign_step/pages/verifyPhone.dart';
+import 'package:petdemo/sign_step/sign_up_done.dart';
+import 'package:petdemo/sign_step/tutorial.dart';
 
 /*
 * 이즈히어 자체 회원가입 단계에 대한 기본적인 틀
@@ -17,6 +20,23 @@ import 'package:petdemo/sign_step/pages/verifyPhone.dart';
 
 
 */
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();  
+  await Firebase.initializeApp(
+  options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(SignUpStepsScreenApp());
+}
+
+class SignUpStepsScreenApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: SignUpStepsScreen(),
+    );
+  }
+}
 
 class SignUpStepsScreen extends StatefulWidget {
   const SignUpStepsScreen({super.key});
@@ -30,18 +50,36 @@ class _SignUpStepsScreenState extends State<SignUpStepsScreen> {
   double percentBar = 0.0; // 첫 페이지 페센트
   late double amountOfProgress = 0.0; // 퍼센트바에 대한 회원가입 단계별 증가량
   List<Widget> signUpPages = []; // 페이지 리스트
-
+  String phoneNum = '';
+  String pinNum = '';
+  String payPinNum = '';
+  String nickName = '';
   @override
   void initState() {
     super.initState();
     signUpPages = [
-      PhoneSignScreen(
+      PhoneField(
         onPhoneContinuePressed: pushPage,
+        getPhoneNum: (value) {
+          print(value);
+          phoneNum = value;
+        },
       ),
-      VerifyPhoneScreen(
+      VerifyPhoneField(
         onVerifyContinuePressed: pushPage,
+        getPinNum: (value) {
+          print(value);
+          pinNum = value;
+        },
       ),
-      NickNameScreen(
+      NickNameField(
+        onContinuePressed: pushPage,
+        getNickName: (value) {
+          print(value);
+          nickName = value;
+        },
+      ),
+      CondTermScreenField(
         onCondAgreePressed: pushPage,
       ),
       CondTermScreen(
@@ -57,6 +95,12 @@ class _SignUpStepsScreenState extends State<SignUpStepsScreen> {
       ),
       BankAccountScreen(
         onAccountStartPressed: pushPage,
+      PaymentPassword(
+        onPinContinuePressed: pushPage,
+        getPayPinNum: (value) {
+          print(value);
+          payPinNum = value;
+        },
       ),
       SignUpDoneScreen(
         onDonePressed: onDonePressed,
@@ -100,13 +144,57 @@ class _SignUpStepsScreenState extends State<SignUpStepsScreen> {
   void pushPage() {
     pageIndex++;
     percentBar += amountOfProgress;
-    setState(() {});
+    setState(() {
+      print(pageIndex);
+      print(percentBar);
+    });
   }
 
-  void onDonePressed() {
-    Navigator.of(context)
-        .pushNamedAndRemoveUntil(tutorialScreen, (route) => false);
+  void onDonePressed() async {
+    final phoneNumSend = ApiService();
+    print("$nickName $phoneNum $pinNum");
+    final response = await phoneNumSend.postRequest("/user/register", {
+      "userName": nickName,
+      "phoneNumber": phoneNum,
+      "pinNumber": pinNum,
+    });
+
+   try {
+    // Firebase 초기화
+    await Firebase.initializeApp();
+
+    // FirebaseAuth 인스턴스 사용
+    await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      email: phoneNum + "@ishere.com",
+      password: "ishere0903@@!@",
+    );
+    User? user = FirebaseAuth.instance.currentUser;
+
+    if (user != null) {
+      // Firestore에 닉네임 저장하기
+      await FirebaseFirestore.instance.collection('users').doc(user.uid).set({
+        'nickname': nickName,
+      }, SetOptions(merge: true)); // 기존 데이터와 병합
+
+      // Firebase 유저 프로필 업데이트하기
+      await user.updateDisplayName(nickName);
+      
+      final result = await phoneNumSend.reponseMessageCheck(response);
+      print(result);
+
+      Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(
+          builder: (context) {
+            return TutorialScreen();
+          },
+        ),
+        (route) => false,
+      );
+    }
+  } catch (e) {
+    print("Error creating user: $e");
   }
+}
 
   @override
   Widget build(BuildContext context) {

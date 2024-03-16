@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:petdemo/sign_step/widgets/blue_green_button.dart';
 
-class CondTermScreen extends StatelessWidget {
+class CondTermScreenField extends StatelessWidget {
   final VoidCallback? onCondAgreePressed;
-  const CondTermScreen({
+  const CondTermScreenField({
     super.key,
     this.onCondAgreePressed,
   });

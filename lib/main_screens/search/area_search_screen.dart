@@ -5,6 +5,11 @@ import 'dart:convert' show utf8, jsonDecode;
 import 'package:petdemo/common/custom_textform.dart';
 import 'package:petdemo/sign_step/widgets/blue_green_button.dart';
 
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:petdemo/API/service/rest_api.dart';
+import 'package:petdemo/common/basic_layout.dart';
+
 class AreaSearchScreen extends StatefulWidget {
   const AreaSearchScreen({super.key});
 
@@ -18,6 +23,13 @@ class _AreaSearchScreenState extends State<AreaSearchScreen> {
   bool searchExecuted = false; //검색이 실행되지 않았을 때 출력되는 text를 위한 bool
   Future<void> _searchArea(String query) async {
     try {
+      print(query);
+
+      final location = ApiService();
+      final result = await location.getRequest("/area/$query", null);
+
+      final message = await location.reponseMessageCheck(result);
+
       String encodedQuery = Uri.encodeComponent(query); //한글데이터를 우선 인코딩
       Dio dio = Dio();
       final response = await dio.get(

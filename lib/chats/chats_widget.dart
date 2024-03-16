@@ -1,23 +1,19 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:petdemo/main_screens/exception/payment_done.dart';
+import 'package:petdemo/sign_step/pages/payment_password.dart';
+import 'package:provider/provider.dart';
 
-import 'package:petdemo/chats/payment_password.dart';
-import 'package:petdemo/const/address.dart';
-import '../chat_page/chat_page_widget.dart';
-import '../sign_step/pages/tutorial.dart';
+import '../authentication/auth/firebase_auth/auth_util.dart';
 import '../sign_step/steps.dart';
-import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'chats_model.dart';
+
 export 'chats_model.dart';
 
 //길어서 주요 주석 내용 여기에 놓겠습니다. ctrl+f 로 밑의 내용 검색해서 검색 가능합니다.
@@ -37,7 +33,6 @@ export 'chats_model.dart';
 // 채팅 상단바
 // 하단부
 // 상단바 프로필(게시글 사진 들어갈 곳)
-
 
 void main() => runApp(
       MaterialApp(
@@ -59,7 +54,6 @@ class ChatsWidget extends StatefulWidget {
     this.userProfile,
   });
 
-
   final String? userName;
   final DocumentReference? chatUser;
   final DocumentReference? userRef;
@@ -68,7 +62,6 @@ class ChatsWidget extends StatefulWidget {
   @override
   _ChatsWidgetState createState() => _ChatsWidgetState();
 }
-
 
 List<String> imageList = [
   // 사진 리스트
@@ -1606,10 +1599,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                             // Navigate to RewardScreen when index is 1
                                                             Navigator.push(
                                                               context,
-                                                              MaterialPageRoute(
-                                                                  builder:
-                                                                      (context) =>
-                                                                          PaymentPassword()), // Replace signUpScreen() with your actual screen widget
+                                                              showPasswordPaymentPage(), // Replace signUpScreen() with your actual screen widget
                                                             );
                                                           } else {
                                                             Navigator.push(
@@ -1829,5 +1819,36 @@ class _ChatsWidgetState extends State<ChatsWidget> {
         );
       },
     );
+  }
+
+  MaterialPageRoute<dynamic> showPasswordPaymentPage() {
+    return MaterialPageRoute(
+        builder: (context) => Scaffold(
+              body: SizedBox(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height,
+                child: Column(
+                  children: [
+                    Flexible(
+                      flex: 1,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: PaymentPassword(
+                          getPayPinNum: (value) => print(value),
+                          onPinContinuePressed: () =>
+                              Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return PaymentDone(onDonePressed: () {});
+                              },
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ));
   }
 }

@@ -1,23 +1,24 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-
 import 'package:petdemo/common/custom_textform.dart';
 import 'package:petdemo/sign_step/widgets/blue_green_button.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
-class VerifyPhoneScreen extends StatefulWidget {
-  final VoidCallback? onVerifyContinuePressed;
-  const VerifyPhoneScreen({
+class VerifyPhoneField extends StatefulWidget {
+  final VoidCallback onVerifyContinuePressed;
+  final ValueChanged<String> getPinNum;
+  const VerifyPhoneField({
     super.key,
-    this.onVerifyContinuePressed,
+    required this.onVerifyContinuePressed,
+    required this.getPinNum,
   });
 
   @override
-  State<VerifyPhoneScreen> createState() => _VerifyPhoneScreenState();
+  State<VerifyPhoneField> createState() => _VerifyPhoneFieldState();
 }
 
-class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
+class _VerifyPhoneFieldState extends State<VerifyPhoneField> {
   String currentText = '';
   StreamController<ErrorAnimationType> errorController =
       StreamController<ErrorAnimationType>();
@@ -119,7 +120,10 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
           Flexible(
             flex: 1,
             child: GestureDetector(
-              onTap: widget.onVerifyContinuePressed,
+              onTap: () {
+                widget.onVerifyContinuePressed();
+                widget.getPinNum(currentText);
+              },
               // isConfirm ? widget.onVerifyContinuePressed : null,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,

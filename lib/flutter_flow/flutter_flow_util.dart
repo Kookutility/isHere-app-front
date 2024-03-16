@@ -11,23 +11,23 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../main.dart';
 
-import 'lat_lng.dart';
-
-export 'keep_alive_wrapper.dart';
-export 'lat_lng.dart';
-export 'place.dart';
-export 'uploaded_file.dart';
-export '../app_state.dart';
-export 'flutter_flow_model.dart';
+export 'dart:convert' show jsonEncode, jsonDecode;
 export 'dart:math' show min, max;
 export 'dart:typed_data' show Uint8List;
-export 'dart:convert' show jsonEncode, jsonDecode;
-export 'package:intl/intl.dart';
+
 export 'package:cloud_firestore/cloud_firestore.dart'
     show DocumentReference, FirebaseFirestore;
+export 'package:intl/intl.dart';
 export 'package:page_transition/page_transition.dart';
+
+export '../app_state.dart';
 export 'custom_icons.dart' show FFIcons;
+export 'flutter_flow_model.dart';
+export 'keep_alive_wrapper.dart';
+export 'lat_lng.dart';
 export 'nav/nav.dart';
+export 'place.dart';
+export 'uploaded_file.dart';
 
 T valueOrDefault<T>(T? value, T defaultValue) =>
     (value is String && value.isEmpty) || value == null ? defaultValue : value;
@@ -232,10 +232,10 @@ extension StringDocRef on String {
 }
 
 void setAppLanguage(BuildContext context, String language) =>
-    MyApp.of(context).setLocale(language);
+    IsHere.of(context).setLocale(language);
 
 void setDarkModeSetting(BuildContext context, ThemeMode themeMode) =>
-    MyApp.of(context).setThemeMode(themeMode);
+    IsHere.of(context).setThemeMode(themeMode);
 
 void showSnackbar(
   BuildContext context,

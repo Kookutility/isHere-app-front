@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:petdemo/common/custom_textform.dart';
 import 'package:petdemo/sign_step/widgets/blue_green_button.dart';
 import 'package:petdemo/sign_step/widgets/phone_text_field.dart';
 
-class PhoneSignScreen extends StatefulWidget {
-  final VoidCallback? onPhoneContinuePressed;
-  const PhoneSignScreen({
+class PhoneField extends StatefulWidget {
+  final VoidCallback onPhoneContinuePressed;
+  final ValueChanged<String> getPhoneNum;
+  const PhoneField({
     super.key,
-    this.onPhoneContinuePressed,
+    required this.getPhoneNum,
+    required this.onPhoneContinuePressed,
   });
 
   @override
-  State<PhoneSignScreen> createState() => _PhoneSignScreenState();
+  State<PhoneField> createState() => _PhoneFieldState();
 }
 
-class _PhoneSignScreenState extends State<PhoneSignScreen> {
+class _PhoneFieldState extends State<PhoneField> {
   String initialValue = "9867243682"; // Dummy current phone number
   int selectedCountryCode = 977;
   bool isValid = false;
@@ -44,8 +45,6 @@ class _PhoneSignScreenState extends State<PhoneSignScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final TextEditingController phoneNumTController = TextEditingController();
-
     return SizedBox(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height * 5 / 6,
@@ -86,7 +85,10 @@ class _PhoneSignScreenState extends State<PhoneSignScreen> {
           ),
           Expanded(
             child: GestureDetector(
-              onTap: widget.onPhoneContinuePressed,
+              onTap: () {
+                widget.getPhoneNum(phoneNumController.text);
+                widget.onPhoneContinuePressed();
+              },
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [

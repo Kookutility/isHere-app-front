@@ -8,7 +8,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:mime_type/mime_type.dart';
 import 'package:video_player/video_player.dart';
 
-import '../auth/firebase_auth/auth_util.dart';
+import '../authentication/auth/firebase_auth/auth_util.dart';
 import 'flutter_flow_theme.dart';
 import 'flutter_flow_util.dart';
 
