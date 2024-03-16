@@ -2,13 +2,12 @@ import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'widget_model/profile_update_screen_model.dart';
-export 'widget_model/profile_update_screen_model.dart';
+import './component/profile_update_screen_model.dart';
 
 import 'package:petdemo/sign_step/widgets/purple_button.dart';
 import 'package:petdemo/sign_step/widgets/blue_green_button.dart';
 
-import 'package:petdemo/const/address.dart';
+import 'package:petdemo/common/const/address.dart';
 
 class ProfileUpdateScreenWidget extends StatefulWidget {
   const ProfileUpdateScreenWidget({super.key});

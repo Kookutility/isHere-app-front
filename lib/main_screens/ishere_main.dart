@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_naver_map/flutter_naver_map.dart';
-import 'package:petdemo/authentication/login_step/login_phone_screen.dart';
 import 'package:petdemo/common/const/address.dart';
 import 'package:petdemo/init_screen.dart';
 import 'package:petdemo/main_screens/exception/notification_screen.dart';
@@ -12,6 +11,9 @@ import 'package:petdemo/main_screens/post/component/post_detail_model.dart';
 import 'package:petdemo/main_screens/post/search_found_screen.dart';
 import 'package:petdemo/main_screens/post/search_looking_screen.dart';
 import 'package:petdemo/main_screens/post/write_screen.dart';
+import 'package:petdemo/main_screens/post/profile_update_screen.dart';
+import 'package:petdemo/main_screens/post/account_update_screen.dart';
+import 'package:petdemo/main_screens/search/area_search_screen.dart';
 import 'package:petdemo/sign_step/pages/back_account.dart';
 import 'package:petdemo/sign_step/pages/condi_term.dart';
 import 'package:petdemo/sign_step/sign_up_done.dart';
@@ -36,7 +38,7 @@ class IsHereMain extends StatelessWidget {
       initialRoute: home,
       theme: ThemeData(fontFamily: 'Pretendard'),
       routes: {
-        home: (context) => LoginPhoneScreen(),
+        home: (context) => InitScreen(),
         initScreen: (context) => const InitScreen(),
 
         //post
@@ -46,9 +48,9 @@ class IsHereMain extends StatelessWidget {
         writeScreen: (context) => const WriteScreen(
               categoryTypeIsFind: false,
             ),
+        areaSearchScreen: (context) => const AreaSearchScreen(),
 
         //signUp
-        signUpScreen: (context) => SignUpScreen(),
         signUpStepsScreen: (context) => SignUpStepsScreen(),
         // phoneSignScreen: (context) => PhoneField(),
         // verifyphoneScreen: (context) => VerifyPhoneField(),

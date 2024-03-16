@@ -22,9 +22,9 @@ import 'package:petdemo/sign_step/tutorial.dart';
 */
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();  
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
-  options: DefaultFirebaseOptions.currentPlatform,
+    options: DefaultFirebaseOptions.currentPlatform,
   );
   runApp(SignUpStepsScreenApp());
 }
@@ -82,19 +82,6 @@ class _SignUpStepsScreenState extends State<SignUpStepsScreen> {
       CondTermScreenField(
         onCondAgreePressed: pushPage,
       ),
-      CondTermScreen(
-        onCondAgreePressed: pushPage,
-      ),
-      PasswordScreen(
-        description: "앱 사용시 본인 확인을 위한 비밀번호를 설정합니다.",
-        onContinuePressed: pushPage,
-      ),
-      PasswordScreen(
-        description: "방금 입력하신 비밀번호를 한번 더 적어주세요.",
-        onContinuePressed: pushPage,
-      ),
-      BankAccountScreen(
-        onAccountStartPressed: pushPage,
       PaymentPassword(
         onPinContinuePressed: pushPage,
         getPayPinNum: (value) {
@@ -159,42 +146,42 @@ class _SignUpStepsScreenState extends State<SignUpStepsScreen> {
       "pinNumber": pinNum,
     });
 
-   try {
-    // Firebase 초기화
-    await Firebase.initializeApp();
+    try {
+      // Firebase 초기화
+      await Firebase.initializeApp();
 
-    // FirebaseAuth 인스턴스 사용
-    await FirebaseAuth.instance.createUserWithEmailAndPassword(
-      email: phoneNum + "@ishere.com",
-      password: "ishere0903@@!@",
-    );
-    User? user = FirebaseAuth.instance.currentUser;
-
-    if (user != null) {
-      // Firestore에 닉네임 저장하기
-      await FirebaseFirestore.instance.collection('users').doc(user.uid).set({
-        'nickname': nickName,
-      }, SetOptions(merge: true)); // 기존 데이터와 병합
-
-      // Firebase 유저 프로필 업데이트하기
-      await user.updateDisplayName(nickName);
-      
-      final result = await phoneNumSend.reponseMessageCheck(response);
-      print(result);
-
-      Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(
-          builder: (context) {
-            return TutorialScreen();
-          },
-        ),
-        (route) => false,
+      // FirebaseAuth 인스턴스 사용
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: phoneNum + "@ishere.com",
+        password: "ishere0903@@!@",
       );
+      User? user = FirebaseAuth.instance.currentUser;
+
+      if (user != null) {
+        // Firestore에 닉네임 저장하기
+        await FirebaseFirestore.instance.collection('users').doc(user.uid).set({
+          'nickname': nickName,
+        }, SetOptions(merge: true)); // 기존 데이터와 병합
+
+        // Firebase 유저 프로필 업데이트하기
+        await user.updateDisplayName(nickName);
+
+        final result = await phoneNumSend.reponseMessageCheck(response);
+        print(result);
+
+        Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(
+            builder: (context) {
+              return TutorialScreen();
+            },
+          ),
+          (route) => false,
+        );
+      }
+    } catch (e) {
+      print("Error creating user: $e");
     }
-  } catch (e) {
-    print("Error creating user: $e");
   }
-}
 
   @override
   Widget build(BuildContext context) {

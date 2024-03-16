@@ -15,7 +15,9 @@ class MyScreen extends StatelessWidget {
       Navigator.of(context).pushNamed(wroteListScreen);
     }
 
-    void modifyPersonalInfo() {}
+    void modifyPersonalInfo() {
+      Navigator.of(context).pushNamed(profileUpdateScreen);
+    }
 
     void onInterestedPressed() {
       Navigator.of(context).pushNamed(interestedListScreen);
