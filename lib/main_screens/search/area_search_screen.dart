@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:petdemo/common/basic_layout.dart';
-import 'package:http/http.dart' as http;
+import 'package:dio/dio.dart';
 import 'dart:convert' show utf8, jsonDecode;
+import 'package:petdemo/common/custom_textform.dart';
+import 'package:petdemo/sign_step/widgets/blue_green_button.dart';
 
 class AreaSearchScreen extends StatefulWidget {
   const AreaSearchScreen({super.key});
@@ -17,13 +19,12 @@ class _AreaSearchScreenState extends State<AreaSearchScreen> {
   Future<void> _searchArea(String query) async {
     try {
       String encodedQuery = Uri.encodeComponent(query); //한글데이터를 우선 인코딩
-      final response = await http.get(Uri.parse(
-          'https://port-0-petish-app-back-1fk9002blr25yq9u.sel5.cloudtype.app/area/$encodedQuery'));
+      Dio dio = Dio();
+      final response = await dio.get(
+          'http://192.168.45.237:8080/area/$encodedQuery'); // 임시로 박병주 로컬 서버 주소가 들어가있음
 
       if (response.statusCode == 200) {
-        final body = response.bodyBytes; // 한글 데이터가 깨지지 않게 utf8로 디코딩
-        final decodedBody = utf8.decode(body); // 한글 데이터가 깨지지 않게 utf8로 디코딩
-        final data = jsonDecode(decodedBody); // 한글 데이터가 깨지지 않게 utf8로 디코딩
+        final data = response.data;
         List<String> results = [];
         if (data is List) {
           for (var item in data) {
@@ -54,44 +55,123 @@ class _AreaSearchScreenState extends State<AreaSearchScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        automaticallyImplyLeading: false,
-        elevation: 0.5,
-        title: Padding(
-          padding: const EdgeInsets.only(right: 20.0),
-          child: Row(
-            children: [
-              IconButton(
-                onPressed: () async {
-                  setState(() {
-                    searchExecuted = true; // 검색 버튼이 클릭되었음을 표시
-                  });
-                  await _searchArea(_searchController.text);
-                },
-                icon: Icon(Icons.search, color: Colors.black, size: 30.0),
-              ),
-              Expanded(
-                child: TextFormField(
-                  controller: _searchController,
-                  decoration: InputDecoration(
-                    hintText: '지역을 입력하세요(서울 종로구)',
-                    border: InputBorder.none,
-                  ),
-                ),
-              ),
-            ],
-          ),
+        title: Text(
+          '지역 검색',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+        centerTitle: true,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
       ),
       body: MainLayout(
         children: [
+          Padding(
+            padding: const EdgeInsets.only(right: 20.0),
+            child: Row(
+              children: [
+                Expanded(
+                  child: CustomTextFormField(
+                    textEditingController: _searchController,
+                    hintText: '동, 읍, 면으로 검색 (예시: 구의동)',
+                  ),
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                SizedBox(
+                    width: 75,
+                    child: ElevatedButton(
+                      onPressed: () async {
+                        setState(() {
+                          searchExecuted = true; // 검색 버튼이 클릭되었음을 표시
+                        });
+                        await _searchArea(_searchController.text);
+                      },
+                      child: Text('검색', style: TextStyle(color: Colors.white)),
+                      style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.resolveWith<Color>(
+                          (Set<MaterialState> states) {
+                            if (states.contains(MaterialState.pressed)) {
+                              return Color.fromRGBO(43, 170, 255, 1);
+                            } else {
+                              return Color.fromRGBO(61, 43, 255, 1);
+                            }
+                          },
+                        ),
+                      ),
+                    )),
+              ],
+            ),
+          ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: searchExecuted
                 ? (_searchResults.isEmpty
-                    ? [Text("검색결과가 없습니다. \n서울 OO구, 전남 OO군 형식으로 입력해주세요")]
-                    : _searchResults.map((result) => Text(result)).toList())
-                : [Text("검색을 위해 지역을 입력해주세요")], // 검색을 위한 삼항연산자
+                    ? [
+                        Column(
+                          children: [
+                            SizedBox(
+                              height: 15,
+                            ),
+                            Text(
+                                "검색결과가 없습니다. \n ex) 서울 OO구, 전남 OO군 형식으로 입력해주세요")
+                          ],
+                        )
+                      ]
+                    : [
+                        Column(
+                          children: [
+                            SizedBox(
+                              height: 15,
+                            ),
+                            Row(
+                              children: [
+                                Icon(Icons.location_on,
+                                    color: Colors.deepPurple),
+                                SizedBox(width: 5),
+                                Text('검색 결과',
+                                    style: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold)),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 15,
+                            ),
+                          ],
+                        )
+                      ]
+                  ..addAll(
+                      _searchResults // TO DO: 스크롤이 가능하도록 ListView 이용하여 수정필요
+                          .map((result) => [
+                                GestureDetector(
+                                  onTap: () {
+                                    print('Tapped on $result');
+                                    // TO DO: 클릭시 발생 이벤트 코드
+                                  },
+                                  child: Row(
+                                    children: [
+                                      SizedBox(width: 15),
+                                      Text(result,
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                          )),
+                                    ],
+                                  ),
+                                ),
+                                Divider(),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                              ])
+                          .expand((item) => item)
+                          .toList()))
+                : [Text(" ")], // 검색을 위한 삼항연산자
           ),
         ],
       ),
