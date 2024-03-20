@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_naver_map/flutter_naver_map.dart';
 
 class MapScreen extends StatelessWidget {
-  const MapScreen({Key? key}) : super(key: key);
+  final ValueChanged? getLoc;
+  const MapScreen({
+    super.key,
+    this.getLoc,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -28,11 +32,10 @@ class MapScreen extends StatelessWidget {
           controller.addOverlayAll({marker, marker1});
 
           final onMarkerInfoWindow =
-          NInfoWindow.onMarker(id: marker.info.id, text: "구름이");
+              NInfoWindow.onMarker(id: marker.info.id, text: "구름이");
           marker.openInfoWindow(onMarkerInfoWindow);
         },
       ),
     );
   }
 }
-

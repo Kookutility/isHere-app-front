@@ -7,6 +7,7 @@ import 'package:http_parser/http_parser.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:petdemo/API/model/latest_post_model.dart';
 import 'package:petdemo/API/service/rest_api.dart';
+import 'package:petdemo/main_screens/map_screen.dart';
 import 'package:petdemo/main_screens/post/component/post_detail_model.dart';
 import 'package:petdemo/main_screens/post/component/write_screen_model.dart';
 
@@ -303,21 +304,30 @@ class _WriteScreenState extends State<WriteScreen> {
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(12.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "장소 선택",
-                            style: TextStyle(
-                              color: Color(0xff606060),
-                              fontWeight: FontWeight.bold,
-                            ),
+                      child: GestureDetector(
+                        onTap: () => Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return MapScreen();
+                            },
                           ),
-                          Icon(
-                            Icons.arrow_forward_ios_rounded,
-                            color: Color(0xff606060),
-                          )
-                        ],
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "장소 선택",
+                              style: TextStyle(
+                                color: Color(0xff606060),
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Icon(
+                              Icons.arrow_forward_ios_rounded,
+                              color: Color(0xff606060),
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   ),

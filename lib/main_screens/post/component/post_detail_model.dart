@@ -26,7 +26,8 @@ class _PostDetailModelState extends State<PostDetailModel> {
   late String category;
   late String description;
   late String place;
-
+  late String userName;
+  late String areaName;
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -35,7 +36,9 @@ class _PostDetailModelState extends State<PostDetailModel> {
     category = args.categoryType;
     place = args.areaName;
     description = args.description;
-    imageList = args.imageUrls as List<String>;
+    imageList = args.imageUrls;
+    userName = args.userName;
+    areaName = args.areaName;
   }
 
   @override
@@ -105,14 +108,14 @@ class _PostDetailModelState extends State<PostDetailModel> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "아프지 말고",
+                            userName,
                             style: TextStyle(
                               fontSize: MediaQuery.of(context).size.width / 25,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
                           Text(
-                            "인천시 서구 가좌동",
+                            areaName,
                             style: TextStyle(
                               color: Color(0xff888686),
                               fontSize: MediaQuery.of(context).size.width / 30,
