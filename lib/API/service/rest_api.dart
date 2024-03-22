@@ -64,7 +64,7 @@ class ApiService {
     print("refreshToken $refreshToken");
   }
 
-  Future<Dio> _authDio() async {
+  Future<Dio> _authDio({required RequestOptions requestOpitions}) async {
     dio.interceptors.clear();
     final prefs = await SharedPreferences.getInstance();
 
@@ -149,7 +149,6 @@ class ApiService {
   Future<Response?> getRequestWithToken(
       {required String toUrl, required dynamic data}) async {
     try {
-      final dio = await _authDio();
       final Response<dynamic> response = await dio.get(
         ip + toUrl,
         data: data,
@@ -186,7 +185,7 @@ class ApiService {
 
 /* ============================ error Check =========================== */
   // Method to check response message errors
-  Future<Map<String, dynamic>?> reponseMessageCheck(Response? response) async {
+  Future<dynamic> reponseMessageCheck(Response? response) async {
     if (response == null) {
       return null;
     }

@@ -17,7 +17,7 @@ const wroteListScreen = '/wroteList';
 const transactionRecordScreen = 'transactionRecord';
 
 //widget model
-const postDetailWidget = 'postDetail';
+const postDetailWidget = '/postDetail';
 
 //signUp
 const signUpScreen = '/signUp';
@@ -26,9 +26,9 @@ const verifyphoneScreen = '/verifyPhoneNumSignUp';
 const nickNameScreen = '/nickNameSignUp';
 const condTermScreen = '/conditionAndTermSignUp';
 const bankAccScreen = 'backAccountSignUp';
-const signUpDoneScreen = 'signUpDone';
-const tutorialScreen = 'tutorialSignUp';
-const signUpStepsScreen = 'signUpSteps';
+const signUpDoneScreen = '/signUpDone';
+const tutorialScreen = '/tutorialSignUp';
+const signUpStepsScreen = '/signUpSteps';
 
 /*---------------- url --------------*/
 

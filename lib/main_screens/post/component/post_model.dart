@@ -45,7 +45,7 @@ class PostModel extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Text(
-                title.length > 16 ? title.substring(0, 16) + '...' : title,
+                title.length > 16 ? '${title.substring(0, 16)}...' : title,
                 style: TextStyle(
                   fontFamily: 'Pretendard-ExtraBold',
                   fontWeight: FontWeight.bold,
@@ -68,7 +68,8 @@ class PostModel extends StatelessWidget {
                   SizedBox(
                     width: 20,
                   ),
-                  if (deal == '1') Image.asset("assets/icons/give_immediately.png"),
+                  if (deal == '1')
+                    Image.asset("assets/icons/give_immediately.png"),
                 ],
               ),
               Text(

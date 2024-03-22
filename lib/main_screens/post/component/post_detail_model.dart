@@ -22,12 +22,8 @@ class _PostDetailModelState extends State<PostDetailModel> {
     'https://img.freepik.com/free-photo/front-view-adorable-shiba-inu-dog_23-2149457807.jpg?size=626&ext=jpg&ga=GA1.1.57940366.1704195866&semt=sph'
   ];
 
-  late String title;
-  late String category;
-  late String description;
-  late String place;
-  late String userName;
-  late String areaName;
+  late String title, category, description, place, userName, areaName, postId;
+  late double xLoc, yLoc;
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -39,6 +35,9 @@ class _PostDetailModelState extends State<PostDetailModel> {
     imageList = args.imageUrls;
     userName = args.userName;
     areaName = args.areaName;
+    xLoc = args.xLoc;
+    yLoc = args.yLoc;
+    postId = args.postId.toString();
   }
 
   @override
@@ -218,20 +217,23 @@ class _PostDetailModelState extends State<PostDetailModel> {
                           ),
                         ),
                         child: NaverMap(
-                          options: const NaverMapViewOptions(),
+                          options: NaverMapViewOptions(
+                            initialCameraPosition: NCameraPosition(
+                              target: NLatLng(
+                                xLoc,
+                                yLoc,
+                              ),
+                              zoom: 11,
+                            ),
+                          ),
                           onMapReady: (controller) {
                             final marker = NMarker(
-                                id: 'test',
-                                position: const NLatLng(
-                                    37.506932467450326, 127.05578661133796));
-                            final marker1 = NMarker(
-                                id: 'test1',
-                                position: const NLatLng(
-                                    37.606932467450326, 127.05578661133796));
-                            controller.addOverlayAll({marker, marker1});
+                                id: postId, position: NLatLng(xLoc, yLoc));
+
+                            controller.addOverlay(marker);
 
                             final onMarkerInfoWindow = NInfoWindow.onMarker(
-                                id: marker.info.id, text: "멋쟁이 사자처럼");
+                                id: marker.info.id, text: title);
                             marker.openInfoWindow(onMarkerInfoWindow);
                           },
                         ),

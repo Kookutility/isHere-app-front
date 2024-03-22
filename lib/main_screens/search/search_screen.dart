@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:petdemo/API/model/latest_post_model.dart';
 import 'package:petdemo/API/service/rest_api.dart';
@@ -14,16 +15,11 @@ class SearchScreen extends StatelessWidget {
       {required String url, dynamic data, BuildContext? context}) async {
     List<Post> postList = [];
     try {
-
-      
       final getLatestPost = ApiService(context: context);
       final Response<dynamic>? response =
           await getLatestPost.getRequest(url, data);
       print("data : $response");
       print(getLatestPost.reponseMessageCheck(response));
-
-
-
 
       final List<dynamic> posts = jsonDecode(response!.data!);
 
@@ -200,12 +196,12 @@ class SearchScreen extends StatelessWidget {
                               future: null,
                               builder: (context, snapshot) {
                                 if (!snapshot.hasData) {
-                                  return CircularProgressIndicator();
+                                  return CupertinoActivityIndicator();
                                 }
 
                                 if (snapshot.data == null) {
                                   print("receivced data is null");
-                                  return CircularProgressIndicator();
+                                  return CupertinoActivityIndicator();
                                 }
 
                                 return ListView.separated(
